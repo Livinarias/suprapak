@@ -180,5 +180,17 @@
                   action="action_drawn_presentation"
                   parent="menu_data_sheet_conf"
                   sequence="125"/>
+
+        <menuitem id="menu_cold_foil"
+                  name="Cold Foil"
+                  action="action_cold_foil"
+                  parent="menu_data_sheet_conf"
+                  sequence="125"/>
+
+        <menuitem id="menu_inks"
+                  name="Inks"
+                  action="action_inks"
+                  parent="menu_data_sheet_conf"
+                  sequence="125"/>
     </data>
 </odoo>

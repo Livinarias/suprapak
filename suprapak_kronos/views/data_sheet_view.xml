@@ -88,25 +88,25 @@
                                     </group>
                                     <group><!--rollo-->
                                         <field name="presentation_id"/>
-                                        <field name="meter_per_roll" attrs="{'invisible':[('presentation_id', '!=','ROLLO')]}"/>
-                                        <field name="core_diameter_id" attrs="{'invisible':[('presentation_id', '!=','ROLLO')]}"/>
+                                        <field name="meter_per_roll" attrs="{'invisible':[('presentation_id', 'not in','ROLLO')]}"/>
+                                        <field name="core_diameter_id" attrs="{'invisible':[('presentation_id', 'not in','ROLLO')]}"/>
                                         <field name="embossing_number_id" attrs="{'invisible':[('presentation_id', '!=','ROLLO')]}"/>
                                         <field name="number_splices_id" attrs="{'invisible':[('presentation_id', '!=','ROLLO')]}"/>
-                                        <fields name="splice_type_id" attrs="{'invisible':[('presentation_id', '!=','ROLLO')]}"/>
-                                        <field name="splicing_tape_id" attrs="{'invisible':[('presentation_id', '!=','ROLLO')]}"/>
+                                        <fields name="splice_type_id" attrs="{'invisible':[('presentation_id', 'not in','ROLLO')]}"/>
+                                        <field name="splicing_tape_id" attrs="{'invisible':[('presentation_id', 'not in','ROLLO')]}"/>
                                     </group>
                                     <group><!--sellado-->
-                                        <field name="seal_type_id" attrs="{'invisible':[('presentation_id', '!=','SELLADO')]}"/>
-                                        <field name="sealing_tab" attrs="{'invisible':[('presentation_id', '!=','SELLADO')]}"/>
+                                        <field name="seal_type_id" attrs="{'invisible':[('presentation_id', 'not in','SELLADO')]}"/>
+                                        <field name="sealing_tab" attrs="{'invisible':[('presentation_id', 'not in','SELLADO')]}"/>
                                     </group>
                                     <group><!--preformado-->
-                                        <field name="mold_id" attrs="{'invisible':[('presentation_id', '!=','PREFORMADO')]}"/>
-                                        <field name="bottom_diameter" attrs="{'invisible':[('presentation_id', '!=','PREFORMADO')]}"/>
-                                        <field name="upper_diameter" attrs="{'invisible':[('presentation_id', '!=','PREFORMADO')]}"/>
-                                        <field name="tab_length" attrs="{'invisible':[('presentation_id', '!=','PREFORMADO')]}"/>
-                                        <field name="band_height" attrs="{'invisible':[('presentation_id', '!=','PREFORMADO')]}"/>
-                                        <field name="product" attrs="{'invisible':[('presentation_id', '!=','PREFORMADO')]}"/>
-                                        <field name="long_modification" attrs="{'invisible':[('presentation_id', '!=','PREFORMADO')]}"/>
+                                        <field name="mold_id" attrs="{'invisible':[('presentation_id', 'not in','PREFORMADO')]}"/>
+                                        <field name="bottom_diameter" attrs="{'invisible':[('presentation_id', 'not in','PREFORMADO')]}"/>
+                                        <field name="upper_diameter" attrs="{'invisible':[('presentation_id', 'not in','PREFORMADO')]}"/>
+                                        <field name="tab_length" attrs="{'invisible':[('presentation_id', 'not in','PREFORMADO')]}"/>
+                                        <field name="band_height" attrs="{'invisible':[('presentation_id', 'not in','PREFORMADO')]}"/>
+                                        <field name="product" attrs="{'invisible':[('presentation_id', 'not in','PREFORMADO')]}"/>
+                                        <field name="long_modification" attrs="{'invisible':[('presentation_id', 'not in','PREFORMADO')]}"/>
                                     </group>
                                     <group><!--plano mecanico-->
                                         <field name="mechanic_plan_ids" />
@@ -134,10 +134,24 @@
                                     </group>
                                     <group>
                                         <field name="thermal_adhesive" widget="checkbox"/>
-                                        <field name="adhesive_type_id"/>
-                                        <field name="rod_number" attrs="{'invisible':[('thermal_adhesive', '!=', True)]}"/>
-                                        <field name="photo_format" widget="pdf_viewer" attrs="{'invisible':[('thermal_adhesive', '!=', True)]}"/>
+                                        <field name="adhesive_type_id" attrs="{'invisible':[('thermal_adhesive', 'not in', True )]}"/>
+                                        <field name="adhesive_type_selector" invisible="1"/>
+                                        <field name="rod_number" attrs="{'invisible':[('adhesive_type_id', 'not in','EN BARRA')]}"/>
+                                        <field name="photo_format" widget="pdf_viewer" attrs="{'invisible':[('adhesive_type_id', 'not in','IMPRESO')]}"/>
                                     </group>
+                                    <group string="Acabados Especiales">
+                                        <field name="cold_foil" widget="checkbox"/>
+                                        <field name="cold_foil_id" attrs="{'invisible':[('cold_foil', '!=',True)]}"/>
+                                        <field name="cold_foil_selector" invisible="1"/>
+                                        <field name="cold_foil_width" attrs="{'invisible':[('cold_foil_selector', '!=','PLATA')]}"/>
+                                        <field name="cast" widget="checkbox"/>
+                                        <field name="cast_reference" attrs="{'invisible':[('cast', '!=',True)]}"/>
+                                        <field name="cast_width" attrs="{'invisible':[('cast', '!=',True)]}"/>
+                                    </group>
+                                    <group string="Tintas Especiales">
+                                        <field name="ink_ids"/>
+                                    </group>
+
                                     <!--<group>
 
                                     </group>
@@ -377,6 +391,18 @@
         <record model="ir.actions.act_window" id="action_drawn_presentation">
             <field name="name">Drawn Presentation</field>
             <field name="res_model">drawn.presentation</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_cold_foil">
+            <field name="name">Cold Foil</field>
+            <field name="res_model">cold.foil</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_inks">
+            <field name="name">Inks</field>
+            <field name="res_model">inks</field>
             <field name="view_mode">tree,form</field>
         </record>
 

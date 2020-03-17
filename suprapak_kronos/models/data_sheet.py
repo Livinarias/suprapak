@@ -104,6 +104,25 @@ class DataSheet(models.Model):
     rod_number = fields.Integer('Rod Number')
     photo_format = fields.Binary('Photo Format')
     adhesive_type_id = fields.Many2one('adhesive.type','Adhesive Type')
+    adhesive_type_selector = fields.Char()
+    cold_foil = fields.Boolean('Cold Foil')
+    cold_foil_id = fields.Many2one('cold.foil','Cold Foil Type')
+    cold_foil_selector = fields.Char()
+    cold_foil_width = fields.Integer('Cold Foil Width')
+    cast = fields.Boolean('Cast & Cure')
+    cast_reference = fields.Char('Reference')
+    cast_width = fields.Char('Width Cast & Cure')
+    ink_ids = fields.Many2many('inks','sheet_inks_rel','shhet_id','inks_id','Inks')
+
+    @api.onchange('adhesive_type_id')
+    def _oncahnge_adhesive_type_id(self):
+        if self.adhesive_type_id:
+            self.adhesive_type_selector = self.adhesive_type_id.name
+
+    @api.onchange('cold_foil_id')
+    def _oncahnge_cold_foil_id(self):
+        if self.cold_foil_id:
+            self.cold_foil_selector = self.cold_foil_id.name
 
     @api.onchange('mold_id')
     def _onchange_mold_id(self):
@@ -439,5 +458,19 @@ class AdhesiveType(models.Model):
     _name = 'adhesive.type'
     _description = 'Adhesive Type'
 
-    name = fields.Binary('adhesive.type')
+    name = fields.Char('Adhesive Type')
     code = fields.Char('code')
+
+class DataAplication(models.Model):
+    _name = 'cold.foil'
+    _description = 'Cold Foil'
+
+    name = fields.Char('Cold Foil')
+    code = fields.Char('code')
+
+class Inks(models.Model):
+    _name = 'inks'
+    _description = 'Special Inks'
+
+    name = fields.Selection([('barnizm','Barniz Mate'),('barnizt','Barniz Textura'),('plata','Plata Espejo'),('polvo','Polvo oro verdoso')],'Ink')
+    percentage = fields.Selection([('5','5'),('10','10'),('20','20'),('30','30'),('40','40'),('50','50'),('80','80'),('100','100')],'Percentage')

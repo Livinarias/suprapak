@@ -29,3 +29,6 @@ user_barcode_type,user_barcode_type,suprapak_kronos.model_barcode_type,suprapak_
 user_mechanic_plan,user_mechanic_plan,suprapak_kronos.model_mechanic_plan,suprapak_kronos.group_data_sheet_user,1,1,1,0
 user_microperforated,user_microperforated,suprapak_kronos.model_microperforated,suprapak_kronos.group_data_sheet_user,1,1,1,0
 user_drawn_presentation,user_drawn_presentation,suprapak_kronos.model_drawn_presentation,suprapak_kronos.group_data_sheet_user,1,1,1,0
+user_cold_foil,user_cold_foil,suprapak_kronos.model_cold_foil,suprapak_kronos.group_data_sheet_user,1,1,1,0
+user_adhesive_type,user_adhesive_type,suprapak_kronos.model_adhesive_type,suprapak_kronos.group_data_sheet_user,1,1,1,0
+user_inks,user_inks,suprapak_kronos.model_inks,suprapak_kronos.group_data_sheet_user,1,1,1,0
