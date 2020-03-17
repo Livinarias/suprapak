@@ -88,25 +88,25 @@
                                     </group>
                                     <group><!--rollo-->
                                         <field name="presentation_id"/>
-                                        <field name="meter_per_roll"/>
-                                        <field name="core_diameter_id"/>
-                                        <field name="embossing_number_id"/>
-                                        <field name="number_splices_id"/>
-                                        <fields name="splice_type_id"/>
-                                        <field name="splicing_tape_id"/>
+                                        <field name="meter_per_roll" attrs="{'invisible':[('presentation_id', '!=','ROLLO')]}"/>
+                                        <field name="core_diameter_id" attrs="{'invisible':[('presentation_id', '!=','ROLLO')]}"/>
+                                        <field name="embossing_number_id" attrs="{'invisible':[('presentation_id', '!=','ROLLO')]}"/>
+                                        <field name="number_splices_id" attrs="{'invisible':[('presentation_id', '!=','ROLLO')]}"/>
+                                        <fields name="splice_type_id" attrs="{'invisible':[('presentation_id', '!=','ROLLO')]}"/>
+                                        <field name="splicing_tape_id" attrs="{'invisible':[('presentation_id', '!=','ROLLO')]}"/>
                                     </group>
                                     <group><!--sellado-->
-                                        <field name="seal_type_id"/>
-                                        <field name="sealing_tab"/>
+                                        <field name="seal_type_id" attrs="{'invisible':[('presentation_id', '!=','SELLADO')]}"/>
+                                        <field name="sealing_tab" attrs="{'invisible':[('presentation_id', '!=','SELLADO')]}"/>
                                     </group>
                                     <group><!--preformado-->
-                                        <field name="mold_id"/>
-                                        <field name="bottom_diameter"/>
-                                        <field name="upper_diameter"/>
-                                        <field name="tab_length"/>
-                                        <field name="band_height"/>
-                                        <field name="product"/>
-                                        <field name="long_modification"/>
+                                        <field name="mold_id" attrs="{'invisible':[('presentation_id', '!=','PREFORMADO')]}"/>
+                                        <field name="bottom_diameter" attrs="{'invisible':[('presentation_id', '!=','PREFORMADO')]}"/>
+                                        <field name="upper_diameter" attrs="{'invisible':[('presentation_id', '!=','PREFORMADO')]}"/>
+                                        <field name="tab_length" attrs="{'invisible':[('presentation_id', '!=','PREFORMADO')]}"/>
+                                        <field name="band_height" attrs="{'invisible':[('presentation_id', '!=','PREFORMADO')]}"/>
+                                        <field name="product" attrs="{'invisible':[('presentation_id', '!=','PREFORMADO')]}"/>
+                                        <field name="long_modification" attrs="{'invisible':[('presentation_id', '!=','PREFORMADO')]}"/>
                                     </group>
                                     <group><!--plano mecanico-->
                                         <field name="mechanic_plan_ids" />
@@ -121,17 +121,24 @@
                                     <group>
                                         <field name="microperforated" widget="checkbox"/>
                                         <field name="microperforated_ids" attrs="{'invisible':[('microperforated', '!=', True)]}"/>
-
-                                    </group>
-
-                                    <!--<group>
-                                        <field name="draw_type_id"/>
-
-                                        <field name="color_movie__id"/>
-                                        <field name="tongue"/>
-                                        <field name="thermal_adhesive"/>
                                     </group>
                                     <group>
+                                        <field name="drawn" widget="checkbox"/>
+                                        <field name="drawn_type_id" attrs="{'invisible':[('drawn', '!=', True)]}"/>
+                                        <field name="drawn_presentation_id" attrs="{'invisible':[('drawn', '!=', True)]}" domain="[('dranw_type_id', '=', drawn_type_id.drawn_type)]"/>
+                                        <field name="tongue" attrs="{'invisible':[('drawn', '!=', True)]}"/>
+                                    </group>
+                                    <group>
+                                        <field name="waistband" widget="checkbox"/>
+                                        <field name="color_movie_id" attrs="{'invisible':[('waistband', '!=', True)]}"/>
+                                    </group>
+                                    <group>
+                                        <field name="thermal_adhesive" widget="checkbox"/>
+                                        <field name="adhesive_type_id"/>
+                                        <field name="rod_number" attrs="{'invisible':[('thermal_adhesive', '!=', True)]}"/>
+                                        <field name="photo_format" widget="pdf_viewer" attrs="{'invisible':[('thermal_adhesive', '!=', True)]}"/>
+                                    </group>
+                                    <!--<group>
 
                                     </group>
                                     <group>
@@ -168,6 +175,7 @@
                     <field name="partner_id"/>
                     <field name="priority"/>
                     <field name="type_sheet"/>
+                    <field name="state"/>
                 </tree>
             </field>
         </record>
@@ -192,9 +200,9 @@
             <field name="view_mode">tree,form</field>
         </record>
 
-        <record model="ir.actions.act_window" id="action_data_draw_type">
-            <field name="name">Draw type</field>
-            <field name="res_model">data.draw.type</field>
+        <record model="ir.actions.act_window" id="action_data_drawn_type">
+            <field name="name">Drawn type</field>
+            <field name="res_model">data.drawn.type</field>
             <field name="view_mode">tree,form</field>
         </record>
 
@@ -363,6 +371,12 @@
         <record model="ir.actions.act_window" id="action_microperforated">
             <field name="name">Microperforated</field>
             <field name="res_model">microperforated</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_drawn_presentation">
+            <field name="name">Drawn Presentation</field>
+            <field name="res_model">drawn.presentation</field>
             <field name="view_mode">tree,form</field>
         </record>
 

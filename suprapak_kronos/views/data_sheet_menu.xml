@@ -25,9 +25,9 @@
                   parent="menu_data_sheet_conf"
                   sequence="5"/>
 
-        <menuitem id="menu_data_draw_type"
-                  name="Draw type"
-                  action="action_data_draw_type"
+        <menuitem id="menu_data_drawn_type"
+                  name="Drawn type"
+                  action="action_data_drawn_type"
                   parent="menu_data_sheet_conf"
                   sequence="10"/>
 
@@ -174,5 +174,11 @@
                   action="action_microperforated"
                   parent="menu_data_sheet_conf"
                   sequence="120"/>
+
+        <menuitem id="menu_drawn_presentation"
+                  name="Drawn Presentation"
+                  action="action_drawn_presentation"
+                  parent="menu_data_sheet_conf"
+                  sequence="125"/>
     </data>
 </odoo>

@@ -32,9 +32,9 @@ class DataSheet(models.Model):
     print_type = fields.Many2one('print.type','Print Type')
     uom_id = fields.Many2one('uom.uom', 'Unit of measure')
     product_type_id = fields.Many2one('data.product.type', 'Product line')
-    draw_type_id = fields.Many2one('data.draw.type', 'Draw type')
+    drawn_type_id = fields.Many2one('data.drawn.type', 'Draw type')
     movie_type_id = fields.Many2one('data.movie.type', 'Movie type')
-    color_movie__id = fields.Many2one('data.movie.color', 'Color movie')
+    color_movie_id = fields.Many2one('data.movie.color', 'Color movie')
     chemical_composition = fields.Many2one('chemical.composition','Chemical Composition')
     # Info cant
     specification_width_id = fields.Many2one('specification.width','Specification width')
@@ -98,6 +98,12 @@ class DataSheet(models.Model):
     microperforated = fields.Boolean('Microperforated')
     microperforated_id = fields.Many2one('microperforated')
     microperforated_ids = fields.Many2many('microperforated','sheet_microperfored_rel','sheed_id','microperfored_id','Microperfored')
+    drawn = fields.Boolean('Drawn')
+    drawn_presentation_id = fields.Many2one('drawn.presentation','Drawn Presentation')
+    waistband = fields.Boolean('Waistband')
+    rod_number = fields.Integer('Rod Number')
+    photo_format = fields.Binary('Photo Format')
+    adhesive_type_id = fields.Many2one('adhesive.type','Adhesive Type')
 
     @api.onchange('mold_id')
     def _onchange_mold_id(self):
@@ -118,10 +124,10 @@ class DataSheet(models.Model):
         for lead in self:
             lead.quotation_count = len(lead.order_ids)
 
-    @api.onchange('movie_type_id')
+    """@api.onchange('movie_type_id')
     def _onchange_movie_type_id(self):
         if self.movie_type_id:
-            self.color_movie__id = self.movie_type_id.color_id
+            self.color_movie_id = self.movie_type_id.color_id"""
 
     @api.onchange('caliber_id')
     def _onchange_caliber_id(self):
@@ -147,7 +153,7 @@ class DataSheet(models.Model):
                 'product_id': record.product_id.id,
                 'product_uom': record.uom_id.id,
                 'product_type_id': record.product_type_id.id,
-                'draw_type_id': record.draw_type_id.id,
+                'drawn_type_id': record.drawn_type_id.id,
                 'movie_type_id': record.movie_type_id.id,
                 'specification_width': record.specification_width_id.id,
                 'specification_long': record.specification_long_id.id,
@@ -179,7 +185,7 @@ class DataSheet(models.Model):
             'product_id': self.product_id.id,
             'product_uom': self.uom_id.id,
             'product_type_id': self.product_type_id.id,
-            'draw_type_id': self.draw_type_id.id,
+            'drawn_type_id': self.drawn_type_id.id,
             'movie_type_id': self.movie_type_id.id,
             'specification_width': self.specification_width_id.id,
             'specification_long': self.specification_long_id.id,
@@ -221,7 +227,7 @@ class DataProductType(models.Model):
 
 
 class DataDrawType(models.Model):
-    _name = 'data.draw.type'
+    _name = 'data.drawn.type'
     _description = 'Drawing type'
 
     name = fields.Char('Name')
@@ -420,3 +426,18 @@ class Microperforated(models.Model):
     cross = fields.Char('Cross')
     logitudinal = fields.Char('Longitudinal')
     name = fields.Char('code')
+
+class GraphitePresentation(models.Model):
+    _name = 'drawn.presentation'
+    _description = 'Drawn Presentation'
+
+    name = fields.Char('Drawn Presentation')
+    drawn_type = fields.Char('Drawn Type')
+    code = fields.Char('code')
+
+class AdhesiveType(models.Model):
+    _name = 'adhesive.type'
+    _description = 'Adhesive Type'
+
+    name = fields.Binary('adhesive.type')
+    code = fields.Char('code')

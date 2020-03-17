@@ -1,7 +1,7 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 user_data_sheet,user_data_sheet,suprapak_kronos.model_data_sheet,suprapak_kronos.group_data_sheet_user,1,1,1,0
 user_data_product_type,user_data_product_type,suprapak_kronos.model_data_product_type,suprapak_kronos.group_data_sheet_user,1,1,1,0
-user_data_draw_type,user_data_draw_type,suprapak_kronos.model_data_draw_type,suprapak_kronos.group_data_sheet_user,1,1,1,0
+user_data_drawn_type,user_data_drawn_type,suprapak_kronos.model_data_drawn_type,suprapak_kronos.group_data_sheet_user,1,1,1,0
 user_data_movie_color,user_data_movie_color,suprapak_kronos.model_data_movie_color,suprapak_kronos.group_data_sheet_user,1,1,1,0
 user_data_movie_type,user_data_movie_type,suprapak_kronos.model_data_movie_type,suprapak_kronos.group_data_sheet_user,1,1,1,0
 user_data_caliber_type,user_data_caliber_type,suprapak_kronos.model_data_caliber_type,suprapak_kronos.group_data_sheet_user,1,1,1,0
@@ -28,3 +28,4 @@ user_preformed,user_preformed,suprapak_kronos.model_preformed,suprapak_kronos.gr
 user_barcode_type,user_barcode_type,suprapak_kronos.model_barcode_type,suprapak_kronos.group_data_sheet_user,1,1,1,0
 user_mechanic_plan,user_mechanic_plan,suprapak_kronos.model_mechanic_plan,suprapak_kronos.group_data_sheet_user,1,1,1,0
 user_microperforated,user_microperforated,suprapak_kronos.model_microperforated,suprapak_kronos.group_data_sheet_user,1,1,1,0
+user_drawn_presentation,user_drawn_presentation,suprapak_kronos.model_drawn_presentation,suprapak_kronos.group_data_sheet_user,1,1,1,0
