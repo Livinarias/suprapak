@@ -38,6 +38,7 @@
                                         <field name="partner_id"/>
                                         <field name="commentary"/>
                                         <field name="product_code"/>
+                                        <field name="sector"/>
                                     </group>
                                     <group>
                                         <field name="team_id"/>
@@ -151,15 +152,26 @@
                                     <group string="Tintas Especiales">
                                         <field name="ink_ids"/>
                                     </group>
-
-                                    <!--<group>
-
+                                </group>
+                            </page>
+                            <page string="Design Features">
+                                <group>
+                                    <group>
+                                        <field name="required_match_print" widget="checkbox"/>
+                                        <field name="designer" attrs="{'invisible':[('required_match_print', '!=',True)]}"/>
+                                        <field name="datetime" attrs="{'invisible':[('required_match_print', '!=',True)]}"/>
                                     </group>
                                     <group>
-                                        <field name="tolerance_width"/>
-                                        <field name="tolerance_long"/>
-                                        <field name="tolerance_caliber"/>
-                                    </group>-->
+                                        <field name="quantity" attrs="{'invisible':[('required_match_print', '!=',True)]}"/>
+                                        <field name="Customer" attrs="{'invisible':[('required_match_print', '!=',True)]}"/>
+                                        <field name="name" attrs="{'invisible':[('required_match_print', '!=',True)]}"/>
+                                        <field name="sign_customer" widget="signature" attrs="{'invisible':[('required_match_print', '!=',True)]}"/>
+                                    </group>
+                                    <group>
+                                        <field name="deliver_to" attrs="{'invisible':[('required_match_print', '!=',True)]}"/>
+                                        <field name="deliver_to" attrs="{'invisible':[('required_match_print', '!=',True)]}"/>
+                                        <field name="sign_designer" widget="signature" attrs="{'invisible':[('required_match_print', '!=',True)]}"/>
+                                    </group>
                                 </group>
                             </page>
                             <page string="Bills of Materials">
@@ -403,6 +415,12 @@
         <record model="ir.actions.act_window" id="action_inks">
             <field name="name">Inks</field>
             <field name="res_model">inks</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_designer">
+            <field name="name">Designer</field>
+            <field name="res_model">designer</field>
             <field name="view_mode">tree,form</field>
         </record>
 

@@ -24,6 +24,7 @@ class DataSheet(models.Model):
     partner_id = fields.Many2one('res.partner', 'Customer')
     commentary = fields.Char('Commentary')
     product_code = fields.Char('Product code', help='Customer product code')
+    sector = fields.Char('Sector')
     team_id = fields.Many2one('crm.team', 'Zone')
     currency_id = fields.Many2one('res.currency', 'Currency')
 
@@ -113,6 +114,16 @@ class DataSheet(models.Model):
     cast_reference = fields.Char('Reference')
     cast_width = fields.Char('Width Cast & Cure')
     ink_ids = fields.Many2many('inks','sheet_inks_rel','shhet_id','inks_id','Inks')
+    required_match_print = fields.Boolean('required match Print')
+    designer = fields.Many2one('designer', 'Designer')
+    datetime = fields.Datetime('Date and Hour')
+    quantity = fields.Char('Quantity')
+    Customer = fields.Many2one('res.partner','Customer')
+    sign_customer = fields.Binary('Sign Customer')
+    deliver_to = fields.Many2one('res.partner','Deliver to')
+    sign_designer = fields.Binary('Sign Designer')
+
+
 
     @api.onchange('adhesive_type_id')
     def _oncahnge_adhesive_type_id(self):
@@ -442,9 +453,9 @@ class Microperforated(models.Model):
     _name = 'microperforated'
     _description = 'Microperforated'
 
+    name = fields.Char('code')
     cross = fields.Char('Cross')
     logitudinal = fields.Char('Longitudinal')
-    name = fields.Char('code')
 
 class GraphitePresentation(models.Model):
     _name = 'drawn.presentation'
@@ -474,3 +485,11 @@ class Inks(models.Model):
 
     name = fields.Selection([('barnizm','Barniz Mate'),('barnizt','Barniz Textura'),('plata','Plata Espejo'),('polvo','Polvo oro verdoso')],'Ink')
     percentage = fields.Selection([('5','5'),('10','10'),('20','20'),('30','30'),('40','40'),('50','50'),('80','80'),('100','100')],'Percentage')
+
+class Designer(models.Model):
+    _name = 'designer'
+    _description = 'Designer'
+
+    name = fields.Char('Designer')
+    code = fields.Char('code')
+    zone = fields.Char('zone')

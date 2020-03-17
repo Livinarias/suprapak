@@ -32,3 +32,4 @@ user_drawn_presentation,user_drawn_presentation,suprapak_kronos.model_drawn_pres
 user_cold_foil,user_cold_foil,suprapak_kronos.model_cold_foil,suprapak_kronos.group_data_sheet_user,1,1,1,0
 user_adhesive_type,user_adhesive_type,suprapak_kronos.model_adhesive_type,suprapak_kronos.group_data_sheet_user,1,1,1,0
 user_inks,user_inks,suprapak_kronos.model_inks,suprapak_kronos.group_data_sheet_user,1,1,1,0
+user_designer,user_designer,suprapak_kronos.model_designer,suprapak_kronos.group_data_sheet_user,1,1,1,0

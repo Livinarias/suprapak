@@ -192,5 +192,11 @@
                   action="action_inks"
                   parent="menu_data_sheet_conf"
                   sequence="125"/>
+
+        <menuitem id="menu_designer"
+                  name="Designer"
+                  action="action_designer"
+                  parent="menu_data_sheet_conf"
+                  sequence="130"/>
     </data>
 </odoo>
