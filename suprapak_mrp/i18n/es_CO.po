@@ -1,0 +1,111 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* suprapak_mrp
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-03-18 13:50+0000\n"
+"PO-Revision-Date: 2020-03-18 13:50+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: suprapak_mrp
+#: model_terms:ir.ui.view,arch_db:suprapak_mrp.mrp_cost_structure
+msgid "<span>CIF Cost</span>"
+msgstr "<span>Costo CIF</span>"
+
+#. module: suprapak_mrp
+#: model_terms:ir.ui.view,arch_db:suprapak_mrp.mrp_cost_structure
+msgid "<span>Cost/hour</span>"
+msgstr "<span>Cost/hour</span>"
+
+#. module: suprapak_mrp
+#: model_terms:ir.ui.view,arch_db:suprapak_mrp.mrp_cost_structure
+msgid "<span>MAQ Cost</span>"
+msgstr "<span>Costo MAQ</span>"
+
+#. module: suprapak_mrp
+#: model_terms:ir.ui.view,arch_db:suprapak_mrp.mrp_cost_structure
+msgid "<span>MOD Cost</span>"
+msgstr "<span>Costo MOD</span>"
+
+#. module: suprapak_mrp
+#: model_terms:ir.ui.view,arch_db:suprapak_mrp.mrp_cost_structure
+msgid "<span>Operation</span>"
+msgstr "<span>Operación</span>"
+
+#. module: suprapak_mrp
+#: model_terms:ir.ui.view,arch_db:suprapak_mrp.mrp_cost_structure
+msgid "<span>Operator</span>"
+msgstr "<span>Operador</span>"
+
+#. module: suprapak_mrp
+#: model_terms:ir.ui.view,arch_db:suprapak_mrp.mrp_cost_structure
+msgid "<span>Total Cost</span>"
+msgstr "<span>Costo Total</span>"
+
+#. module: suprapak_mrp
+#: model_terms:ir.ui.view,arch_db:suprapak_mrp.mrp_cost_structure
+msgid "<span>Working Time</span>"
+msgstr "<span>Tiempo de trabajo</span>"
+
+#. module: suprapak_mrp
+#: model_terms:ir.ui.view,arch_db:suprapak_mrp.mrp_cost_structure
+msgid "<strong>Total Cost of Operations</strong>"
+msgstr "<strong>Costo Total de Operaciones</strong>"
+
+#. module: suprapak_mrp
+#: model:ir.model.fields,field_description:suprapak_mrp.field_mrp_workcenter__costs_hour_cif
+msgid "CIF per hour"
+msgstr "Costo CIF"
+
+#. module: suprapak_mrp
+#: model_terms:ir.ui.view,arch_db:suprapak_mrp.mrp_cost_structure
+msgid "Cost of Operations"
+msgstr "Costo de Operaciones"
+
+#. module: suprapak_mrp
+#: model:ir.model.fields,help:suprapak_mrp.field_mrp_workcenter__costs_hour_cif
+msgid "Indirect manufacturing costs"
+msgstr "Costos indirectos de fabricación"
+
+#. module: suprapak_mrp
+#: model:ir.model.fields,field_description:suprapak_mrp.field_mrp_workcenter__costs_hour_mod
+msgid "MOD per hour"
+msgstr "Costo MOD"
+
+#. module: suprapak_mrp
+#: model:ir.model,name:suprapak_mrp.model_report_mrp_account_enterprise_mrp_cost_structure
+msgid "MRP Cost Structure Report"
+msgstr "Informe de estructura de costos de MRP"
+
+#. module: suprapak_mrp
+#: model:ir.model.fields,field_description:suprapak_mrp.field_mrp_workcenter__costs_hour_maq
+msgid "Machine per hour"
+msgstr "Costo MAQ"
+
+#. module: suprapak_mrp
+#: model:ir.model.fields,help:suprapak_mrp.field_mrp_workcenter__costs_hour_maq
+msgid "Machinery cost"
+msgstr "Costo de maquinaria"
+
+#. module: suprapak_mrp
+#: model:ir.model,name:suprapak_mrp.model_mrp_workcenter
+msgid "Work Center"
+msgstr "Centro de producción"
+
+#. module: suprapak_mrp
+#: model:ir.model.fields,help:suprapak_mrp.field_mrp_workcenter__costs_hour_mod
+msgid "Workforce cost"
+msgstr "Costo de mano de obra"
+
+#. module: suprapak_mrp
+#: model_terms:ir.ui.view,arch_db:suprapak_mrp.mrp_cost_structure
+msgid "hours"
+msgstr "horas"
