@@ -15,7 +15,7 @@ class SaleOrderLine(models.Model):
     sheet_id = fields.Many2one('data.sheet', 'Sheet')
     # Info Tec
     product_type_id = fields.Many2one('data.product.type', 'Product type')
-    draw_type_id = fields.Many2one('data.draw.type', 'Draw type')
+    drawn_type_id = fields.Many2one('data.drawn.type', 'Drawn type')
     movie_type_id = fields.Many2one('data.movie.type', 'Movie type')
     # Info cant
     specification_width = fields.Integer('Specification width')

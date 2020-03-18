@@ -39,6 +39,7 @@ class DataSheet(models.Model):
     chemical_composition = fields.Many2one('chemical.composition','Chemical Composition')
     # Info cant
     specification_width_id = fields.Many2one('specification.width','Specification width')
+    specification_width_name = fields.Char('Long Planned')
     specification_long_id = fields.Many2one('specification.long','Specification long')
     caliber_id = fields.Many2one('data.caliber.type', 'Specification caliber')
     tolerance_width = fields.Integer('Tolerance width')
@@ -122,8 +123,28 @@ class DataSheet(models.Model):
     sign_customer = fields.Binary('Sign Customer')
     deliver_to = fields.Many2one('res.partner','Deliver to')
     sign_designer = fields.Binary('Sign Designer')
+    vendor_date = fields.Date('Application date vendor')
+    date_recieved_approved = fields.Date('Date Recieved Approved')
+    observations = fields.Char('Observations')
+    fit_long_id = fields.Many2one('fit.long','Fit Long')
+    color_scale_id = fields.Many2one('color.scale','Color scale/check mark')
+    complexity = fields.Selection([('poca','poca'),('baja','Baja'),('media','Media'),('alta','Alta')])
+    control_change_id = fields.Many2one('control.change')
+    control_changes_ids = fields.Many2many('control.change','sheet_conttrol_rel','sheet_id','control_change_id')
+    change_observation = fields.Char('Observations')
+    separator_id = fields.Many2one('product.template','Separator')
+    core_diameter = fields.Char('Core Diameter')
+    width_core = fields.Char('Width Core')
+    superlon = fields.Char('Superlon')
+    tape_id = fields.Many2one('tape','Tape')#depende rollo....
+    refile_id = fields.Many2one('refile','Refile')
+    refiles_ids = fields.Many2many('refile','sheet_refile_rel','sheet_id','refile_id','Tapes')
 
 
+    @api.onchange('specification_width_id')
+    def _onchange_specification_width_id(self):
+        if self.specification_width_id:
+            self.specification_width_name = self.specification_width_id.name
 
     @api.onchange('adhesive_type_id')
     def _oncahnge_adhesive_type_id(self):
@@ -493,3 +514,43 @@ class Designer(models.Model):
     name = fields.Char('Designer')
     code = fields.Char('code')
     zone = fields.Char('zone')
+
+class FitLong(models.Model):
+    _name = 'fit.long'
+    _description = 'Fit Long'
+
+    name = fields.Char('Fit Long')
+
+class ColorScale(models.Model):
+    _name = 'color.scale'
+    _description = 'Color scale'
+
+    name = fields.Char('Color scale/check mark')
+
+class ControlChange(models.Model):
+    _name = 'control.change'
+    _description = 'Control Change'
+
+    name = fields.Char('Change')
+    Date = fields.Date('Date')
+    vendor = fields.Many2one('res.partner','Vendor')
+
+class Tape(models.Model):
+    _name = 'tape'
+    _description = 'Tape'
+
+    name = fields.Char('tape')
+    tape_to = fields.Date('Tape to')
+
+    class Refile(models.Model):
+        _name = 'refile'
+        _description = 'Refile'
+
+        name = fields.Char('Refile')
+        name1 = fields.Char('Revision')
+        name2 = fields.Char('Revision')
+        name3 = fields.Char('Revision')
+        glued = fields.Char('Gluped 1 to 2')
+        glued2 = fields.Char('Gluped 3 to 4')
+        rewind =fields.Char('Rewind')
+        rewind1 = fields.Char('Rewind')

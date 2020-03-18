@@ -38,7 +38,7 @@
                                         <field name="partner_id"/>
                                         <field name="commentary"/>
                                         <field name="product_code"/>
-                                        <field name="sector"/>
+                                        <!--<field name="sector"/>-->
                                     </group>
                                     <group>
                                         <field name="team_id"/>
@@ -84,6 +84,7 @@
                                         <field name="overlap_location_id"/>
                                         <field name="rhombus"/>
                                         <field name="average_label_weight"/>
+                                        <!--<h5>falta especificar</h5>-->
                                         <field name="label_weight"/>
                                         <field name="roll_weight"/>
                                     </group>
@@ -169,10 +170,26 @@
                                     </group>
                                     <group>
                                         <field name="deliver_to" attrs="{'invisible':[('required_match_print', '!=',True)]}"/>
-                                        <field name="deliver_to" attrs="{'invisible':[('required_match_print', '!=',True)]}"/>
                                         <field name="sign_designer" widget="signature" attrs="{'invisible':[('required_match_print', '!=',True)]}"/>
                                     </group>
+                                    <group>
+                                        <field name="vendor_date"/>
+                                        <field name="date_recieved_approved"/>
+                                        <field name="observations"/>
+                                    </group>
+                                    <group>
+                                        <!--<h5>rodillo</h5>-->
+                                        <field name="specification_width_name"/>
+                                        <!--cabida largo-->
+                                    </group>
+                                    <group>
+                                        <field name="fit_long_id"/>
+                                        <field name="color_scale_id"/>
+                                        <field name="complexity" widget="priority"/>
+                                    </group>
                                 </group>
+                            </page>
+                            <page string="packaging characteristics">
                             </page>
                             <page string="Bills of Materials">
                                 <field name="lists_ids"/>
@@ -421,6 +438,36 @@
         <record model="ir.actions.act_window" id="action_designer">
             <field name="name">Designer</field>
             <field name="res_model">designer</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_fit_long">
+            <field name="name">Fit Long</field>
+            <field name="res_model">fit.long</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_color_scale">
+            <field name="name">Color Scale</field>
+            <field name="res_model">color.scale</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_control_change">
+            <field name="name">Control Change</field>
+            <field name="res_model">control.change</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_tape">
+            <field name="name">Tape</field>
+            <field name="res_model">tape</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_refile">
+            <field name="name">Refile</field>
+            <field name="res_model">refile</field>
             <field name="view_mode">tree,form</field>
         </record>
 

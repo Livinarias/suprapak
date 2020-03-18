@@ -33,3 +33,9 @@ user_cold_foil,user_cold_foil,suprapak_kronos.model_cold_foil,suprapak_kronos.gr
 user_adhesive_type,user_adhesive_type,suprapak_kronos.model_adhesive_type,suprapak_kronos.group_data_sheet_user,1,1,1,0
 user_inks,user_inks,suprapak_kronos.model_inks,suprapak_kronos.group_data_sheet_user,1,1,1,0
 user_designer,user_designer,suprapak_kronos.model_designer,suprapak_kronos.group_data_sheet_user,1,1,1,0
+user_data_sector_type,user_data_sector_type,suprapak_kronos.model_data_sector_type,suprapak_kronos.group_data_sheet_user,1,1,1,0
+user_fit_long,user_fit_long,suprapak_kronos.model_fit_long,suprapak_kronos.group_data_sheet_user,1,1,1,0
+user_color_scale,user_color_scale,suprapak_kronos.model_color_scale,suprapak_kronos.group_data_sheet_user,1,1,1,0
+user_control_change,user_control_change,suprapak_kronos.model_control_change,suprapak_kronos.group_data_sheet_user,1,1,1,0
+user_tape,user_tape,suprapak_kronos.model_tape,suprapak_kronos.group_data_sheet_user,1,1,1,0
+user_refile,user_refile,suprapak_kronos.model_refile,suprapak_kronos.group_data_sheet_user,1,1,1,0

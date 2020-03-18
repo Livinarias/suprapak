@@ -12,7 +12,7 @@ class CrmLead(models.Model):
                                   copy=False)
     currency_id = fields.Many2one('res.currency', 'Currency')
     product_code = fields.Char('Product code', help='Customer product code')
-    sector_id = fields.Many2one('data.sector.type','Sector')
+    #sector_id = fields.Many2one('data.sector.type','Sector')
 
     def _compute_sheet_data(self):
         for lead in self:
@@ -44,7 +44,7 @@ class CrmLead(models.Model):
             'default_product_code': self.product_code,
             'default_type_sheet': self.type_sheet,
             'default_name': name,
-            'default_sector_id': sector,
+            #'default_sector_id': sector _id.name,
         }
         return action
 
