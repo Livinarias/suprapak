@@ -199,12 +199,6 @@
                   parent="menu_data_sheet_conf"
                   sequence="130"/>
 
-        <menuitem id="menu_fit_long"
-                  name="Fit Long"
-                  action="action_fit_long"
-                  parent="menu_data_sheet_conf"
-                  sequence="135"/>
-
         <menuitem id="menu_color_scale"
                   name="Color Scale"
                   action="action_color_scale"
@@ -226,6 +220,12 @@
         <menuitem id="menu_refile"
                   name="Refile"
                   action="action_refile"
+                  parent="menu_data_sheet_conf"
+                  sequence="145"/>
+
+        <menuitem id="menu_print_color"
+                  name="Print Color"
+                  action="action_print_color"
                   parent="menu_data_sheet_conf"
                   sequence="145"/>
     </data>

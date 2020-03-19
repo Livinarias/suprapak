@@ -8,6 +8,7 @@
                     <header>
                         <button string="New Quotation" name="action_sale_quotations_new" type="object"
                                 class="oe_highlight"/>
+                        <button class="oe_highlight" type="object" name="action_produce" string="To produce"/>
                         <field name="state" widget="statusbar" clickable="True"/>
                     </header>
                     <sheet>
@@ -77,10 +78,11 @@
                                         <field name="caliber_id"/>
                                         <field name="overlap_id"/>
                                         <field name="tolerance"/>
-                                        <field name="rhombus" attrs="{'invisible':[('overlap_id', 'not in', True)]}"/>
+                                        <field name="rhombus" attrs="{'invisible':[('overlap_id', '!=', True)]}"/>
                                     </group>
                                     <group>
-                                        <field name="guillotine"/>
+                                        <field name="guillotine" widget="checkbox"/>
+                                        <field name="guillotine_mm" attrs="{'invisible':[('guillotine', '!=', True)]}"/>
                                         <field name="overlap_location_id"/>
                                         <field name="rhombus"/>
                                         <field name="average_label_weight"/>
@@ -90,31 +92,34 @@
                                     </group>
                                     <group><!--rollo-->
                                         <field name="presentation_id"/>
-                                        <field name="meter_per_roll" attrs="{'invisible':[('presentation_id', 'not in','ROLLO')]}"/>
-                                        <field name="core_diameter_id" attrs="{'invisible':[('presentation_id', 'not in','ROLLO')]}"/>
-                                        <field name="embossing_number_id" attrs="{'invisible':[('presentation_id', '!=','ROLLO')]}"/>
-                                        <field name="number_splices_id" attrs="{'invisible':[('presentation_id', '!=','ROLLO')]}"/>
-                                        <fields name="splice_type_id" attrs="{'invisible':[('presentation_id', 'not in','ROLLO')]}"/>
-                                        <field name="splicing_tape_id" attrs="{'invisible':[('presentation_id', 'not in','ROLLO')]}"/>
+                                        <field name="presentation" invisible="True"/>
+                                        <field name="meter_per_roll" attrs="{'invisible':[('presentation','!=','ROLLO')]}"/>
+                                        <field name="core_diameter_id" attrs="{'invisible':[('presentation','!=','ROLLO')]}"/>
+                                        <field name="embossing_number_id" attrs="{'invisible':[('presentation','!=','ROLLO')]}"/>
+                                        <field name="number_splices_id" attrs="{'invisible':[('presentation','!=','ROLLO')]}"/>
+                                        <fields name="splice_type_id" attrs="{'invisible':[('presentation','!=','ROLLO')]}"/>
+                                        <field name="splicing_tape_id" attrs="{'invisible':[('presentation','!=','ROLLO')]}"/>
                                     </group>
                                     <group><!--sellado-->
-                                        <field name="seal_type_id" attrs="{'invisible':[('presentation_id', 'not in','SELLADO')]}"/>
-                                        <field name="sealing_tab" attrs="{'invisible':[('presentation_id', 'not in','SELLADO')]}"/>
+                                        <field name="seal_type_id" attrs="{'invisible':[('presentation', '!=','SELLADO')]}"/>
+                                        <field name="sealing_tab" attrs="{'invisible':[('presentation', '!=','SELLADO')]}"/>
+                                        <field name="seal" attrs="{'invisible':[('presentation', '!=','SELLADO')]}"/>
                                     </group>
                                     <group><!--preformado-->
-                                        <field name="mold_id" attrs="{'invisible':[('presentation_id', 'not in','PREFORMADO')]}"/>
-                                        <field name="bottom_diameter" attrs="{'invisible':[('presentation_id', 'not in','PREFORMADO')]}"/>
-                                        <field name="upper_diameter" attrs="{'invisible':[('presentation_id', 'not in','PREFORMADO')]}"/>
-                                        <field name="tab_length" attrs="{'invisible':[('presentation_id', 'not in','PREFORMADO')]}"/>
-                                        <field name="band_height" attrs="{'invisible':[('presentation_id', 'not in','PREFORMADO')]}"/>
-                                        <field name="product" attrs="{'invisible':[('presentation_id', 'not in','PREFORMADO')]}"/>
-                                        <field name="long_modification" attrs="{'invisible':[('presentation_id', 'not in','PREFORMADO')]}"/>
+                                        <field name="mold_id" attrs="{'invisible':[('presentation', '!=','PREFORMADO')]}"/>
+                                        <field name="bottom_diameter" attrs="{'invisible':[('presentation', '!=','PREFORMADO')]}"/>
+                                        <field name="upper_diameter" attrs="{'invisible':[('presentation', '!=','PREFORMADO')]}"/>
+                                        <field name="tab_length" attrs="{'invisible':[('presentation', '!=','PREFORMADO')]}"/>
+                                        <field name="band_height" attrs="{'invisible':[('presentation', '!=','PREFORMADO')]}"/>
+                                        <field name="product" attrs="{'invisible':[('presentation', '!=','PREFORMADO')]}"/>
+                                        <field name="long_modification" attrs="{'invisible':[('presentation', '!=','PREFORMADO')]}"/>
                                     </group>
                                     <group><!--plano mecanico-->
-                                        <field name="mechanic_plan_ids" />
-                                    </group>
-                                    <group><!--montaje multiple-->
-
+                                        <field name="mechanic_plan_ids">
+                                            <tree>
+                                                <field name="name" widget="pdf_viewer" />
+                                            </tree>
+                                        </field>
                                     </group>
                                     <group>
                                         <field name="barcode_type_id"/>
@@ -122,7 +127,12 @@
                                     </group>
                                     <group>
                                         <field name="microperforated" widget="checkbox"/>
-                                        <field name="microperforated_ids" attrs="{'invisible':[('microperforated', '!=', True)]}"/>
+                                        <field name="microperforated_ids" attrs="{'invisible':[('microperforated', '!=', True)]}">
+                                            <tree>
+                                                <field name="cross"/>
+                                                <field name="logitudinal"/>
+                                            </tree>
+                                        </field>
                                     </group>
                                     <group>
                                         <field name="drawn" widget="checkbox"/>
@@ -136,10 +146,10 @@
                                     </group>
                                     <group>
                                         <field name="thermal_adhesive" widget="checkbox"/>
-                                        <field name="adhesive_type_id" attrs="{'invisible':[('thermal_adhesive', 'not in', True )]}"/>
+                                        <field name="adhesive_type_id" attrs="{'invisible':[('thermal_adhesive', '!=', True )]}"/>
                                         <field name="adhesive_type_selector" invisible="1"/>
-                                        <field name="rod_number" attrs="{'invisible':[('adhesive_type_id', 'not in','EN BARRA')]}"/>
-                                        <field name="photo_format" widget="pdf_viewer" attrs="{'invisible':[('adhesive_type_id', 'not in','IMPRESO')]}"/>
+                                        <field name="rod_number" attrs="{'invisible':[('adhesive_type_id', '!=','EN BARRA')]}"/>
+                                        <field name="photo_format" widget="pdf_viewer" attrs="{'invisible':[('adhesive_type_id', '!=','IMPRESO')]}"/>
                                     </group>
                                     <group string="Acabados Especiales">
                                         <field name="cold_foil" widget="checkbox"/>
@@ -151,48 +161,110 @@
                                         <field name="cast_width" attrs="{'invisible':[('cast', '!=',True)]}"/>
                                     </group>
                                     <group string="Tintas Especiales">
-                                        <field name="ink_ids"/>
+                                        <field name="ink_ids">
+                                            <tree>
+                                                <field name="name"/>
+                                                <field name="percentage"/>
+                                            </tree>
+                                        </field>
                                     </group>
                                 </group>
                             </page>
                             <page string="Design Features">
                                 <group>
-                                    <group>
-                                        <field name="required_match_print" widget="checkbox"/>
-                                        <field name="designer" attrs="{'invisible':[('required_match_print', '!=',True)]}"/>
-                                        <field name="datetime" attrs="{'invisible':[('required_match_print', '!=',True)]}"/>
-                                    </group>
-                                    <group>
-                                        <field name="quantity" attrs="{'invisible':[('required_match_print', '!=',True)]}"/>
-                                        <field name="Customer" attrs="{'invisible':[('required_match_print', '!=',True)]}"/>
-                                        <field name="name" attrs="{'invisible':[('required_match_print', '!=',True)]}"/>
-                                        <field name="sign_customer" widget="signature" attrs="{'invisible':[('required_match_print', '!=',True)]}"/>
-                                    </group>
-                                    <group>
-                                        <field name="deliver_to" attrs="{'invisible':[('required_match_print', '!=',True)]}"/>
-                                        <field name="sign_designer" widget="signature" attrs="{'invisible':[('required_match_print', '!=',True)]}"/>
-                                    </group>
-                                    <group>
-                                        <field name="vendor_date"/>
-                                        <field name="date_recieved_approved"/>
-                                        <field name="observations"/>
-                                    </group>
-                                    <group>
-                                        <!--<h5>rodillo</h5>-->
-                                        <field name="specification_width_name"/>
-                                        <!--cabida largo-->
-                                    </group>
-                                    <group>
-                                        <field name="fit_long_id"/>
-                                        <field name="color_scale_id"/>
-                                        <field name="complexity" widget="priority"/>
-                                    </group>
+                                        <group>
+                                            <field name="required_match_print" widget="checkbox"/>
+                                            <field name="designer" attrs="{'invisible':[('required_match_print', '!=',True)]}"/>
+                                            <field name="repeat_id" attrs="{'invisible':[('required_match_print', '!=',True)]}"/>
+                                            <field name="room_large" attrs="{'invisible':[('required_match_print', '!=',True)]}"/>
+                                            <field name="large_planned" attrs="{'invisible':[('required_match_print', '!=',True)]}"/>
+                                            <field name="datetime" attrs="{'invisible':[('required_match_print', '!=',True)]}"/>
+                                        </group>
+                                        <group>
+                                            <field name="quantity" attrs="{'invisible':[('required_match_print', '!=',True)]}"/>
+                                            <field name="Customer" attrs="{'invisible':[('required_match_print', '!=',True)]}"/>
+                                            <field name="name" attrs="{'invisible':[('required_match_print', '!=',True)]}"/>
+                                            <field name="sign_customer" widget="signature" attrs="{'invisible':[('required_match_print', '!=',True)]}"/>
+                                        </group>
+                                        <group>
+                                            <field name="deliver_to" attrs="{'invisible':[('required_match_print', '!=',True)]}"/>
+                                            <field name="sign_designer" widget="signature" attrs="{'invisible':[('required_match_print', '!=',True)]}"/>
+                                        </group>
+                                        <group>
+                                            <field name="vendor_date" attrs="{'invisible':[('required_match_print', '!=',True)]}"/>
+                                            <field name="date_recieved_approved" attrs="{'invisible':[('required_match_print', '!=',True)]}"/>
+                                            <field name="observations" attrs="{'invisible':[('required_match_print', '!=',True)]}"/>
+                                        </group>
+                                        <group>
+                                            <!--<h5>rodillo</h5>-->
+                                            <field name="specification_width_name"/>
+                                            <!--cabida largo-->
+                                        </group>
+                                        <group>
+                                            <field name="color_scale_id"/>
+                                            <field name="complexity"/>
+                                        </group>
+                                        <group>
+                                            <field name="prints_ids">
+                                                <tree>
+                                                    <field name="name"/>
+                                                    <field name="press"/>
+                                                    <field name="line"/>
+                                                    <field name="lineatura"/>
+                                                    <field name="bcm"/>
+                                                </tree>
+                                            </field>
+                                        </group>
+                                            <group>
+                                                <field name="control_changes_ids">
+                                                    <tree>
+                                                        <field name="name"/>
+                                                        <field name="date"/>
+                                                        <field name="vendor"/>
+                                                    </tree>
+                                                </field>
+                                                <field name="change_observation"/>
+                                            </group>
+                                            <group>
+                                                <field name="plane_art" widget="pdf_viewer"/>
+                                            </group>
+                                            <group>
+                                                <field name="funtional_test" widget="pdf_viewer"/>
+                                            </group>
                                 </group>
                             </page>
                             <page string="packaging characteristics">
+                                <group string="packing">
+                                    <field name="separator_id"/>
+                                    <field name="core_diameter"/>
+                                    <field name="width_core"/>
+                                    <field name="bag"/>
+                                    <field name="box"/>
+                                </group>
                             </page>
                             <page string="Bills of Materials">
-                                <field name="lists_ids"/>
+                                <group>
+                                    <field name="products_ids">
+                                        <tree>
+                                            <field name="default_code"/>
+                                            <field name="name"/>
+                                            <field name="uom_id"/>
+                                            <field name="standard_price"/>
+                                            <field name="lst_price"/>
+                                        </tree>
+                                    </field>
+                                </group>
+                                <group>
+                                    <field name="routing_id"/>
+                                </group>
+                            </page>
+                            <page string="Versions">
+                                <group>
+                                    <field name="bom_id" readonly="True"/>
+                                </group>
+                                <group>
+                                    <field name="bom_ids" readonly="True"/>
+                                </group>
                             </page>
                             <page string="Routings">
                                 <field name="routings_ids"/>
@@ -441,12 +513,6 @@
             <field name="view_mode">tree,form</field>
         </record>
 
-        <record model="ir.actions.act_window" id="action_fit_long">
-            <field name="name">Fit Long</field>
-            <field name="res_model">fit.long</field>
-            <field name="view_mode">tree,form</field>
-        </record>
-
         <record model="ir.actions.act_window" id="action_color_scale">
             <field name="name">Color Scale</field>
             <field name="res_model">color.scale</field>
@@ -468,6 +534,12 @@
         <record model="ir.actions.act_window" id="action_refile">
             <field name="name">Refile</field>
             <field name="res_model">refile</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_print_color">
+            <field name="name">Print Color</field>
+            <field name="res_model">print.color</field>
             <field name="view_mode">tree,form</field>
         </record>
 

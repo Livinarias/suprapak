@@ -18,7 +18,7 @@ class DataSheet(models.Model):
                                    ('approved','Approved'),('rejected','Rejected'),('obsolete','Obsolete'),
                                    ('rejected ','Rejected Technical '),('rejected_d','Rejected Design')], 'Type sheet')
     name = fields.Char('Name')
-    product_id = fields.Many2one('product.product', 'Product')
+    product_id = fields.Many2one('product.template', 'Product')
     priority = fields.Selection([('0', 'Normal'), ('1', 'Low'), ('2', 'High'), ('3', 'Very High')], 'Priority')
     # Info Customer
     partner_id = fields.Many2one('res.partner', 'Customer')
@@ -52,7 +52,7 @@ class DataSheet(models.Model):
     no_print = fields.Boolean('Without Print')
     rhombus = fields.Boolean('Rhombus')
     guillotine = fields.Boolean('Requires Guillotine')
-    guillotine = fields.Boolean('')
+    guillotine_mm = fields.Float('mm')
 
     # Comments
     comments = fields.Text('Comments')
@@ -70,14 +70,16 @@ class DataSheet(models.Model):
     overlap_id = fields.Many2one('width.overlap','Width Overlap')
     tolerance = fields.Char('Tolerance')
     overlap_location_id = fields.Many2one('overlap.location','Overlap Location')
-    list_id = fields.Many2one('mrp.bom')
-    lists_ids = fields.Many2many('mrp.bom','sheet_bom_rel','sheet_id','bom_id','Bills of Materials')
+    bom_id = fields.Many2one('mrp.bom','Routing')
+    bom_ids = fields.One2many('mrp.bom','sheet_id','Record')
+    products_ids = fields.Many2many('product.product','sheet_product_rel','sheet_id','product_id','Bills of Materials')
     routing_id = fields.Many2one('mrp.routing','Routings')
     routings_ids = fields.Many2many('mrp.routing','sheet_routing_rel','sheet_id','routing_id','Routing')
-    average_label_weight = fields.Integer('Average Lable Weight')
-    label_weight = fields.Integer('Lable Weight')
-    roll_weight = fields.Char('Roll Weight')
+    average_label_weight = fields.Float('Average Lable Weight', compute = '_compute_average_label_weight')
+    label_weight = fields.Float('Lable Weight')
+    roll_weight = fields.Float('Roll Weight', compute = '_compute_roll_weight')
     presentation_id = fields.Many2one('presentation','Presentation')
+    presentation = fields.Char()
     meter_per_roll = fields.Char('Meters per roll')
     core_diameter_id = fields.Many2one('core.diameter','Core Diameter')
     embossing_number_id = fields.Many2one('embossing.number', 'Embossing Number')
@@ -86,6 +88,7 @@ class DataSheet(models.Model):
     splicing_tape_id = fields.Many2one('splicing.tape','Splicing tape')
     seal_type_id = fields.Many2one('seal.type','Seal Type')
     sealing_tab = fields.Char('Sealing Tab')
+    seal = fields.Float('Seal')
     mold_id = fields.Many2one('preformed','Mold')
     bottom_diameter = fields.Float('Bottom Diameter')
     upper_diameter = fields.Float('Upper Diameter')
@@ -126,25 +129,63 @@ class DataSheet(models.Model):
     vendor_date = fields.Date('Application date vendor')
     date_recieved_approved = fields.Date('Date Recieved Approved')
     observations = fields.Char('Observations')
-    fit_long_id = fields.Many2one('fit.long','Fit Long')
     color_scale_id = fields.Many2one('color.scale','Color scale/check mark')
     complexity = fields.Selection([('poca','poca'),('baja','Baja'),('media','Media'),('alta','Alta')])
     control_change_id = fields.Many2one('control.change')
-    control_changes_ids = fields.Many2many('control.change','sheet_conttrol_rel','sheet_id','control_change_id')
+    control_changes_ids = fields.Many2many('control.change','sheet_control_rel','sheet_id','control_change_id')
     change_observation = fields.Char('Observations')
-    separator_id = fields.Many2one('product.template','Separator')
+    separator_id = fields.Many2one('product.product','Separator')
     core_diameter = fields.Char('Core Diameter')
     width_core = fields.Char('Width Core')
+    bag = fields.Many2one('product.product','Bag')
+    box = fields.Many2one('product.product','Box')
     superlon = fields.Char('Superlon')
     tape_id = fields.Many2one('tape','Tape')#depende rollo....
     refile_id = fields.Many2one('refile','Refile')
     refiles_ids = fields.Many2many('refile','sheet_refile_rel','sheet_id','refile_id','Tapes')
+    print_id = fields.Many2one('print.color')
+    prints_ids = fields.Many2many('print.color','sheet_print_rel','sheet_id','print_id','Print Colors')
+    plane_art = fields.Binary('Plane Art')
+    funtional_test = fields.Binary('Funtional Test')
+    repeat_id = fields.Many2one('repeat','Roller')
+    room_large = fields.Char('Room Large')
+    large_planned = fields.Char('Large Planned')
 
+    @api.onchange('repeat_id')
+    def _onchange_repeat_id(self):
+        if self.repeat_id:
+            self.room_large = self.repeat_id.room_large
+            self.large_planned = self.repeat_id.large_planned
+
+    @api.onchange('presentation_id')
+    def _onchange_presentation_id(self):
+        if self.presentation_id:
+            self.presentation = self.presentation_id.name
+
+
+    @api.depends('specification_width_id.name', 'specification_long_id.name', 'overlap_id.name', 'guillotine_mm',
+                 'movie_type_id.density', 'movie_type_id.density', 'caliber_id.name', 'seal')
+    def _compute_roll_weight(self):
+        self.roll_weight = (self.specification_width_id.name + self.overlap_id.name / 2) * (
+                    (self.specification_long_id.name + self.seal + self.guillotine_mm) *
+                    (self.caliber_id.name * 0.04) * (self.movie_type_id.density))
+
+    @api.depends('specification_width_id.name','specification_long_id.name','overlap_id.name','guillotine_mm',
+                 'movie_type_id.density','movie_type_id.density','caliber_id.name','seal')
+    def _compute_average_label_weight(self):
+       self.average_label_weight = (self.specification_width_id.name+self.overlap_id.name/2)*(
+               (self.specification_long_id.name+self.seal+self.guillotine_mm)*
+                (self.caliber_id.name*0.04)*(self.movie_type_id.density))/1000
+
+    @api.onchange('seal_type_id')
+    def _onchange_seal_type_id(self):
+        if self.seal_type_id:
+            self.seal = self.seal_type_id.name
 
     @api.onchange('specification_width_id')
     def _onchange_specification_width_id(self):
         if self.specification_width_id:
-            self.specification_width_name = self.specification_width_id.name
+            self.specification_width_name = self.specification_width_id.seal
 
     @api.onchange('adhesive_type_id')
     def _oncahnge_adhesive_type_id(self):
@@ -190,10 +231,10 @@ class DataSheet(models.Model):
         if self.product_id:
             self.uom_id = self.product_id.uom_id.id
 
-    def write(self, values):
+    """def write(self, values):
         res = super(DataSheet, self).write(values)
         self.action_create_quotation()
-        return res
+        return res"""
 
     def action_create_quotation(self):
         so_obj = self.env['sale.order']
@@ -268,6 +309,21 @@ class DataSheet(models.Model):
             action['res_id'] = quotations.id
         return action
 
+    def action_produce(self):
+        mrp_object = self.env['mrp.bom']
+        valores=[]
+        for product in self.products_ids:
+            valores.append((0,0,{'product_id': product.id}))
+        valor={
+            'product_tmpl_id': self.product_id.id,
+            'bom_line_ids': valores,
+            'routing_id': self.routing_id.id,
+            'sheet_id': self.id
+        }
+
+        self.bom_id = mrp_object.create(valor)
+
+        return True
 
 class DataProductType(models.Model):
     _name = 'data.product.type'
@@ -298,6 +354,7 @@ class DataMovieType(models.Model):
     _description = 'Movie type'
 
     name = fields.Char('Name')
+    density = fields.Float('Density')
     code = fields.Char('Code')
     color_id = fields.Many2one('data.movie.color', 'Color')
 
@@ -306,7 +363,7 @@ class DataCaliberType(models.Model):
     _name = 'data.caliber.type'
     _description = 'Caliber type'
 
-    name = fields.Char('Name')
+    name = fields.Float('Caliber')
     code = fields.Char('Code')
     tolerance = fields.Integer('Tolerance')
 
@@ -371,8 +428,9 @@ class SpecificationWidth(models.Model):
     _name = 'specification.width'
     _description = 'Specification Width'
 
-    name = fields.Char('Specification Width')
+    name = fields.Float('Specification Width')
     code = fields.Char('code')
+    tolerance = fields.Float('Tolerance')
 
 class SpecificationLong(models.Model):
     _name = 'specification.long'
@@ -385,7 +443,7 @@ class Widthoverlap(models.Model):
     _name = 'width.overlap'
     _description = 'Width Overlap'
 
-    name = fields.Char('Width Overlap')
+    name = fields.Float('Width Overlap')
     tolerance = fields.Char('Tolerance')
     code = fields.Char('code')
 
@@ -443,6 +501,7 @@ class Seal_Type(models.Model):
     _description = 'Seal Type'
 
     name = fields.Char('Seal Type')
+    seal = fields.Float('Seal')
     code = fields.Char('code')
 
 class Preformed(models.Model):
@@ -486,12 +545,14 @@ class GraphitePresentation(models.Model):
     drawn_type = fields.Char('Drawn Type')
     code = fields.Char('code')
 
+
 class AdhesiveType(models.Model):
     _name = 'adhesive.type'
     _description = 'Adhesive Type'
 
     name = fields.Char('Adhesive Type')
     code = fields.Char('code')
+
 
 class DataAplication(models.Model):
     _name = 'cold.foil'
@@ -500,12 +561,14 @@ class DataAplication(models.Model):
     name = fields.Char('Cold Foil')
     code = fields.Char('code')
 
+
 class Inks(models.Model):
     _name = 'inks'
     _description = 'Special Inks'
 
     name = fields.Selection([('barnizm','Barniz Mate'),('barnizt','Barniz Textura'),('plata','Plata Espejo'),('polvo','Polvo oro verdoso')],'Ink')
     percentage = fields.Selection([('5','5'),('10','10'),('20','20'),('30','30'),('40','40'),('50','50'),('80','80'),('100','100')],'Percentage')
+
 
 class Designer(models.Model):
     _name = 'designer'
@@ -515,11 +578,6 @@ class Designer(models.Model):
     code = fields.Char('code')
     zone = fields.Char('zone')
 
-class FitLong(models.Model):
-    _name = 'fit.long'
-    _description = 'Fit Long'
-
-    name = fields.Char('Fit Long')
 
 class ColorScale(models.Model):
     _name = 'color.scale'
@@ -527,13 +585,15 @@ class ColorScale(models.Model):
 
     name = fields.Char('Color scale/check mark')
 
+
 class ControlChange(models.Model):
     _name = 'control.change'
     _description = 'Control Change'
 
     name = fields.Char('Change')
-    Date = fields.Date('Date')
+    date = fields.Date('Date')
     vendor = fields.Many2one('res.partner','Vendor')
+
 
 class Tape(models.Model):
     _name = 'tape'
@@ -542,15 +602,35 @@ class Tape(models.Model):
     name = fields.Char('tape')
     tape_to = fields.Date('Tape to')
 
-    class Refile(models.Model):
-        _name = 'refile'
-        _description = 'Refile'
+class Refile(models.Model):
+    _name = 'refile'
+    _description = 'Refile'
 
-        name = fields.Char('Refile')
-        name1 = fields.Char('Revision')
-        name2 = fields.Char('Revision')
-        name3 = fields.Char('Revision')
-        glued = fields.Char('Gluped 1 to 2')
-        glued2 = fields.Char('Gluped 3 to 4')
-        rewind =fields.Char('Rewind')
-        rewind1 = fields.Char('Rewind')
+    name = fields.Char('Refile')
+    name1 = fields.Char('Revision')
+    name2 = fields.Char('Revision')
+    name3 = fields.Char('Revision')
+    glued = fields.Char('Gluped 1 to 2')
+    glued2 = fields.Char('Gluped 3 to 4')
+    rewind =fields.Char('Rewind')
+    rewind1 = fields.Char('Rewind')
+
+
+class PrintColor(models.Model):
+    _name = 'print.color'
+    _description = 'Print Color'
+
+    name = fields.Many2one('product.product','Color')
+    press = fields.Selection([('1','1'),('2','2'),('3','3'),('4','4'),('5','5'),('6','6'),('7','7'),('8','8')],'U.Press')
+    line = fields.Selection([('bs','BS'),('ba', 'BA'),('uv','UV')],'Line')
+    lineatura = fields.Char('Lineatura')
+    bcm = fields.Char('BCM')
+
+
+class Repeat(models.Model):
+    _name ='repeat'
+    _description = 'Repeat'
+
+    name = fields.Char('Roller')
+    room_large = fields.Char('Room Large')
+    large_planned = fields.Char('Large Planned')
