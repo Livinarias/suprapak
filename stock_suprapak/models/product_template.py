@@ -12,3 +12,14 @@ class ProductTemplate(models.Model):
     class_print = fields.Char('Class of Print')
     presentation = fields.Char('Presentation')
     type_selle = fields.Char('Type of Sealed')
+
+
+class ProductProduct(models.Model):
+    _inherit  = 'product.product'
+
+    x_currency_id = fields.Many2one('res.currency', 'Currency')
+    customer_reference = fields.Char('Customer Reference')
+    date_version = fields.Date('Date Version')
+    class_print = fields.Char('Class of Print')
+    presentation = fields.Char('Presentation')
+    type_selle = fields.Char('Type of Sealed')
