@@ -701,7 +701,7 @@ msgstr "Bolsa"
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__for_bags_ids
 msgid "For Bags"
-msgstr ""
+msgstr "Para Bolsas"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__for_box
@@ -730,7 +730,7 @@ msgstr "Rollos"
 #: model:ir.model.fields,field_description:suprapak_kronos.field_for_superlon__name
 #: model:ir.ui.menu,name:suprapak_kronos.menu_for_superlon
 msgid "For Superlon"
-msgstr ""
+msgstr "Para Superlon"
 
 #. module: suprapak_kronos
 #: model:ir.actions.act_window,name:suprapak_kronos.action_data_form
@@ -1238,17 +1238,17 @@ msgstr "Numero de acciones"
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__quotation_count
 msgid "Number of Quotations"
-msgstr "Numero de Cotizaciones"
+msgstr "Número de Cotizaciones"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__message_has_error_counter
 msgid "Number of errors"
-msgstr "Numero de errores"
+msgstr "Número de errores"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields,help:suprapak_kronos.field_data_sheet__message_needaction_counter
 msgid "Number of messages which requires an action"
-msgstr "Número de mensajes que requieren una acción."
+msgstr "Numero de mensajes que requieren una acción."
 
 #. module: suprapak_kronos
 #: model:ir.model.fields,help:suprapak_kronos.field_data_sheet__message_has_error_counter
@@ -1390,12 +1390,12 @@ msgstr "Clase de impresion"
 #: model:ir.model,name:suprapak_kronos.model_print_color
 #: model:ir.ui.menu,name:suprapak_kronos.menu_print_color
 msgid "Print Color"
-msgstr ""
+msgstr "Color de impresion"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__prints_ids
 msgid "Print Colors"
-msgstr ""
+msgstr "Colores de impresion"
 
 #. module: suprapak_kronos
 #: model:ir.actions.act_window,name:suprapak_kronos.action_print_type
@@ -1458,7 +1458,7 @@ msgstr "Hoja de cotización"
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__bom_ids
 msgid "Record"
-msgstr ""
+msgstr "Grabar"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__cast_reference
@@ -1487,17 +1487,17 @@ msgstr "Diseño rechazado"
 #. module: suprapak_kronos
 #: model:ir.model.fields.selection,name:suprapak_kronos.selection__data_sheet__type_sheet__rejected_
 msgid "Rejected Technical "
-msgstr ""
+msgstr "Rechazo por tecnico"
 
 #. module: suprapak_kronos
 #: model:ir.model,name:suprapak_kronos.model_repeat
 msgid "Repeat"
-msgstr ""
+msgstr "Repetir"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__guillotine
 msgid "Requires Guillotine"
-msgstr ""
+msgstr "Requiere Güillotinado"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__activity_user_id
@@ -1528,7 +1528,7 @@ msgstr ""
 #: model:ir.model,name:suprapak_kronos.model_rewind
 #: model:ir.model.fields,field_description:suprapak_kronos.field_rewind__name
 msgid "Rewind"
-msgstr ""
+msgstr "Rebobine"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__rhombus
@@ -1538,7 +1538,7 @@ msgstr "Rombo"
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__rod_number
 msgid "Rod Number"
-msgstr ""
+msgstr "Numero Varilla"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__roll_weight
@@ -1549,13 +1549,13 @@ msgstr "Peso del rollo"
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__repeat_id
 #: model:ir.model.fields,field_description:suprapak_kronos.field_repeat__name
 msgid "Roller"
-msgstr ""
+msgstr "Rollo"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__room_large
 #: model:ir.model.fields,field_description:suprapak_kronos.field_repeat__room_large
 msgid "Room Large"
-msgstr ""
+msgstr "Largo Rollo"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__bom_id
@@ -1597,7 +1597,7 @@ msgstr "Pedido de Venta"
 #. module: suprapak_kronos
 #: model:ir.model,name:suprapak_kronos.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "LInea de orden de venta"
 "Línea de orden de ventaPedido de Venta en Linea#-#-#-#-#  es_CO.po (Odoo 9.0)  #-#-#-#-#\n"
 "Línea Orden de Venta\n"
 "#-#-#-#-#  es_CO.po (Odoo 9.0)  #-#-#-#-#\n"
@@ -1612,7 +1612,7 @@ msgstr "Ficha de Muestra"
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__seal
 #: model:ir.model.fields,field_description:suprapak_kronos.field_seal_type__seal
 msgid "Seal"
-msgstr ""
+msgstr "Sello"
 
 #. module: suprapak_kronos
 #: model:ir.actions.act_window,name:suprapak_kronos.action_seal_type
@@ -1647,7 +1647,7 @@ msgstr "Token de seguridad"
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__separator_id
 msgid "Separator"
-msgstr ""
+msgstr "Separador"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_mrp_bom__sheet_id
@@ -1811,7 +1811,7 @@ msgstr ""
 #. module: suprapak_kronos
 #: model_terms:ir.ui.view,arch_db:suprapak_kronos.form_data_sheet
 msgid "To produce"
-msgstr ""
+msgstr "A producir"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_caliber_type__tolerance
@@ -1856,7 +1856,7 @@ msgstr "Tipo de hoja"
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_print_color__press
 msgid "U.Press"
-msgstr ""
+msgstr "U.prensa"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields.selection,name:suprapak_kronos.selection__print_color__line__uv
@@ -1897,7 +1897,7 @@ msgstr "Vendedor"
 #. module: suprapak_kronos
 #: model_terms:ir.ui.view,arch_db:suprapak_kronos.form_data_sheet
 msgid "Versions"
-msgstr ""
+msgstr "Versiones"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields.selection,name:suprapak_kronos.selection__data_sheet__priority__3
@@ -1996,7 +1996,7 @@ msgstr "Caracteristicas de Empaque"
 #. module: suprapak_kronos
 #: model_terms:ir.ui.view,arch_db:suprapak_kronos.form_data_sheet
 msgid "packing"
-msgstr ""
+msgstr "Paquete"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields.selection,name:suprapak_kronos.selection__data_sheet__complexity__poca
