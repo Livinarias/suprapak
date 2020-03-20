@@ -141,8 +141,6 @@ class DataSheet(models.Model):
     box = fields.Many2one('product.product','Box')
     superlon = fields.Char('Superlon')
     tape_id = fields.Many2one('tape','Tape')#depende rollo....
-    refile_id = fields.Many2one('refile','Refile')
-    refiles_ids = fields.Many2many('refile','sheet_refile_rel','sheet_id','refile_id','Tapes')
     print_id = fields.Many2one('print.color')
     prints_ids = fields.Many2many('print.color','sheet_print_rel','sheet_id','print_id','Print Colors')
     plane_art = fields.Binary('Plane Art')
@@ -150,6 +148,27 @@ class DataSheet(models.Model):
     repeat_id = fields.Many2one('repeat','Roller')
     room_large = fields.Char('Room Large')
     large_planned = fields.Char('Large Planned')
+    for_roll_id = fields.Many2one('for.roll')
+    for_rolls_ids = fields.Many2many('for.roll','sheet_roll_rel','sheet_id','for_roll_id','For Rolls')
+    for_bag_id = fields.Many2one('for.bag')
+    for_bags_ids = fields.Many2many('for.bag','sheet_bag_rel','sheet_id','for_bag_id','For Bags')
+    for_superlon_id = fields.Many2one('for.superlon')
+    for_superlons_ids = fields.Many2many('for.superlon','sheet_superlon_rel','sheet_id','for_superlon_id','For Superlon')
+    for_box = fields.Selection([('supra','SUPRAPAK 2" 100 m BLANCA'),('supra2','SUPRAPAK 2" 100 m TRANSPARENTE')],'For Box')
+    refile_id = fields.Many2one('refile', 'Refile')
+    refiles_ids = fields.Many2many('refile', 'sheet_refile_rel', 'sheet_id', 'refile_id', 'Tapes')
+    revision_id = fields.Many2one('revision')
+    revisions_ids = fields.Many2many('revision','sheet_revision_rel','sheet_id','revision_id','Revisión')
+    gluped_id =fields.Many2one('gluped')
+    glupeds_ids =fields.Many2many('gluped','sheet_gluped_rel','sheet_id','gluped_id','Gluped 1 to 2')
+    gluped2_id = fields.Many2one('gluped2')
+    gluped2_ids = fields.Many2many('gluped2','sheet_gluped2_rel','sheet_id','gluped2_id','Gluped 3 to 4')
+
+
+    @api.onchange('width_core')
+    def _onchange_width_core(self):
+        if self.width_core:
+            self.width_core = self.width_core + 4
 
     @api.onchange('repeat_id')
     def _onchange_repeat_id(self):
@@ -244,7 +263,7 @@ class DataSheet(models.Model):
             vals = {
                 'product_id': record.product_id.id,
                 'product_uom': record.uom_id.id,
-                'product_type_id': record.product_type_id.id,
+                'material_id' : record.material_id.id,
                 'drawn_type_id': record.drawn_type_id.id,
                 'movie_type_id': record.movie_type_id.id,
                 'specification_width': record.specification_width_id.id,
@@ -276,7 +295,7 @@ class DataSheet(models.Model):
         vals = {
             'product_id': self.product_id.id,
             'product_uom': self.uom_id.id,
-            'product_type_id': self.product_type_id.id,
+            'material_id' : self.material_id.id,
             'drawn_type_id': self.drawn_type_id.id,
             'movie_type_id': self.movie_type_id.id,
             'specification_width': self.specification_width_id.id,
@@ -607,13 +626,33 @@ class Refile(models.Model):
     _description = 'Refile'
 
     name = fields.Char('Refile')
-    name1 = fields.Char('Revision')
-    name2 = fields.Char('Revision')
-    name3 = fields.Char('Revision')
-    glued = fields.Char('Gluped 1 to 2')
-    glued2 = fields.Char('Gluped 3 to 4')
-    rewind =fields.Char('Rewind')
-    rewind1 = fields.Char('Rewind')
+
+
+class Revision(models.Model):
+        _name = 'revision'
+        _description = 'Revision'
+
+        name = fields.Char('Revision')
+
+
+class Gluped(models.Model):
+    _name = 'gluped'
+    _description = 'Gluped 1'
+
+    name = fields.Char('Gluped 1 to 2')
+
+class Gluped2(models.Model):
+        _name = 'gluped2'
+        _description = 'Gluped'
+
+        name = fields.Char('Gluped 3 to 4')
+
+
+class Rewind(models.Model):
+    _name = 'rewind'
+    _description = 'Rewind'
+
+    name = fields.Char('Rewind')
 
 
 class PrintColor(models.Model):
@@ -634,3 +673,24 @@ class Repeat(models.Model):
     name = fields.Char('Roller')
     room_large = fields.Char('Room Large')
     large_planned = fields.Char('Large Planned')
+
+
+class ForRoll(models.Model):
+    _name = 'for.roll'
+    _description = 'For Roll'
+
+    name = fields.Char('For Roll')
+
+
+class ForBag(models.Model):
+    _name = 'for.bag'
+    _description = 'For Bag'
+
+    name = fields.Char('For Bag')
+
+
+class ForSuperlon(models.Model):
+    _name = 'for.superlon'
+    _description = 'For Superlon'
+
+    name = fields.Char('For Superlon')

@@ -234,12 +234,29 @@
                                 </group>
                             </page>
                             <page string="packaging characteristics">
-                                <group string="packing">
-                                    <field name="separator_id"/>
-                                    <field name="core_diameter"/>
-                                    <field name="width_core"/>
-                                    <field name="bag"/>
-                                    <field name="box"/>
+                                <group>
+                                    <group string="packing">
+                                        <field name="separator_id"/>
+                                        <field name="core_diameter"/>
+                                    </group>
+                                    <group>
+                                        <field name="width_core"/>
+                                        <field name="bag"/>
+                                        <field name="box"/>
+                                        <field name="superlon"/>
+                                    </group>
+                                    <group string="lashing straps">
+                                        <field name="for_rolls_ids"/>
+                                        <field name="for_bags_ids"/>
+                                        <field name="for_superlons_ids"/>
+                                        <field name="for_box"/>
+                                    </group>
+                                    <group string="Cintas de empalme por proceso ">
+                                        <field name="refiles_ids"/>
+                                        <field name="revisions_ids"/>
+                                        <field name="glupeds_ids"/>
+                                        <field name="gluped2_ids"/>
+                                    </group>
                                 </group>
                             </page>
                             <page string="Bills of Materials">
@@ -267,7 +284,17 @@
                                 </group>
                             </page>
                             <page string="Routings">
-                                <field name="routings_ids"/>
+                                <group>
+                                    <group>
+                                        <field name="form_id" readonly="True"/>
+                                        <field name="product_type_id" readonly="True"/>
+                                    </group>
+                                    <group>
+                                        <field name="print_type" readonly="True"/>
+                                        <field name="guillotine" widget="checkbox" readonly="True"/>
+                                        <field name="guillotine_mm" readonly="True"/>
+                                    </group>
+                                </group>
                             </page>
                         </notebook>
                     </sheet>
@@ -540,6 +567,48 @@
         <record model="ir.actions.act_window" id="action_print_color">
             <field name="name">Print Color</field>
             <field name="res_model">print.color</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_revision">
+            <field name="name">Revision</field>
+            <field name="res_model">revision</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_gluped">
+            <field name="name">Gluped</field>
+            <field name="res_model">gluped</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_gluped2">
+            <field name="name">Gluped2</field>
+            <field name="res_model">gluped2</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_rewind">
+            <field name="name">Rewind</field>
+            <field name="res_model">rewind</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_for_roll">
+            <field name="name">For Roll</field>
+            <field name="res_model">for.roll</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_for_bag">
+            <field name="name">For Bag</field>
+            <field name="res_model">for.bag</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_for_superlon">
+            <field name="name">For Superlon</field>
+            <field name="res_model">for.superlon</field>
             <field name="view_mode">tree,form</field>
         </record>
 
