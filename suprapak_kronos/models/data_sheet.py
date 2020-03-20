@@ -42,9 +42,9 @@ class DataSheet(models.Model):
     specification_width_name = fields.Char('Long Planned')
     specification_long_id = fields.Many2one('specification.long','Specification long')
     caliber_id = fields.Many2one('data.caliber.type', 'Specification caliber')
-    tolerance_width = fields.Integer('Tolerance width')
-    tolerance_long = fields.Integer('Tolerance long')
-    tolerance_caliber = fields.Integer('Tolerance caliber')
+    tolerance_width = fields.Float('Tolerance width')
+    tolerance_long = fields.Float('Tolerance long')
+    tolerance_caliber = fields.Float('Tolerance caliber')
     # Bool
     tongue = fields.Boolean('Tongue')
     thermal_adhesive = fields.Boolean('Thermal adhesive')
@@ -68,7 +68,7 @@ class DataSheet(models.Model):
     quantity = fields.Char('Quantity')
     form_id = fields.Many2one('data.form','Form')
     overlap_id = fields.Many2one('width.overlap','Width Overlap')
-    tolerance = fields.Char('Tolerance')
+    tolerance_overlap = fields.Float('Tolerance Overlap')
     overlap_location_id = fields.Many2one('overlap.location','Overlap Location')
     bom_id = fields.Many2one('mrp.bom','Routing')
     bom_ids = fields.One2many('mrp.bom','sheet_id','Record')
@@ -87,8 +87,8 @@ class DataSheet(models.Model):
     splice_type_id = fields.Many2one('splice.type','Splice Type')
     splicing_tape_id = fields.Many2one('splicing.tape','Splicing tape')
     seal_type_id = fields.Many2one('seal.type','Seal Type')
-    sealing_tab = fields.Char('Sealing Tab')
-    seal = fields.Float('Seal')
+    sealing_tab = fields.Float('Sealing Tab')
+    seal = fields.Char()
     mold_id = fields.Many2one('preformed','Mold')
     bottom_diameter = fields.Float('Bottom Diameter')
     upper_diameter = fields.Float('Upper Diameter')
@@ -165,6 +165,11 @@ class DataSheet(models.Model):
     gluped2_ids = fields.Many2many('gluped2','sheet_gluped2_rel','sheet_id','gluped2_id','Gluped 3 to 4')
 
 
+    @api.onchange('specification_long_id')
+    def _onchange_specification_long_id(self):
+        if self.specification_long_id:
+            self.tolerance_long = self.specification_long_id.tolerance
+
     @api.onchange('width_core')
     def _onchange_width_core(self):
         if self.width_core:
@@ -183,17 +188,17 @@ class DataSheet(models.Model):
 
 
     @api.depends('specification_width_id.name', 'specification_long_id.name', 'overlap_id.name', 'guillotine_mm',
-                 'movie_type_id.density', 'movie_type_id.density', 'caliber_id.name', 'seal')
+                 'movie_type_id.density', 'movie_type_id.density', 'caliber_id.name', 'sealing_tab')
     def _compute_roll_weight(self):
         self.roll_weight = (self.specification_width_id.name + self.overlap_id.name / 2) * (
-                    (self.specification_long_id.name + self.seal + self.guillotine_mm) *
+                    (self.specification_long_id.name + self.sealing_tab + self.guillotine_mm) *
                     (self.caliber_id.name * 0.04) * (self.movie_type_id.density))
 
     @api.depends('specification_width_id.name','specification_long_id.name','overlap_id.name','guillotine_mm',
-                 'movie_type_id.density','movie_type_id.density','caliber_id.name','seal')
+                 'movie_type_id.density','movie_type_id.density','caliber_id.name','sealing_tab')
     def _compute_average_label_weight(self):
        self.average_label_weight = (self.specification_width_id.name+self.overlap_id.name/2)*(
-               (self.specification_long_id.name+self.seal+self.guillotine_mm)*
+               (self.specification_long_id.name+self.sealing_tab + self.guillotine_mm)*
                 (self.caliber_id.name*0.04)*(self.movie_type_id.density))/1000
 
     @api.onchange('seal_type_id')
@@ -204,7 +209,7 @@ class DataSheet(models.Model):
     @api.onchange('specification_width_id')
     def _onchange_specification_width_id(self):
         if self.specification_width_id:
-            self.specification_width_name = self.specification_width_id.seal
+            self.tolerance_width = self.specification_width_id.tolerance
 
     @api.onchange('adhesive_type_id')
     def _oncahnge_adhesive_type_id(self):
@@ -228,7 +233,7 @@ class DataSheet(models.Model):
     @api.onchange('overlap_id')
     def _onchange_overlap_id(self):
         if self.overlap_id:
-            self.tolerance = self.overlap_id.tolerance
+            self.tolerance_overlap = self.overlap_id.tolerance
 
 
     def _compute_sale_data(self):
@@ -384,7 +389,7 @@ class DataCaliberType(models.Model):
 
     name = fields.Float('Caliber')
     code = fields.Char('Code')
-    tolerance = fields.Integer('Tolerance')
+    tolerance = fields.Float('Tolerance')
 
 class DataForm(models.Model):
     _name = 'data.form'
@@ -455,7 +460,8 @@ class SpecificationLong(models.Model):
     _name = 'specification.long'
     _description = 'Specification Long'
 
-    name = fields.Char('Specification Long')
+    name = fields.Float('Specification Long')
+    tolerance = fields.Float("Tolerance")
     code = fields.Char('code')
 
 class Widthoverlap(models.Model):

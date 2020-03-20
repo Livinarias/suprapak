@@ -44,9 +44,16 @@
                                     <group>
                                         <field name="team_id"/>
                                         <field name="currency_id"/>
+                                    </group>
+                                    <group string="customer packaging">
                                         <field name="tag_form_id"/>
                                         <field name="material_id"/>
                                         <field name="application_id"/>
+                                    </group>
+                                    <group>
+                                        <span>
+
+                                        </span>
                                         <field name="position_id"/>
                                         <field name="content_id"/>
                                     </group>
@@ -77,16 +84,18 @@
                                         <field name="specification_long_id"/>
                                         <field name="caliber_id"/>
                                         <field name="overlap_id"/>
-                                        <field name="tolerance"/>
+                                        <field name="overlap_location_id"/>
                                         <field name="rhombus" attrs="{'invisible':[('overlap_id', '!=', True)]}"/>
                                     </group>
                                     <group>
+                                        <field name="tolerance_width" readonly="True"/>
+                                        <field name="tolerance_long" readonly="True"/>
+                                        <field name="tolerance_caliber" readonly="True"/>
+                                        <field name="tolerance_overlap" readonly="True"/>
                                         <field name="guillotine" widget="checkbox"/>
                                         <field name="guillotine_mm" attrs="{'invisible':[('guillotine', '!=', True)]}"/>
-                                        <field name="overlap_location_id"/>
                                         <field name="rhombus"/>
                                         <field name="average_label_weight"/>
-                                        <!--<h5>falta especificar</h5>-->
                                         <field name="label_weight"/>
                                         <field name="roll_weight"/>
                                     </group>
@@ -103,7 +112,7 @@
                                     <group><!--sellado-->
                                         <field name="seal_type_id" attrs="{'invisible':[('presentation', '!=','SELLADO')]}"/>
                                         <field name="sealing_tab" attrs="{'invisible':[('presentation', '!=','SELLADO')]}"/>
-                                        <field name="seal" attrs="{'invisible':[('presentation', '!=','SELLADO')]}"/>
+                                        <field name="seal" invisible="1"/>
                                     </group>
                                     <group><!--preformado-->
                                         <field name="mold_id" attrs="{'invisible':[('presentation', '!=','PREFORMADO')]}"/>
