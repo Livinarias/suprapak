@@ -376,6 +376,8 @@ class DataMovieType(models.Model):
     density = fields.Float('Density')
     code = fields.Char('Code')
     color_id = fields.Many2one('data.movie.color', 'Color')
+    transversal = fields.Char('Transversal')
+    longitudinal = fields.Char('Longitudinal')
 
 
 class DataCaliberType(models.Model):
