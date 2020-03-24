@@ -217,47 +217,11 @@
                   parent="menu_data_sheet_conf"
                   sequence="140"/>
 
-        <menuitem id="menu_refile"
-                  name="Refile"
-                  action="action_refile"
-                  parent="menu_data_sheet_conf"
-                  sequence="145"/>
-
         <menuitem id="menu_print_color"
                   name="Print Color"
                   action="action_print_color"
                   parent="menu_data_sheet_conf"
                   sequence="145"/>
-
-        <menuitem id="menu_revision"
-                  name="Revision"
-                  action="action_revision"
-                  parent="menu_data_sheet_conf"
-                  sequence="150"/>
-
-        <menuitem id="menu_gluped"
-                  name="Gluped 1 to 2"
-                  action="action_gluped"
-                  parent="menu_data_sheet_conf"
-                  sequence="155"/>
-
-        <menuitem id="menu_gluped2"
-                  name="Gluped 3 to 4"
-                  action="action_gluped2"
-                  parent="menu_data_sheet_conf"
-                  sequence="160"/>
-
-        <menuitem id="menu_for_roll"
-                  name="For Roll"
-                  action="action_for_roll"
-                  parent="menu_data_sheet_conf"
-                  sequence="165"/>
-
-        <menuitem id="menu_for_bag"
-                  name="For Bag"
-                  action="action_for_bag"
-                  parent="menu_data_sheet_conf"
-                  sequence="170"/>
 
         <menuitem id="menu_for_superlon"
                   name="For Superlon"

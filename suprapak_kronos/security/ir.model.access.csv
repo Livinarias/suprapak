@@ -37,13 +37,7 @@ user_data_sector_type,user_data_sector_type,suprapak_kronos.model_data_sector_ty
 user_color_scale,user_color_scale,suprapak_kronos.model_color_scale,suprapak_kronos.group_data_sheet_user,1,1,1,1
 user_control_change,user_control_change,suprapak_kronos.model_control_change,suprapak_kronos.group_data_sheet_user,1,1,1,1
 user_tape,user_tape,suprapak_kronos.model_tape,suprapak_kronos.group_data_sheet_user,1,1,1,1
-user_refile,user_refile,suprapak_kronos.model_refile,suprapak_kronos.group_data_sheet_user,1,1,1,1
 user_print_color,user_print_color,suprapak_kronos.model_print_color,suprapak_kronos.group_data_sheet_user,1,1,1,1
-user_revision,user_revision,suprapak_kronos.model_revision,suprapak_kronos.group_data_sheet_user,1,1,1,1
-user_gluped,user_gluped,suprapak_kronos.model_gluped,suprapak_kronos.group_data_sheet_user,1,1,1,1
-user_gluped2,user_gluped2,suprapak_kronos.model_gluped2,suprapak_kronos.group_data_sheet_user,1,1,1,1
 user_rewind,user_rewind,suprapak_kronos.model_rewind,suprapak_kronos.group_data_sheet_user,1,1,1,1
-user_for_roll,user_for_roll,suprapak_kronos.model_for_roll,suprapak_kronos.group_data_sheet_user,1,1,1,1
-user_for_bag,user_for_bag,suprapak_kronos.model_for_bag,suprapak_kronos.group_data_sheet_user,1,1,1,1
 user_for_superlon,user_for_superlon,suprapak_kronos.model_for_superlon,suprapak_kronos.group_data_sheet_user,1,1,1,1
 
