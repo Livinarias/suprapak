@@ -4,7 +4,7 @@
                   name="Kronos"
                   groups="group_data_sheet_user"
                   icon="fa-wrench"
-                  web_icon="todoo_kronos,static/description/icon.png"
+                  web_icon="suprapak_kronos,static/description/icon.png"
                   sequence="36"/>
 
         <menuitem id="menu_data_sheet_dashboard"

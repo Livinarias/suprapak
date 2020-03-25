@@ -28,7 +28,7 @@
 <!--
     <record model="ir.actions.server" id="suprapak_kronos.action_server">
       <field name="name">suprapak_kronos server</field>
-      <field name="model_id" ref="model_todoo_kronos_todoo_kronos"/>
+      <field name="model_id" ref="model_suprapak_kronos_suprapak_kronos"/>
       <field name="state">code</field>
       <field name="code">
         action = {
