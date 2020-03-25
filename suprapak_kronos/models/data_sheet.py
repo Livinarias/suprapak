@@ -73,7 +73,7 @@ class DataSheet(models.Model):
     overlap_location_id = fields.Many2one('overlap.location','Overlap Location')
     bom_id = fields.Many2one('mrp.bom','Routing')
     bom_ids = fields.One2many('mrp.bom','sheet_id','Record')
-    products_ids = fields.Many2many('product.product','sheet_product_rel','sheet_id','product_id','Bills of Materials')
+    products_ids = fields.One2many('mrp.bom.line','sheet_id','Bills of Materials')
     routing_id = fields.Many2one('mrp.routing','Routings')
     routings_ids = fields.Many2many('mrp.routing','sheet_routing_rel','sheet_id','routing_id','Routing')
     average_label_weight = fields.Float('Average Lable Weight', compute = '_compute_average_label_weight')
