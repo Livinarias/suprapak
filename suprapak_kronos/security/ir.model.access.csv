@@ -40,4 +40,5 @@ user_tape,user_tape,suprapak_kronos.model_tape,suprapak_kronos.group_data_sheet_
 user_print_color,user_print_color,suprapak_kronos.model_print_color,suprapak_kronos.group_data_sheet_user,1,1,1,1
 user_rewind,user_rewind,suprapak_kronos.model_rewind,suprapak_kronos.group_data_sheet_user,1,1,1,1
 user_for_superlon,user_for_superlon,suprapak_kronos.model_for_superlon,suprapak_kronos.group_data_sheet_user,1,1,1,1
+user_repeat,user_repeat,suprapak_kronos.model_repeat,suprapak_kronos.group_data_sheet_user,1,1,1,1
 

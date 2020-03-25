@@ -215,18 +215,24 @@
                   name="Tape"
                   action="action_tape"
                   parent="menu_data_sheet_conf"
-                  sequence="140"/>
+                  sequence="145"/>
 
         <menuitem id="menu_print_color"
                   name="Print Color"
                   action="action_print_color"
                   parent="menu_data_sheet_conf"
-                  sequence="145"/>
+                  sequence="150"/>
 
         <menuitem id="menu_for_superlon"
                   name="For Superlon"
                   action="action_for_superlon"
                   parent="menu_data_sheet_conf"
-                  sequence="175"/>
+                  sequence="155"/>
+
+        <menuitem id="menu_repeat"
+                  name="Repeat"
+                  action="action_repeat"
+                  parent="menu_data_sheet_conf"
+                  sequence="160"/>
     </data>
 </odoo>
