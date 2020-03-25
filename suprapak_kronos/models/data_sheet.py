@@ -3,21 +3,22 @@
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 
+
 class DataSheetLine(models.Model):
     _name = 'data.sheet.line'
     _description = 'Data sheet line'
 
     company_id = fields.Many2one('res.company', 'Company', default=lambda self: self.env.company.id)
     product_id = fields.Many2one('product.product', 'Product', required=True)
-    product_qty = fields.Float('Quantity', required=True, digits='Product Unit of Measure')
+    product_qty = fields.Float('Quantity', required=True, digits='Product Unit of Measure', default=1.00)
     uom_id = fields.Many2one('uom.uom', 'Unit of measure', required=True)
     uom_categ_id = fields.Many2one('uom.category', 'Uom category')
-    field = fields.Char('Field')
+    field_char = fields.Char('Field', default='None')
     # cost = fields.Float('Cost', digits='Account')
     # One2many
     sheet_id = fields.Many2one('data.sheet', 'Sheet')
     roll_id = fields.Many2one('data.sheet', 'Sheet')
-    #roll_id = fields.Many2one('data.sheet', 'Sheet')
+    # roll_id = fields.Many2one('data.sheet', 'Sheet')
 
     @api.onchange('product_id')
     def _oncahnge_product_id(self):
@@ -146,7 +147,6 @@ class DataSheet(models.Model):
     required_match_print = fields.Boolean('required match Print')
     designer = fields.Many2one('designer', 'Designer')
     datetime = fields.Datetime('Date and Hour')
-    quantity = fields.Char('Quantity')
     Customer = fields.Many2one('res.partner','Customer')
     sign_customer = fields.Binary('Sign Customer')
     deliver_to = fields.Many2one('res.partner','Deliver to')
@@ -183,7 +183,6 @@ class DataSheet(models.Model):
     revisions_ids = fields.Many2many('product.product','sheet_gluped_rel','sheet_id','gluped_id','Revisión')
     glupeds_ids = fields.Many2many('product.product','sheet_gluped_rel','sheet_id','gluped_id','Gluped 1 to 2')
     gluped2_ids = fields.Many2many('product.product','sheet_gluped_rel','sheet_id','gluped_id','Gluped 3 to 4')
-
 
     @api.onchange('specification_long_id')
     def _onchange_specification_long_id(self):
@@ -254,7 +253,6 @@ class DataSheet(models.Model):
         if self.overlap_id:
             self.tolerance_overlap = self.overlap_id.tolerance
 
-
     def _compute_sale_data(self):
         for lead in self:
             lead.quotation_count = len(lead.order_ids)
@@ -273,6 +271,26 @@ class DataSheet(models.Model):
     def _onchange_product_id(self):
         if self.product_id:
             self.uom_id = self.product_id.uom_id.id
+
+    @api.onchange('bag')
+    def _onchange_many2one(self):
+        values = []
+        if self.bag:
+            self.line_ids.search([('field_char', '=', 'bag')]).unlink()
+            dic = {
+                'field_char': 'bag',
+                'product_id': self.bag.id,
+                'product_qty': 1,
+                'uom_id': self.bag.uom_id.id
+            }
+            values.append((0, 0, dic))
+        if values:
+            self.write({'line_ids': values})
+
+    @api.onchange('roll_ids')
+    def _onchange_one2many(self):
+        for line in self.roll_ids:
+            line.sheet_id = self
 
     """def write(self, values):
         res = super(DataSheet, self).write(values)
@@ -363,7 +381,7 @@ class DataSheet(models.Model):
                     'product_uom_id': line.uom_id.id
                 }
                 valores.append((0,0,dic))
-            valor={
+            valor = {
                 'product_tmpl_id': record.product_id.id,
                 'bom_line_ids': valores,
                 'routing_id': record.routing_id.id,
@@ -371,11 +389,6 @@ class DataSheet(models.Model):
             }
             record.bom_id = mrp_object.create(valor)
         return True
-
-    def create_lines(self, dic):
-        dsl_object = self.env['data.sheet.line']
-        dsl_object.create(dic)
-
 
 
 class DataProductType(models.Model):
@@ -446,6 +459,7 @@ class DataMaterial(models.Model):
     name = fields.Char('Material')
     code = fields.Char('code')
 
+
 class DataAplication(models.Model):
     _name = 'data.application.mode'
     _description = 'Aplication Mode'
@@ -453,12 +467,14 @@ class DataAplication(models.Model):
     name = fields.Char('Application Mode')
     code = fields.Char('code')
 
-class DataAplication(models.Model):
+
+class DataAplicationPosition(models.Model):
     _name = 'data.application.position'
     _description = 'Application Position'
 
     name = fields.Char('Aplication Position')
     code = fields.Char('code')
+
 
 class DataContents(models.Model):
     _name = 'data.application.contents'
@@ -466,6 +482,7 @@ class DataContents(models.Model):
 
     name = fields.Char('Package Contents')
     code = fields.Char('code')
+
 
 class PrintType(models.Model):
     _name = 'print.type'
@@ -482,6 +499,7 @@ class ChemicalComposition(models.Model):
     name = fields.Char('Chemical Composition')
     code = fields.Char('code')
 
+
 class SpecificationWidth(models.Model):
     _name = 'specification.width'
     _description = 'Specification Width'
@@ -489,6 +507,7 @@ class SpecificationWidth(models.Model):
     name = fields.Float('Specification Width')
     code = fields.Char('code')
     tolerance = fields.Float('Tolerance')
+
 
 class SpecificationLong(models.Model):
     _name = 'specification.long'
@@ -498,7 +517,8 @@ class SpecificationLong(models.Model):
     tolerance = fields.Float("Tolerance")
     code = fields.Char('code')
 
-class Widthoverlap(models.Model):
+
+class WidthOverlap(models.Model):
     _name = 'width.overlap'
     _description = 'Width Overlap'
 
@@ -506,12 +526,14 @@ class Widthoverlap(models.Model):
     tolerance = fields.Char('Tolerance')
     code = fields.Char('code')
 
-class Widthoverlap(models.Model):
+
+class OverlapLocation(models.Model):
     _name = 'overlap.location'
     _description = 'Overlap Location'
 
     name = fields.Char('Overlap Location')
     code = fields.Char('code')
+
 
 class Presentation(models.Model):
     _name = 'presentation'
@@ -520,6 +542,7 @@ class Presentation(models.Model):
     name = fields.Char('Presentation')
     code = fields.Char('code')
 
+
 class CoreDiameter(models.Model):
     _name = 'core.diameter'
     _description = 'Core Diameter'
@@ -527,12 +550,14 @@ class CoreDiameter(models.Model):
     name = fields.Char('Core Diameter')
     code = fields.Char('code')
 
-class CoreDiameter(models.Model):
+
+class EmbossingNumber(models.Model):
     _name = 'embossing.number'
     _description = 'Embossing Number'
 
     name = fields.Char('Embossing Number')
     code = fields.Char('code')
+
 
 class NumberSplices(models.Model):
     _name = 'number.splices'
@@ -541,12 +566,14 @@ class NumberSplices(models.Model):
     name = fields.Char('Number splices')
     code = fields.Char('code')
 
+
 class SpliceType(models.Model):
     _name = 'splice.type'
     _description = 'Splice type'
 
     name = fields.Char('Splice type')
     code = fields.Char('code')
+
 
 class SplicingTape(models.Model):
     _name = 'splicing.tape'
@@ -555,6 +582,7 @@ class SplicingTape(models.Model):
     name = fields.Char('Splicing tape')
     code = fields.Char('code')
 
+
 class Seal_Type(models.Model):
     _name = 'seal.type'
     _description = 'Seal Type'
@@ -562,6 +590,7 @@ class Seal_Type(models.Model):
     name = fields.Char('Seal Type')
     seal = fields.Float('Seal')
     code = fields.Char('code')
+
 
 class Preformed(models.Model):
     _name = 'preformed'
@@ -574,12 +603,14 @@ class Preformed(models.Model):
     band_height = fields.Float('Band Height')
     product = fields.Char('Product')
 
+
 class BarcodeType(models.Model):
     _name = 'barcode.type'
     _description = 'Barcode Type'
 
     name = fields.Char('Barcode Type')
     code = fields.Char('code')
+
 
 class MechanicPlan(models.Model):
     _name = 'mechanic.plan'
@@ -588,6 +619,7 @@ class MechanicPlan(models.Model):
     name = fields.Binary('Mechanic Plan')
     code = fields.Char('code')
 
+
 class Microperforated(models.Model):
     _name = 'microperforated'
     _description = 'Microperforated'
@@ -595,6 +627,7 @@ class Microperforated(models.Model):
     name = fields.Char('code')
     cross = fields.Char('Cross')
     logitudinal = fields.Char('Longitudinal')
+
 
 class GraphitePresentation(models.Model):
     _name = 'drawn.presentation'
@@ -613,7 +646,7 @@ class AdhesiveType(models.Model):
     code = fields.Char('code')
 
 
-class DataAplication(models.Model):
+class ColdFoil(models.Model):
     _name = 'cold.foil'
     _description = 'Cold Foil'
 
