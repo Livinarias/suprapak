@@ -1,0 +1,16 @@
+<odoo>
+    <data>
+       <template id="sale.report_saleorder_document" inherit_id="sale.action_report_saleorder">
+          <xpath expr="/t/table/thead/tr/th[@name='th_quantity']" positon="before">
+             <th name="th_material" class="text-right">Material</th>
+             <th name="th_drawn_type" class="text-right">Drawn Type</th>
+             <th name="th_movie_type" class="text-right">Movie Type</th>
+             <th name="th_specification_width" class="text-right">Specification Width</th>
+             <th name="th_specification_long" class="text-right">Specification Long</th>
+             <th name="th_caliber" class="text-right">Caliber</th>
+             <th name="th_tongue" class="text-right">Tongue</th>
+             <th name="th_termal_adhesive" class="text-right">Termal Adhesive</th>
+          </xpath>
+       </template>
+    </data>
+</odoo>

@@ -7,8 +7,8 @@
             <field name="priority">15</field>
             <field name="arch" type="xml">
                 <xpath expr="//sheet/notebook/page[@name='order_lines']/field[@name='order_line']/tree/field[@name='price_unit']" position="before">
-                    <field name="product_type_id"/>
-                    <field name="draw_type_id"/>
+                    <field name="material_id"/>
+                    <field name="drawn_type_id"/>
                     <field name="movie_type_id"/>
                     <field name="specification_width"/>
                     <field name="specification_long"/>

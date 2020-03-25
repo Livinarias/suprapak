@@ -17,18 +17,22 @@
     'version': '13.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['sale_crm'],
+    'depends': ['sale_crm','mrp'],
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
         'views/views.xml',
         'views/templates.xml',
         'views/data_sheet_view.xml',
+        'views/data_sheet_menu.xml',
         'views/crm_lead_view.xml',
         'views/sale_order_view.xml',
+        'security/ir.model.access.csv',
+        #'views/sale_template.xml'
+
     ],
     # only loaded in demonstration mode
+    'images': ['static/description/icon.png'],
     'demo': [
         'demo/demo.xml',
     ],
