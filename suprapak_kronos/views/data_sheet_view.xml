@@ -626,7 +626,7 @@
         <record id="group_data_sheet_admin" model="res.groups">
             <field name="name">Admin</field>
             <field name="category_id" ref="module_category_data_sheet"/>
-            <field name="implied_ids" eval="[(4, ref('group_data_sheet_user'))]"/>
+            <field name="implied_ids" eval="[(4, ref('suprapak_kronos.group_data_sheet_user'))]"/>
         </record>
 
         <record id="group_data_sheet_user" model="res.groups">
