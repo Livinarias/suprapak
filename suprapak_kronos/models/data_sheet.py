@@ -3,6 +3,28 @@
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 
+class DataSheetLine(models.Model):
+    _name = 'data.sheet.line'
+    _description = 'Data sheet line'
+
+    company_id = fields.Many2one('res.company', 'Company', default=lambda self: self.env.company.id)
+    product_id = fields.Many2one('product.product', 'Product', required=True)
+    product_qty = fields.Float('Quantity', required=True, digits='Product Unit of Measure')
+    uom_id = fields.Many2one('uom.uom', 'Unit of measure', required=True)
+    uom_categ_id = fields.Many2one('uom.category', 'Uom category')
+    field = fields.Char('Field')
+    # cost = fields.Float('Cost', digits='Account')
+    # One2many
+    sheet_id = fields.Many2one('data.sheet', 'Sheet')
+    roll_id = fields.Many2one('data.sheet', 'Sheet')
+    #roll_id = fields.Many2one('data.sheet', 'Sheet')
+
+    @api.onchange('product_id')
+    def _oncahnge_product_id(self):
+        if self.product_id:
+            self.uom_id = self.product_id.uom_id
+            self.uom_categ_id = self.product_id.uom_id.category_id
+
 
 class DataSheet(models.Model):
     _name = 'data.sheet'
@@ -27,6 +49,10 @@ class DataSheet(models.Model):
     sector = fields.Char('Sector')
     team_id = fields.Many2one('crm.team', 'Zone')
     currency_id = fields.Many2one('res.currency', 'Currency')
+    # sheet line
+    line_ids = fields.One2many('data.sheet.line', 'sheet_id', 'Bills of Materials')
+    # One2many
+    roll_ids = fields.One2many('data.sheet.line', 'roll_id', 'Rolls')
 
     # Info Tec
     print_class = fields.Selection([('external','External'),('internal','Internal')],'Print Class')
@@ -73,7 +99,6 @@ class DataSheet(models.Model):
     overlap_location_id = fields.Many2one('overlap.location','Overlap Location')
     bom_id = fields.Many2one('mrp.bom','Routing')
     bom_ids = fields.One2many('mrp.bom','sheet_id','Record')
-    products_ids = fields.One2many('mrp.bom.line','sheet_id','Bills of Materials')
     routing_id = fields.Many2one('mrp.routing','Routings')
     routings_ids = fields.Many2many('mrp.routing','sheet_routing_rel','sheet_id','routing_id','Routing')
     average_label_weight = fields.Float('Average Lable Weight', compute = '_compute_average_label_weight')
@@ -180,7 +205,6 @@ class DataSheet(models.Model):
     def _onchange_presentation_id(self):
         if self.presentation_id:
             self.presentation = self.presentation_id.name
-
 
     @api.depends('specification_width_id.name', 'specification_long_id.name', 'overlap_id.name', 'guillotine_mm',
                  'movie_type_id.density', 'movie_type_id.density', 'caliber_id.name', 'sealing_tab')
@@ -328,21 +352,31 @@ class DataSheet(models.Model):
             action['res_id'] = quotations.id
         return action
 
-    def action_produce(self):
+    def action_bom_line(self):
         mrp_object = self.env['mrp.bom']
-        valores=[]
-        for product in self.products_ids:
-            valores.append((0,0,{'product_id': product.id}))
-        valor={
-            'product_tmpl_id': self.product_id.id,
-            'bom_line_ids': valores,
-            'routing_id': self.routing_id.id,
-            'sheet_id': self.id
-        }
-
-        self.bom_id = mrp_object.create(valor)
-
+        for record in self:
+            valores = []
+            for line in record.line_ids:
+                dic = {
+                    'product_id': line.product_id.id,
+                    'product_qty': line.product_qty,
+                    'product_uom_id': line.uom_id.id
+                }
+                valores.append((0,0,dic))
+            valor={
+                'product_tmpl_id': record.product_id.id,
+                'bom_line_ids': valores,
+                'routing_id': record.routing_id.id,
+                'sheet_id': record.id
+            }
+            record.bom_id = mrp_object.create(valor)
         return True
+
+    def create_lines(self, dic):
+        dsl_object = self.env['data.sheet.line']
+        dsl_object.create(dic)
+
+
 
 class DataProductType(models.Model):
     _name = 'data.product.type'
@@ -388,6 +422,7 @@ class DataCaliberType(models.Model):
     code = fields.Char('Code')
     tolerance = fields.Float('Tolerance')
 
+
 class DataForm(models.Model):
     _name = 'data.form'
     _description = 'Form'
@@ -395,12 +430,14 @@ class DataForm(models.Model):
     name = fields.Char('Form')
     code = fields.Char('code')
 
+
 class DataTagForm(models.Model):
     _name = 'data.tag.form'
     _description = 'Tag Form'
 
     name = fields.Char('Tag Form')
     code = fields.Char('code')
+
 
 class DataMaterial(models.Model):
     _name = 'data.material'

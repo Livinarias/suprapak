@@ -1,5 +1,6 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 user_data_sheet,user_data_sheet,suprapak_kronos.model_data_sheet,suprapak_kronos.group_data_sheet_user,1,1,1,1
+user_data_sheet_line,user_data_sheet_line,suprapak_kronos.model_data_sheet_line,suprapak_kronos.group_data_sheet_user,1,1,1,1
 user_data_product_type,user_data_product_type,suprapak_kronos.model_data_product_type,suprapak_kronos.group_data_sheet_user,1,1,1,1
 user_data_drawn_type,user_data_drawn_type,suprapak_kronos.model_data_drawn_type,suprapak_kronos.group_data_sheet_user,1,1,1,1
 user_data_movie_color,user_data_movie_color,suprapak_kronos.model_data_movie_color,suprapak_kronos.group_data_sheet_user,1,1,1,1
