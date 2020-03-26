@@ -14,11 +14,19 @@ class DataSheetLine(models.Model):
     uom_id = fields.Many2one('uom.uom', 'Unit of measure', required=True)
     uom_categ_id = fields.Many2one('uom.category', 'Uom category')
     field_char = fields.Char('Field', default='None')
+
     # cost = fields.Float('Cost', digits='Account')
     # One2many
     sheet_id = fields.Many2one('data.sheet', 'Sheet')
     roll_id = fields.Many2one('data.sheet', 'Sheet')
-    # roll_id = fields.Many2one('data.sheet', 'Sheet')
+    for_bag_id = fields.Many2one('data.sheet', 'Sheet')
+    for_superlon_id = fields.Many2one('data.sheet', 'Sheet')
+    refile_id = fields.Many2one('data.sheet','Sheet')
+    revision_id = fields.Many2one('data.sheet','Sheet')
+    gluped_id = fields.Many2one('data.sheet','Sheet')
+    gluped2_id = fields.Many2one('data.sheet','Sheet')
+    movie_type_product_id = fields.Many2one('data.sheet','Sheet')
+
 
     @api.onchange('product_id')
     def _oncahnge_product_id(self):
@@ -54,6 +62,13 @@ class DataSheet(models.Model):
     line_ids = fields.One2many('data.sheet.line', 'sheet_id', 'Bills of Materials')
     # One2many
     roll_ids = fields.One2many('data.sheet.line', 'roll_id', 'Rolls')
+    for_bag_ids = fields.One2many('data.sheet.line','for_bag_id','Bag')
+    for_superlon_ids = fields.One2many('data.sheet.line','for_superlon_id','Superlon')
+    refile_ids = fields.One2many('data.sheet.line','refile_id','Refile')
+    revision_ids = fields.One2many('data.sheet.line','revision_id','Refile')
+    gluped_ids = fields.One2many('data.sheet.line','gluped_id','Gluped 1 to 2')
+    gluped2_ids = fields.One2many('data.sheet.line','gluped2_id','Gluped 2 to 3')
+    movie_type_product_ids = fields.One2many('data.sheet.line','movie_type_product_id','Product of Movie Type')
 
     # Info Tec
     print_class = fields.Selection([('external','External'),('internal','Internal')],'Print Class')
@@ -164,7 +179,7 @@ class DataSheet(models.Model):
     width_core = fields.Float('Width Core')
     bag = fields.Many2one('product.product','Bag')
     box = fields.Many2one('product.product','Box')
-    superlon = fields.Char('Superlon')
+    superlon = fields.Many2one('product.product','Superlon')
     tape_id = fields.Many2one('tape','Tape')#depende rollo....
     print_id = fields.Many2one('print.color')
     prints_ids = fields.Many2many('print.color','sheet_print_rel','sheet_id','print_id','Print Colors')
@@ -176,13 +191,13 @@ class DataSheet(models.Model):
     gluped_id = fields.Many2one('product.product')
     for_rolls_ids = fields.Many2many('product.product','sheet_gluped_rel','sheet_id','gluped_id','For Rolls')
     for_bags_ids = fields.Many2many('product.product','sheet_gluped_rel','sheet_id','gluped_id','For Bags')
-    for_superlon_id = fields.Many2one('for.superlon')
-    for_superlons_ids = fields.Many2many('for.superlon','sheet_superlon_rel','sheet_id','for_superlon_id','For Superlon')
+    for_superlon_id = fields.Many2one('product.product')
+    for_superlons_ids = fields.Many2many('product.product','sheet_superlon_rel','sheet_id','for_superlon_id','For Superlon')
     for_box = fields.Selection([('supra','SUPRAPAK 2" 100 m BLANCA'),('supra2','SUPRAPAK 2" 100 m TRANSPARENTE')],'For Box')
     refiles_ids = fields.Many2many('product.product', 'sheet_gluped_rel', 'sheet_id', 'gluped_id', 'Tapes')
     revisions_ids = fields.Many2many('product.product','sheet_gluped_rel','sheet_id','gluped_id','Revisión')
     glupeds_ids = fields.Many2many('product.product','sheet_gluped_rel','sheet_id','gluped_id','Gluped 1 to 2')
-    gluped2_ids = fields.Many2many('product.product','sheet_gluped_rel','sheet_id','gluped_id','Gluped 3 to 4')
+    glupeds2_ids = fields.Many2many('product.product','sheet_gluped_rel','sheet_id','gluped_id','Gluped 3 to 4')
 
     @api.onchange('specification_long_id')
     def _onchange_specification_long_id(self):
@@ -287,10 +302,100 @@ class DataSheet(models.Model):
         if values:
             self.write({'line_ids': values})
 
+
+    @api.onchange('separator_id')
+    def _onchange_many2one(self):
+        values = []
+        if self.separator_id:
+            self.line_ids.search([('field_char', '=', 'separator_id')]).unlink()
+            dic = {
+                'field_char': 'separator_id',
+                'product_id': self.separator_id.id,
+                'product_qty': 1,
+                'uom_id': self.separator_id.uom_id.id
+            }
+            values.append((0, 0, dic))
+        if values:
+            self.write({'line_ids': values})
+
+    @api.onchange('box')
+    def _onchange_many2one(self):
+        values = []
+        if self.box:
+            self.line_ids.search([('field_char', '=', 'box')]).unlink()
+            dic = {
+                'field_char': 'box',
+                'product_id': self.box.id,
+                'product_qty': 1,
+                'uom_id': self.box.uom_id.id
+            }
+            values.append((0, 0, dic))
+        if values:
+            self.write({'line_ids': values})
+
+    @api.onchange('superlon')
+    def _onchange_many2one(self):
+        values = []
+        if self.superlon:
+            self.line_ids.search([('field_char', '=', 'superlon')]).unlink()
+            dic = {
+                'field_char': 'superlon',
+                'product_id': self.superlon.id,
+                'product_qty': 1,
+                'uom_id': self.superlon.uom_id.id
+            }
+            values.append((0, 0, dic))
+        if values:
+            self.write({'line_ids': values})
+
+
     @api.onchange('roll_ids')
     def _onchange_one2many(self):
         for line in self.roll_ids:
             line.sheet_id = self
+
+
+    @api.onchange('for_bag_ids')
+    def _onchange_one2many(self):
+        for line in self.for_bag_ids:
+            line.sheet_id = self\
+
+
+    @api.onchange('for_superlon_ids')
+    def _onchange_one2many(self):
+        for line in self.for_superlon_ids:
+            line.sheet_id = self
+
+
+    @api.onchange('refile_ids')
+    def _onchange_one2many(self):
+        for line in self.refile_ids:
+            line.sheet_id = self
+
+
+    @api.onchange('revision_ids')
+    def _onchange_one2many(self):
+        for line in self.revision_ids:
+            line.sheet_id = self
+
+
+    @api.onchange('gluped_ids')
+    def _onchange_one2many(self):
+        for line in self.revision_ids:
+            line.sheet_id = self
+
+
+    @api.onchange('gluped2_ids')
+    def _onchange_one2many(self):
+        for line in self.gluped2_ids:
+            line.sheet_id = self
+
+
+    @api.onchange('movie_type_product_ids')
+    def _onchange_one2many(self):
+        for line in self.movie_type_product_ids:
+            line.sheet_id = self
+
 
     """def write(self, values):
         res = super(DataSheet, self).write(values)
