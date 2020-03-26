@@ -426,6 +426,13 @@
                                            readonly="True"/>
                                 </group>
                             </page>
+                            <page string="Production orders">
+                                <group>
+                                    <field name="production_ids" readonly="True"/>
+                                </group>
+                                <group>
+                                </group>
+                            </page>
                         </notebook>
                     </sheet>
                     <div class="oe_chatter">

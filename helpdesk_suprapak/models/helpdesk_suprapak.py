@@ -1,4 +1,4 @@
-from odoo import models.fields,api
+from odoo import models, fields, api
 
 class Helpdesk(models.Model):
     _inherit = 'helpdesk.ticket'
@@ -21,7 +21,7 @@ class Print(models.Model):
     _description = 'PSRS by Print'
 
     name = fields.Char('Caused by Print')
-    code = field.Char('code')
+    code = fields.Char('code')
 
 
 class Paste(models.Model):
@@ -29,7 +29,7 @@ class Paste(models.Model):
     _description = 'PSRS by Paste'
 
     name = fields.Char('Caused by Paste')
-    code = field.Char('code')
+    code = fields.Char('code')
 
 
 class Technic(models.Model):
@@ -37,15 +37,15 @@ class Technic(models.Model):
     _description = 'PSRS by Technic'
 
     name = fields.Char('Caused by Technic')
-    code = field.Char('code')
+    code = fields.Char('code')
 
 
-class Print(models.Model):
+class Rewind(models.Model):
     _name = 'rewind'
     _description = 'PSRS by Rewind'
 
     name = fields.Char('Caused by Rewind')
-    code = field.Char('code')
+    code = fields.Char('code')
 
 
 class Cut(models.Model):
@@ -53,4 +53,4 @@ class Cut(models.Model):
     _description = 'PSRS by Cut'
 
     name = fields.Char('Caused by Cut')
-    code = field.Char('code')
+    code = fields.Char('code')
