@@ -381,7 +381,7 @@ class DataSheet(models.Model):
 
     @api.onchange('gluped_ids')
     def _onchange_one2many(self):
-        for line in self.revision_ids:
+        for line in self.gluped_ids:
             line.sheet_id = self
 
 
