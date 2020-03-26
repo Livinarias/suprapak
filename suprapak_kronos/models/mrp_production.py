@@ -1,6 +1,7 @@
 from odoo import models, fields, api
 
+
 class MrpProduction(models.Model):
     _inherit = 'mrp.production'
 
-    sheet_id = fields.Many2one('data.sheet','Data Sheet')
+    sheet_id = fields.Many2one('data.sheet', 'Data Sheet')

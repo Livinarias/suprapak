@@ -40,6 +40,12 @@ class DataSheet(models.Model):
     _description = 'Data sheet'
     _inherit = ['mail.thread', 'mail.activity.mixin', 'portal.mixin']
 
+    def _compute_production_ids(self):
+        mp_obj = self.env['mrp.production']
+        ids = self.bom_ids.ids
+        mp = mp_obj.search([('bom_id', 'in', ids)])
+        self.production_ids = mp
+
     company_id = fields.Many2one('res.company', 'Company', default=lambda self: self.env.company.id)
     opportunity_id = fields.Many2one('crm.lead', 'Opportunity')
     state = fields.Selection([('draft', 'Quote sheet'), ('sample', 'Sample Tab'),
@@ -69,7 +75,6 @@ class DataSheet(models.Model):
     gluped_ids = fields.One2many('data.sheet.line','gluped_id','Gluped 1 to 2')
     gluped2_ids = fields.One2many('data.sheet.line','gluped2_id','Gluped 2 to 3')
     movie_type_product_ids = fields.One2many('data.sheet.line','movie_type_product_id','Product of Movie Type')
-
     # Info Tec
     print_class = fields.Selection([('external','External'),('internal','Internal')],'Print Class')
     print_type = fields.Many2one('print.type','Print Type')
@@ -96,7 +101,6 @@ class DataSheet(models.Model):
     rhombus = fields.Boolean('Rhombus')
     guillotine = fields.Boolean('Requires Guillotine')
     guillotine_mm = fields.Float('mm')
-
     # Comments
     comments = fields.Text('Comments')
     # Button
@@ -113,8 +117,8 @@ class DataSheet(models.Model):
     overlap_id = fields.Many2one('width.overlap','Width Overlap')
     tolerance_overlap = fields.Float('Tolerance Overlap')
     overlap_location_id = fields.Many2one('overlap.location','Overlap Location')
-    bom_id = fields.Many2one('mrp.bom','Routing')
-    bom_ids = fields.One2many('mrp.bom','sheet_id','Record')
+    bom_id = fields.Many2one('mrp.bom', 'Actual BOM')
+    bom_ids = fields.One2many('mrp.bom', 'sheet_id', 'Record')
     routing_id = fields.Many2one('mrp.routing','Routings')
     routings_ids = fields.Many2many('mrp.routing','sheet_routing_rel','sheet_id','routing_id','Routing')
     average_label_weight = fields.Float('Average Lable Weight', compute = '_compute_average_label_weight')
@@ -198,6 +202,8 @@ class DataSheet(models.Model):
     revisions_ids = fields.Many2many('product.product','sheet_gluped_rel','sheet_id','gluped_id','Revisión')
     glupeds_ids = fields.Many2many('product.product','sheet_gluped_rel','sheet_id','gluped_id','Gluped 1 to 2')
     glupeds2_ids = fields.Many2many('product.product','sheet_gluped_rel','sheet_id','gluped_id','Gluped 3 to 4')
+    # Production
+    production_ids = fields.One2many('mrp.production', 'sheet_id', 'Productions', compute='_compute_production_ids')
 
     @api.onchange('specification_long_id')
     def _onchange_specification_long_id(self):
@@ -485,12 +491,13 @@ class DataSheet(models.Model):
                     'product_qty': line.product_qty,
                     'product_uom_id': line.uom_id.id
                 }
-                valores.append((0,0,dic))
+                valores.append((0, 0, dic))
             valor = {
                 'product_tmpl_id': record.product_id.id,
                 'bom_line_ids': valores,
                 'routing_id': record.routing_id.id,
-                'sheet_id': record.id
+                'sheet_id': record.id,
+                'code': record.name or ''
             }
             record.bom_id = mrp_object.create(valor)
         return True

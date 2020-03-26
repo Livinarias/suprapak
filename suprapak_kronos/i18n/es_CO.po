@@ -1422,7 +1422,7 @@ msgstr "Hoja de cotización"
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__bom_ids
 msgid "Record"
-msgstr "Grabar"
+msgstr "Versiones"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__cast_reference
