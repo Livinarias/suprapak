@@ -21,7 +21,7 @@
 
     # always loaded
     'data': [
-        'views/views.xml',
+        'views/res_partner_view.xml',
         'views/templates.xml',
         'views/data_sheet_view.xml',
         'views/data_sheet_menu.xml',

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="helpdesk_form" model="ir.ui.view">
+            <field name="name">helpdesk.form</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
+            <field name="priority">15</field>
+            <field name="arch" type="xml">
+                <xpath expr="sheet/group/group/field[@name='ticket_type_id']" position="after">
+                    <field name="complaint"/>
+                    <field name="service" attrs="{'invisible': [('complaint','!=','service')]}"/>
+                    <field name="pqrs" attrs="{'invisible': [('complaint','!=','product')]}"/>
+                    <field name="print_id" attrs="{'invisible': [('pqrs','!=','print')]}"/>
+                    <field name="paste_id" attrs="{'invisible': [('pqrs','!=','paste')]}"/>
+                    <field name="technic_id" attrs="{'invisible': [('pqrs','!=','technic')]}"/>
+                    <field name="cut_id" attrs="{'invisible': [('pqrs','!=','cut')]}"/>
+                    <field name="rewind_id" attrs="{'invisible': [('pqrs','!=','rewind')]}"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

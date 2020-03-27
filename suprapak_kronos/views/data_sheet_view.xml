@@ -45,7 +45,7 @@
                                         <field name="partner_id" options="{'no_create': True, 'no_create_edit':True}"/>
                                         <field name="commentary"/>
                                         <field name="product_code"/>
-                                        <!--<field name="sector"/>-->
+                                        <field name="sector"/>
                                     </group>
                                     <group>
                                         <field name="team_id" options="{'no_create': True, 'no_create_edit':True}"/>
@@ -65,7 +65,7 @@
                                 </group>
                             </page>
                             <page string="Technical information">
-                                <!--<group>-->
+                                <group>
                                     <group>
                                         <field name="print" widget="checkbox"/>
                                         <field name="no_print" widget="checkbox"/>
@@ -90,10 +90,7 @@
                                         <group>
                                             <field name="movie_type_product_ids" widget="one2many" context="{'default_sheet_id': id}">
                                                 <tree string="Components" editable="bottom">
-                                                    <field name="product_id"/>
-                                                    <field name="product_qty"/>
-                                                    <field name="uom_categ_id" invisible="True"/>
-                                                    <field name="uom_id" domain="[('category_id','=',uom_categ_id)]"/>
+                                                    <field name="product_id" options="{'no_create': True, 'no_create_edit':True}"/>
                                                 </tree>
                                             </field>
                                         </group>
@@ -240,19 +237,17 @@
                                             </tree>
                                         </field>
                                     </group>
-                                <!--</group>-->
+                                </group>
                             </page>
                             <page string="Design Features">
                                 <group>
                                     <group>
                                         <field name="required_match_print" widget="checkbox"/>
                                         <field name="designer" options="{'no_create': True, 'no_create_edit':True}"/>
-                                        <field name="repeat_id" options="{'no_create': True, 'no_create_edit':True}"
-                                               attrs="{'invisible':[('required_match_print', '!=',True)]}"/>
-                                        <field name="room_large"
-                                               attrs="{'invisible':[('required_match_print', '!=',True)]}"/>
-                                        <field name="large_planned"
-                                               attrs="{'invisible':[('required_match_print', '!=',True)]}"/>
+                                        <field name="repeat_id" options="{'no_create': True, 'no_create_edit':True}"/>
+                                        <field name="room_large"/>
+                                        <field name="large_planned"/>
+                                        <field name="specification_width_planned"/>
                                         <field name="datetime"
                                                attrs="{'invisible':[('required_match_print', '!=',True)]}"/>
                                     </group>
@@ -282,7 +277,7 @@
                                     </group>
                                     <group>
                                         <!--<h5>rodillo</h5>-->
-                                        <field name="specification_width_name"/>
+                                        <!--<field name="specification_width_name"/>-->
                                         <!--cabida largo-->
                                     </group>
                                     <group>
@@ -330,7 +325,7 @@
                                         <field name="width_core"/>
                                         <field name="bag" options="{'no_create': True, 'no_create_edit':True}"/>
                                         <field name="box" options="{'no_create': True, 'no_create_edit':True}"/>
-                                        <field name="superlon"/>
+                                        <field name="superlon" options="{'no_create': True, 'no_create_edit':True}"/>
                                     </group>
                                     <group string="lashing straps">
                                         <!--<field name="for_rolls_ids"
@@ -341,26 +336,17 @@
                                         </field>-->
                                         <field name="roll_ids" widget="one2many" context="{'default_sheet_id': id}">
                                             <tree string="Components" editable="bottom">
-                                                <field name="product_id"/>
-                                                <field name="product_qty"/>
-                                                <field name="uom_categ_id" invisible="True"/>
-                                                <field name="uom_id" domain="[('category_id','=',uom_categ_id)]"/>
+                                                <field name="product_id" options="{'no_create': True, 'no_create_edit':True}"/>
                                             </tree>
                                         </field>
                                         <field name="for_bag_ids" widget="one2many" context="{'default_sheet_id': id}">
                                             <tree string="Components" editable="bottom">
-                                                <field name="product_id"/>
-                                                <field name="product_qty"/>
-                                                <field name="uom_categ_id" invisible="True"/>
-                                                <field name="uom_id" domain="[('category_id','=',uom_categ_id)]"/>
+                                                <field name="product_id" options="{'no_create': True, 'no_create_edit':True}"/>
                                             </tree>
                                         </field>
                                         <field name="for_superlon_ids" widget="one2many" context="{'default_sheet_id': id}">
                                             <tree string="Components" editable="bottom">
-                                                <field name="product_id"/>
-                                                <field name="product_qty"/>
-                                                <field name="uom_categ_id" invisible="True"/>
-                                                <field name="uom_id" domain="[('category_id','=',uom_categ_id)]"/>
+                                                <field name="product_id" options="{'no_create': True, 'no_create_edit':True}"/>
                                             </tree>
                                         </field>
                                         <field name="for_box"/>
@@ -368,34 +354,22 @@
                                     <group string="Cintas de empalme por proceso ">
                                         <field name="refile_ids" widget="one2many" context="{'default_sheet_id': id}">
                                             <tree string="Components" editable="bottom">
-                                                <field name="product_id"/>
-                                                <field name="product_qty"/>
-                                                <field name="uom_categ_id" invisible="True"/>
-                                                <field name="uom_id" domain="[('category_id','=',uom_categ_id)]"/>
+                                                <field name="product_id" options="{'no_create': True, 'no_create_edit':True}"/>
                                             </tree>
                                         </field>
                                         <field name="revision_ids" widget="one2many" context="{'default_sheet_id': id}">
                                             <tree string="Components" editable="bottom">
-                                                <field name="product_id"/>
-                                                <field name="product_qty"/>
-                                                <field name="uom_categ_id" invisible="True"/>
-                                                <field name="uom_id" domain="[('category_id','=',uom_categ_id)]"/>
+                                                <field name="product_id" options="{'no_create': True, 'no_create_edit':True}"/>
                                             </tree>
                                         </field>
                                         <field name="gluped_ids" widget="one2many" context="{'default_sheet_id': id}">
                                             <tree string="Components" editable="bottom">
-                                                <field name="product_id"/>
-                                                <field name="product_qty"/>
-                                                <field name="uom_categ_id" invisible="True"/>
-                                                <field name="uom_id" domain="[('category_id','=',uom_categ_id)]"/>
+                                                <field name="product_id" options="{'no_create': True, 'no_create_edit':True}"/>
                                             </tree>
                                         </field>
                                         <field name="gluped2_ids" widget="one2many" context="{'default_sheet_id': id}">
                                             <tree string="Components" editable="bottom">
-                                                <field name="product_id"/>
-                                                <field name="product_qty"/>
-                                                <field name="uom_categ_id" invisible="True"/>
-                                                <field name="uom_id" domain="[('category_id','=',uom_categ_id)]"/>
+                                                <field name="product_id" options="{'no_create': True, 'no_create_edit':True}"/>
                                             </tree>
                                         </field>
                                     </group>
@@ -405,12 +379,10 @@
                                 <group>
                                     <field name="line_ids">
                                         <tree editable="bottom">
-                                            <field name="product_id"
-                                                   options="{'no_create': True, 'no_create_edit':True}"/>
+                                            <field name="product_id"/>
                                             <field name="product_qty"/>
                                             <field name="uom_categ_id" invisible="True"/>
-                                            <field name="uom_id" domain="[('category_id','=',uom_categ_id)]"
-                                                   options="{'no_create': True, 'no_create_edit':True}"/>
+                                            <field name="uom_id"/>
                                         </tree>
                                     </field>
                                 </group>
@@ -424,8 +396,13 @@
                                            readonly="True"/>
                                 </group>
                                 <group>
-                                    <field name="bom_ids" options="{'no_create': True, 'no_create_edit':True}"
-                                           readonly="True"/>
+                                    <field name="bom_ids">
+                                        <tree>
+                                            <field name="product_tmpl_id"/>
+                                            <field name="product_qty"/>
+                                            <field name="product_uom_id"/>
+                                        </tree>
+                                    </field>
                                 </group>
                             </page>
                             <page string="Production orders">

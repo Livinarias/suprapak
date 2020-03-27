@@ -10,8 +10,8 @@ class DataSheetLine(models.Model):
 
     company_id = fields.Many2one('res.company', 'Company', default=lambda self: self.env.company.id)
     product_id = fields.Many2one('product.product', 'Product', required=True)
-    product_qty = fields.Float('Quantity', required=True, digits='Product Unit of Measure', default=1.00)
-    uom_id = fields.Many2one('uom.uom', 'Unit of measure', required=True)
+    product_qty = fields.Float('Quantity', digits='Product Unit of Measure', default=1.00)
+    uom_id = fields.Many2one('uom.uom', 'Unit of measure')
     uom_categ_id = fields.Many2one('uom.category', 'Uom category')
     field_char = fields.Char('Field', default='None')
 
@@ -88,6 +88,7 @@ class DataSheet(models.Model):
     # Info cant
     specification_width_id = fields.Many2one('specification.width','Specification width')
     specification_width_name = fields.Char('Long Planned')
+    specification_width_planned = fields.Char('Width Planned') #falta formula
     specification_long_id = fields.Many2one('specification.long','Specification long')
     caliber_id = fields.Many2one('data.caliber.type', 'Specification caliber')
     tolerance_width = fields.Float('Tolerance width')
@@ -302,7 +303,7 @@ class DataSheet(models.Model):
                 'field_char': 'bag',
                 'product_id': self.bag.id,
                 'product_qty': 1,
-                'uom_id': self.bag.uom_id.id
+                #'uom_id': self.bag.uom_id.id
             }
             values.append((0, 0, dic))
         if self.separator_id:
@@ -311,7 +312,7 @@ class DataSheet(models.Model):
                 'field_char': 'separator_id',
                 'product_id': self.separator_id.id,
                 'product_qty': 1,
-                'uom_id': self.separator_id.uom_id.id
+                #'uom_id': self.separator_id.uom_id.id
             }
             values.append((0, 0, dic))
         if self.box:
@@ -329,7 +330,7 @@ class DataSheet(models.Model):
                 'field_char': 'superlon',
                 'product_id': self.superlon.id,
                 'product_qty': 1,
-                'uom_id': self.superlon.uom_id.id
+                #'uom_id': self.superlon.uom_id.id
             }
             values.append((0, 0, dic))
         if values:
@@ -347,13 +348,6 @@ class DataSheet(models.Model):
             line.sheet_id = self
         for line in self.revision_ids:
             line.sheet_id = self
-<<<<<<< HEAD
-
-
-    @api.onchange('gluped_ids')
-    def _onchange_one2many(self):
-=======
->>>>>>> 3032258afcec6d3355589b7e6b91b1222cbe290c
         for line in self.gluped_ids:
             line.sheet_id = self
         for line in self.gluped2_ids:
@@ -447,7 +441,7 @@ class DataSheet(models.Model):
                 dic = {
                     'product_id': line.product_id.id,
                     'product_qty': line.product_qty,
-                    'product_uom_id': line.uom_id.id
+                    #'product_uom_id': line.uom_id.id
                 }
                 valores.append((0, 0, dic))
             valor = {

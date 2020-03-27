@@ -21,9 +21,7 @@
 
     # always loaded
     'data': [
-        #'views/views.xml',
-        #'views/sale_template.xml'
-
+        'views/view_helpdesk.xml',
     ],
     # only loaded in demonstration mode
     #'images': ['static/description/icon.png'],

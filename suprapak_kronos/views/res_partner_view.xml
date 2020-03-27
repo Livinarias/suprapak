@@ -1,0 +1,14 @@
+<odoo>
+  <data>
+        <record model="ir.actions.act_window" id="action_sector">
+            <field name="name">Sector</field>
+            <field name="res_model">sector</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="menu_sector"
+                  name="Sector"
+                  action="action_sector"
+                  parent="contacts.res_partner_menu_config"
+                  sequence="1"/>
+  </data>
+</odoo>

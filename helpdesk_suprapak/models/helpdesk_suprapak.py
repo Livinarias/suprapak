@@ -3,17 +3,14 @@ from odoo import models, fields, api
 class Helpdesk(models.Model):
     _inherit = 'helpdesk.ticket'
 
+    complaint = fields.Selection([('product','Complaint By Product'),('service','Complaint By Service')],'Coplaint Type')
+    service = fields.Many2one('service','PQRS by Service')
     pqrs = fields.Selection([('print','Print'),('paste','Paste'),('technic','Technic'),('cut','Cut'),('rewind','Rewind')],'PQRS by Product')
     print_id = fields.Many2one('print','Print')
-    print = fields.Char()
     paste_id = fields.Many2one('paste','Paste')
-    paste = fields.Char()
     technic_id = fields.Many2one('technic','Technic')
-    technic = fields.Char()
     cut_id = fields.Many2one('cut','Cut')
-    cut = fields.Char()
     rewind_id = fields.Many2one('rewind','Rewind')
-    rewind = fields.Char()
 
 
 class Print(models.Model):
@@ -53,4 +50,11 @@ class Cut(models.Model):
     _description = 'PSRS by Cut'
 
     name = fields.Char('Caused by Cut')
+    code = fields.Char('code')
+
+class Service(models.Model):
+    _name = 'service'
+    _description = 'Complaint By Service'
+
+    name = fields.Char('Complaint By Service')
     code = fields.Char('code')
