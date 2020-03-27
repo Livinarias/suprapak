@@ -206,6 +206,13 @@ class DataSheet(models.Model):
     # Production
     production_ids = fields.One2many('mrp.production', 'sheet_id', 'Productions', compute='_compute_production_ids')
 
+
+    @api.depends('color_scale_id.name','specification_width_id.name','overlap_id.name')
+    def _compute_specification_width_planned(self):
+        self.specification_width_planned = self.overlap_id.name * 2 + self.specification_width_id.name\
+                                          + self.color_scale_id.name
+
+
     @api.onchange('specification_long_id')
     def _onchange_specification_long_id(self):
         if self.specification_long_id:
@@ -739,7 +746,7 @@ class ColorScale(models.Model):
     _name = 'color.scale'
     _description = 'Color scale'
 
-    name = fields.Char('Color scale/check mark')
+    name = fields.Float('Color scale/check mark')
 
 
 class ControlChange(models.Model):

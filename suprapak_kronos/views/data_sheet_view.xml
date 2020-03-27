@@ -247,7 +247,7 @@
                                         <field name="repeat_id" options="{'no_create': True, 'no_create_edit':True}"/>
                                         <field name="room_large"/>
                                         <field name="large_planned"/>
-                                        <field name="specification_width_planned"/>
+                                        <field name="specification_width_planned" readonly="True"/>
                                         <field name="datetime"
                                                attrs="{'invisible':[('required_match_print', '!=',True)]}"/>
                                     </group>

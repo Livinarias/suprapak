@@ -4,7 +4,7 @@ class Helpdesk(models.Model):
     _inherit = 'helpdesk.ticket'
 
     complaint = fields.Selection([('product','Complaint By Product'),('service','Complaint By Service')],'Coplaint Type')
-    service = fields.Many2one('service','PQRS by Service')
+    service_id = fields.Many2one('service','PQRS by Service')
     pqrs = fields.Selection([('print','Print'),('paste','Paste'),('technic','Technic'),('cut','Cut'),('rewind','Rewind')],'PQRS by Product')
     print_id = fields.Many2one('print','Print')
     paste_id = fields.Many2one('paste','Paste')

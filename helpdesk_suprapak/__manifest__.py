@@ -22,6 +22,7 @@
     # always loaded
     'data': [
         'views/view_helpdesk.xml',
+        'security/ir.model.access.csv',
     ],
     # only loaded in demonstration mode
     #'images': ['static/description/icon.png'],
