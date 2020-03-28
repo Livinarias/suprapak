@@ -8,9 +8,9 @@ class CrmLead(models.Model):
 
     sheet_count = fields.Integer('Number of sheets', compute='_compute_sheet_data')
     sheet_ids = fields.One2many('data.sheet', 'opportunity_id', 'Sheets')
-    currency_id = fields.Many2one('res.currency', 'Currency',required=True)
-    product_code = fields.Char('Product code',help='Customer product code',required=True)
-    sector_id = fields.Many2one('sector','Sector',required=True)
+    currency_id = fields.Many2one('res.currency', 'Currency', required=True)
+    product_code = fields.Char('Product code', help='Customer product code', required=True)
+    sector_id = fields.Many2one('res.sector', 'Sector', required=True)
     sector_code = fields.Char('Sector code')
     customer_zip = fields.Char('zip')
 
@@ -37,11 +37,9 @@ class CrmLead(models.Model):
             name += 'M'
         if self.type_sheet == 'sale':
             name += 'P'"""
-        if self.partner_id:
-            if self.partner_id.zip:
-                name =  self.sector_code + self.customer_zip
-            """if self.partner_id.ref:
-                name += ' - ' + self.partner_id.ref"""
+        if self.sector_id:
+            name += self.sector_id.code
+        name += ' - ' + self.product_code
         action = self.env.ref("suprapak_kronos.action_new_data_sheet_new").read()[0]
         action['context'] = {
             'search_default_opportunity_id': self.id,
@@ -53,7 +51,7 @@ class CrmLead(models.Model):
             'default_currency_id': self.currency_id.id,
             'default_product_code': self.product_code,
             'default_name': name,
-            'default_sector_id': sector_id,
+            'default_sector_id': self.sector_id,
         }
         return action
 
@@ -66,7 +64,8 @@ class CrmLead(models.Model):
         action['domain'] = [('opportunity_id', '=', self.id)]
         return action
 
-class SectorKronor(models.Model):
+
+class DataSectorType(models.Model):
     _name = 'data.sector.type'
     _description = 'Sector Type'
 

@@ -3,8 +3,8 @@
 from odoo import models, fields, api
 
 
-class Sector(models.Model):
-    _name = 'sector'
+class ResSector(models.Model):
+    _name = 'res.sector'
     _description = 'Sector of Customer'
 
     name = fields.Char('Sector')

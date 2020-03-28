@@ -27,7 +27,6 @@ class DataSheetLine(models.Model):
     gluped2_id = fields.Many2one('data.sheet','Sheet')
     movie_type_product_id = fields.Many2one('data.sheet','Sheet')
 
-
     @api.onchange('product_id')
     def _oncahnge_product_id(self):
         if self.product_id:
@@ -61,6 +60,7 @@ class DataSheet(models.Model):
     partner_id = fields.Many2one('res.partner', 'Customer')
     commentary = fields.Char('Commentary')
     product_code = fields.Char('Product code', help='Customer product code')
+    sector_id = fields.Many2one('re.sector', 'Sector')
     sector = fields.Char('Sector')
     team_id = fields.Many2one('crm.team', 'Zone')
     currency_id = fields.Many2one('res.currency', 'Currency')
