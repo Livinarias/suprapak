@@ -105,7 +105,7 @@
 
         <menuitem id="menu_overlap_location"
                   name="Overlap Location"
-                  action="action_width_overlap"
+                  action="action_overlap_location"
                   parent="menu_data_sheet_conf"
                   sequence="75"/>
 

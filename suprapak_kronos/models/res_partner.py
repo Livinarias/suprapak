@@ -9,3 +9,4 @@ class ResSector(models.Model):
 
     name = fields.Char('Sector')
     code = fields.Char('code')
+

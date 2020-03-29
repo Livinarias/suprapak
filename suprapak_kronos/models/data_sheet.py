@@ -60,7 +60,7 @@ class DataSheet(models.Model):
     partner_id = fields.Many2one('res.partner', 'Customer')
     commentary = fields.Char('Commentary')
     product_code = fields.Char('Product code', help='Customer product code')
-    sector_id = fields.Many2one('re.sector', 'Sector')
+    sector_id = fields.Many2one('res.sector', 'Sector')
     sector = fields.Char('Sector')
     team_id = fields.Many2one('crm.team', 'Zone')
     currency_id = fields.Many2one('res.currency', 'Currency')

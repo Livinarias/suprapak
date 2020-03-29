@@ -51,7 +51,7 @@ class CrmLead(models.Model):
             'default_currency_id': self.currency_id.id,
             'default_product_code': self.product_code,
             'default_name': name,
-            'default_sector_id': self.sector_id,
+            'default_sector_id': self.sector_id.id,
         }
         return action
 
