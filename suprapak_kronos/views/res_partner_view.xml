@@ -1,5 +1,16 @@
 <odoo>
   <data>
+      <record id="res_partner_form" model="ir.ui.view">
+            <field name="name">res.partner.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="priority">15</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='category_id']" position="after">
+                    <field name="sectors_ids" widget="many2many_tags"/>
+                </xpath>
+            </field>
+        </record>
         <record model="ir.actions.act_window" id="action_res_sector">
             <field name="name">Sector</field>
             <field name="res_model">res.sector</field>

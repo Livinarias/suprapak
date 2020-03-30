@@ -18,8 +18,8 @@ class SaleOrderLine(models.Model):
     drawn_type_id = fields.Many2one('data.drawn.type', 'Drawn type')
     movie_type_id = fields.Many2one('data.movie.type', 'Movie type')
     # Info cant
-    specification_width = fields.Integer('Specification width')
-    specification_long = fields.Integer('Specification long')
+    specification_width = fields.Float('Specification width')
+    specification_long = fields.Float('Specification long')
     caliber_id = fields.Many2one('data.caliber.type', 'Specification caliber')
     # Boolean
     tongue = fields.Boolean('Tongue')

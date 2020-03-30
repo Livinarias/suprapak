@@ -9,3 +9,10 @@ class ResSector(models.Model):
 
     name = fields.Char('Sector')
     code = fields.Char('code')
+
+
+class ResPartner(models.Model):
+    _inherit = 'res.partner'
+
+    sector_id = fields.Many2one('res.sector')
+    sectors_ids = fields.Many2many('res.sector','parner_sector_rel','res_sector_id','sector_id','Sectors')
