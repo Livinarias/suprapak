@@ -45,7 +45,7 @@
                                         <field name="partner_id" options="{'no_create': True, 'no_create_edit':True}"/>
                                         <field name="commentary"/>
                                         <field name="product_code"/>
-                                        <field name="sector"/>
+                                        <field name="sector_id"/>
                                     </group>
                                     <group>
                                         <field name="team_id" options="{'no_create': True, 'no_create_edit':True}"/>
@@ -71,7 +71,7 @@
                                         <field name="no_print" widget="checkbox"/>
                                         <field name="print_class" widget="radio"
                                                attrs="{'invisible':[('print', '!=', True)]}"/>
-                                        <field name="print_type" options="{'no_create': True, 'no_create_edit':True}"
+                                        <field name="print_type_id" options="{'no_create': True, 'no_create_edit':True}"
                                                attrs="{'invisible':[('print', '!=', True)]}"/>
                                         <field name="required_match_print" widget="checkbox"/>
                                         <field name="product_type_id"
@@ -653,6 +653,16 @@
         <record model="ir.actions.act_window" id="action_repeat">
             <field name="name">Repeat</field>
             <field name="res_model">repeat</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record model="ir.actions.act_window" id="action_chemical_composition">
+            <field name="name">Chemical Composition</field>
+            <field name="res_model">chemical.composition</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record model="ir.actions.act_window" id="action_adhesive_type">
+            <field name="name">Adhesive Type</field>
+            <field name="res_model">adhesive.type</field>
             <field name="view_mode">tree,form</field>
         </record>
         <record model="ir.module.category" id="module_category_data_sheet">

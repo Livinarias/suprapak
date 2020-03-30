@@ -77,7 +77,7 @@ class DataSheet(models.Model):
     movie_type_product_ids = fields.One2many('data.sheet.line','movie_type_product_id','Product of Movie Type')
     # Info Tec
     print_class = fields.Selection([('external','External'),('internal','Internal')],'Print Class')
-    print_type = fields.Many2one('print.type','Print Type')
+    print_type_id = fields.Many2one('print.type','Print Type')
     uom_id = fields.Many2one('uom.uom', 'Unit of measure')
     product_type_id = fields.Many2one('data.product.type', 'Product line')
     drawn_type_id = fields.Many2one('data.drawn.type', 'Draw type')
@@ -88,7 +88,7 @@ class DataSheet(models.Model):
     # Info cant
     specification_width_id = fields.Many2one('specification.width','Specification width')
     specification_width_name = fields.Char('Long Planned')
-    specification_width_planned = fields.Char('Width Planned') #falta formula
+    specification_width_planned = fields.Float('Width Planned')
     specification_long_id = fields.Many2one('specification.long','Specification long')
     caliber_id = fields.Many2one('data.caliber.type', 'Specification caliber')
     tolerance_width = fields.Float('Tolerance width')
@@ -228,6 +228,7 @@ class DataSheet(models.Model):
         if self.repeat_id:
             self.room_large = self.repeat_id.room_large
             self.large_planned = self.repeat_id.large_planned
+
 
     @api.onchange('presentation_id')
     def _onchange_presentation_id(self):
@@ -790,7 +791,8 @@ class Repeat(models.Model):
 
     name = fields.Char('Roller')
     room_large = fields.Char('Room Large')
-    large_planned = fields.Char('Large Planned')
+    large_planned = fields.Float('Large Planned')
+
 
 
 class ForSuperlon(models.Model):
