@@ -73,23 +73,17 @@
                   parent="menu_data_sheet_conf"
                   sequence="55"/>
 
-        <menuitem id="menu_data_package_contents"
-                  name="Package Contents"
-                  action="action_data_application_contents"
-                  parent="menu_data_sheet_conf"
-                  sequence="60"/>
-
         <menuitem id="menu_data_form"
                   name="Form"
                   action="action_data_form"
                   parent="menu_data_sheet_conf"
-                  sequence="65"/>
+                  sequence="60"/>
 
         <menuitem id="menu_specification_width"
                   name="Specification Width"
                   action="action_specification_width"
                   parent="menu_data_sheet_conf"
-                  sequence="70"/>
+                  sequence="65"/>
 
         <menuitem id="menu_specification_long"
                   name="Specification Long"

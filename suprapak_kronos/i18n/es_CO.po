@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-30 21:24+0000\n"
-"PO-Revision-Date: 2020-03-30 21:24+0000\n"
+"POT-Creation-Date: 2020-03-31 15:30+0000\n"
+"PO-Revision-Date: 2020-03-31 15:30+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -238,6 +238,7 @@ msgstr "Caja"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_caliber_type__name
+#: model_terms:ir.ui.view,arch_db:suprapak_kronos.report_saleorder_document_inherit_sale_supra
 msgid "Caliber"
 msgstr "Calibre"
 
@@ -363,6 +364,11 @@ msgstr "Componentes"
 #: model:ir.ui.menu,name:suprapak_kronos.menu_data_sheet_conf
 msgid "Configuration"
 msgstr "Configuracion"
+
+#. module: suprapak_kronos
+#: model:ir.model,name:suprapak_kronos.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
 
 #. module: suprapak_kronos
 #: model:ir.actions.act_window,name:suprapak_kronos.action_control_change
@@ -554,7 +560,7 @@ msgstr "Ficha de datos en linea"
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_control_change__date
 msgid "Date"
-msgstr "Dato"
+msgstr "Fecha"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__date_recieved_approved
@@ -669,6 +675,7 @@ msgstr "Presentacion de Grafilado"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_drawn_presentation__drawn_type
+#: model_terms:ir.ui.view,arch_db:suprapak_kronos.report_saleorder_document_inherit_sale_supra
 msgid "Drawn Type"
 msgstr "Tipo Grafilado"
 
@@ -1084,6 +1091,7 @@ msgstr "Adjunto Principal"
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__material_id
 #: model:ir.model.fields,field_description:suprapak_kronos.field_sale_order_line__material_id
 #: model:ir.ui.menu,name:suprapak_kronos.menu_data_material
+#: model_terms:ir.ui.view,arch_db:suprapak_kronos.report_saleorder_document_inherit_sale_supra
 msgid "Material"
 msgstr ""
 
@@ -1136,6 +1144,11 @@ msgstr "Microperforado"
 #: model:ir.model.fields,field_description:suprapak_kronos.field_preformed__name
 msgid "Mold"
 msgstr "Molde"
+
+#. module: suprapak_kronos
+#: model_terms:ir.ui.view,arch_db:suprapak_kronos.report_saleorder_document_inherit_sale_supra
+msgid "Movie Type"
+msgstr ""
 
 #. module: suprapak_kronos
 #: model:ir.actions.act_window,name:suprapak_kronos.action_data_movie_color
@@ -1489,7 +1502,7 @@ msgstr "Rechazo por tecnico"
 #: model:ir.model,name:suprapak_kronos.model_repeat
 #: model:ir.ui.menu,name:suprapak_kronos.menu_repeat
 msgid "Repeat"
-msgstr "Repetir"
+msgstr "Repite"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__guillotine
@@ -1620,7 +1633,9 @@ msgstr "Pestaña de sellado"
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sector_type__name
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__sector
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__sector_id
+#: model:ir.model.fields,field_description:suprapak_kronos.field_res_partner__sector_id
 #: model:ir.model.fields,field_description:suprapak_kronos.field_res_sector__name
+#: model:ir.model.fields,field_description:suprapak_kronos.field_res_users__sector_id
 #: model:ir.ui.menu,name:suprapak_kronos.menu_res_sector
 msgid "Sector"
 msgstr ""
@@ -1639,6 +1654,12 @@ msgstr "Codigo sector"
 #: model:ir.model,name:suprapak_kronos.model_res_sector
 msgid "Sector of Customer"
 msgstr "Sector del cliente"
+
+#. module: suprapak_kronos
+#: model:ir.model.fields,field_description:suprapak_kronos.field_res_partner__sectors_ids
+#: model:ir.model.fields,field_description:suprapak_kronos.field_res_users__sectors_ids
+msgid "Sectors"
+msgstr ""
 
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__access_token
@@ -1692,34 +1713,36 @@ msgstr "Tintas Especiales"
 #: model:ir.model,name:suprapak_kronos.model_specification_long
 #: model:ir.model.fields,field_description:suprapak_kronos.field_specification_long__name
 #: model:ir.ui.menu,name:suprapak_kronos.menu_specification_long
+#: model_terms:ir.ui.view,arch_db:suprapak_kronos.report_saleorder_document_inherit_sale_supra
 msgid "Specification Long"
-msgstr "Largo de la banda plana"
+msgstr "Largo banda plana"
 
 #. module: suprapak_kronos
 #: model:ir.actions.act_window,name:suprapak_kronos.action_specification_width
 #: model:ir.model,name:suprapak_kronos.model_specification_width
 #: model:ir.model.fields,field_description:suprapak_kronos.field_specification_width__name
 #: model:ir.ui.menu,name:suprapak_kronos.menu_specification_width
+#: model_terms:ir.ui.view,arch_db:suprapak_kronos.report_saleorder_document_inherit_sale_supra
 msgid "Specification Width"
-msgstr "Ancho de la banda plana"
+msgstr "Ancho banda plana"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__caliber_id
 #: model:ir.model.fields,field_description:suprapak_kronos.field_sale_order_line__caliber_id
 msgid "Specification caliber"
-msgstr "Calibre de especificación"
+msgstr "Calibre"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__specification_long_id
 #: model:ir.model.fields,field_description:suprapak_kronos.field_sale_order_line__specification_long
 msgid "Specification long"
-msgstr "Largo de la banda plana"
+msgstr "Largo banda plana"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__specification_width_id
 #: model:ir.model.fields,field_description:suprapak_kronos.field_sale_order_line__specification_width
 msgid "Specification width"
-msgstr "Ancho de la banda plana"
+msgstr "Ancho banda plana"
 
 #. module: suprapak_kronos
 #: model:ir.actions.act_window,name:suprapak_kronos.action_splice_type
@@ -1805,6 +1828,11 @@ msgid "Technical information"
 msgstr "Información técnica"
 
 #. module: suprapak_kronos
+#: model_terms:ir.ui.view,arch_db:suprapak_kronos.report_saleorder_document_inherit_sale_supra
+msgid "Termal Adhesive"
+msgstr ""
+
+#. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__thermal_adhesive
 #: model:ir.model.fields,field_description:suprapak_kronos.field_sale_order_line__thermal_adhesive
 msgid "Thermal adhesive"
@@ -1836,21 +1864,22 @@ msgstr "Tolerancia Traslape"
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__tolerance_caliber
 msgid "Tolerance caliber"
-msgstr "Calibre de tolerancia"
+msgstr "Tolerancia Calibre"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__tolerance_long
 msgid "Tolerance long"
-msgstr "Tolerancia larga"
+msgstr "Tolerancia del largo"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__tolerance_width
 msgid "Tolerance width"
-msgstr "Ancho de tolerancia"
+msgstr "Tolerancia de Ancho"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__tongue
 #: model:ir.model.fields,field_description:suprapak_kronos.field_sale_order_line__tongue
+#: model_terms:ir.ui.view,arch_db:suprapak_kronos.report_saleorder_document_inherit_sale_supra
 msgid "Tongue"
 msgstr "Lengueta"
 
@@ -1867,7 +1896,7 @@ msgstr "Tipo de actividad de excepción registrada"
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__type_sheet
 msgid "Type sheet"
-msgstr "Tipo de hoja"
+msgstr "Estado de Aprobacion"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_print_color__press
@@ -1958,12 +1987,12 @@ msgstr "Ancho de core"
 #: model:ir.model.fields,field_description:suprapak_kronos.field_width_overlap__name
 #: model:ir.ui.menu,name:suprapak_kronos.menu_width_overlap
 msgid "Width Overlap"
-msgstr "Traslape Ancho"
+msgstr "Ancho Traslape"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__specification_width_planned
 msgid "Width Planned"
-msgstr "Ancho Planeado"
+msgstr "Cabida Ancho"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__no_print
@@ -2014,12 +2043,12 @@ msgstr "Embalaje del cliente"
 #. module: suprapak_kronos
 #: model_terms:ir.ui.view,arch_db:suprapak_kronos.form_data_sheet
 msgid "lashing straps"
-msgstr "Empaque Separado"
+msgstr "Empaque"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__guillotine_mm
 msgid "mm"
-msgstr ""
+msgstr "mm guillotinado"
 
 #. module: suprapak_kronos
 #: model_terms:ir.ui.view,arch_db:suprapak_kronos.form_data_sheet
@@ -2029,7 +2058,7 @@ msgstr "Caracteristicas de Empaque"
 #. module: suprapak_kronos
 #: model_terms:ir.ui.view,arch_db:suprapak_kronos.form_data_sheet
 msgid "packing"
-msgstr "Paquete"
+msgstr "Empaque"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields.selection,name:suprapak_kronos.selection__data_sheet__complexity__poca

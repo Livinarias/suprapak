@@ -7,15 +7,13 @@
             <field name="arch" type="xml">
                 <form string="Data sheet">
                     <header>
-                        <button string="New Quotation" name="action_sale_quotations_new" type="object"
-                                class="oe_highlight"/>
+                        <button string="New Quotation" name="action_sale_quotations_new" type="object" class="oe_highlight"/>
                         <button class="oe_highlight" type="object" name="action_bom_line" string="To produce"/>
                         <field name="state" widget="statusbar" clickable="True"/>
                     </header>
                     <sheet>
                         <div class="oe_button_box" name="button_box">
-                            <button class="oe_stat_button" type="object" name="action_view_sale_quotation"
-                                    icon="fa-pencil-square-o">
+                            <button class="oe_stat_button" type="object" name="action_view_sale_quotation" icon="fa-pencil-square-o">
                                 <field name="quotation_count" widget="statinfo" string="Quotations"/>
                             </button>
                         </div>
@@ -28,10 +26,8 @@
                         <separator string="General" colspan="2"/>
                         <group>
                             <group>
-                                <field name="product_id" options="{'no_create': True, 'no_create_edit':True}"
-                                       required="True"/>
-                                <field name="opportunity_id" options="{'no_create': True, 'no_create_edit':True}"
-                                       readonly="True"/>
+                                <field name="product_id" options="{'no_create': True, 'no_create_edit':True}" required="True"/>
+                                <field name="opportunity_id" options="{'no_create': True, 'no_create_edit':True}" readonly="True"/>
                             </group>
                             <group>
                                 <field name="priority" widget="priority"/>
@@ -54,8 +50,7 @@
                                     <group string="customer packaging">
                                         <field name="tag_form_id" options="{'no_create': True, 'no_create_edit':True}"/>
                                         <field name="material_id" options="{'no_create': True, 'no_create_edit':True}"/>
-                                        <field name="application_id"
-                                               options="{'no_create': True, 'no_create_edit':True}"/>
+                                        <field name="application_id" options="{'no_create': True, 'no_create_edit':True}"/>
                                         <field name="position_id" options="{'no_create': True, 'no_create_edit':True}"/>
                                         <field name="content_id" options="{'no_create': True, 'no_create_edit':True}"/>
                                     </group>
@@ -69,23 +64,18 @@
                                     <group>
                                         <field name="print" widget="checkbox"/>
                                         <field name="no_print" widget="checkbox"/>
-                                        <field name="print_class" widget="radio"
-                                               attrs="{'invisible':[('print', '!=', True)]}"/>
-                                        <field name="print_type_id" options="{'no_create': True, 'no_create_edit':True}"
-                                               attrs="{'invisible':[('print', '!=', True)]}"/>
+                                        <field name="print_class" widget="radio" attrs="{'invisible':[('print', '!=', True)]}"/>
+                                        <field name="print_type_id" options="{'no_create': True, 'no_create_edit':True}" attrs="{'invisible':[('print', '!=', True)]}"/>
                                         <field name="required_match_print" widget="checkbox"/>
-                                        <field name="product_type_id"
-                                               options="{'no_create': True, 'no_create_edit':True}"/>
-                                        <field name="chemical_composition"
-                                               options="{'no_create': True, 'no_create_edit':True}"/>
+                                        <field name="product_type_id" options="{'no_create': True, 'no_create_edit':True}"/>
+                                        <field name="chemical_composition" options="{'no_create': True, 'no_create_edit':True}"/>
                                     </group>
                                     <group>
                                         <group>
                                             <field name="quantity"/>
                                             <field name="uom_id" options="{'no_create': True, 'no_create_edit':True}"/>
                                             <field name="form_id" options="{'no_create': True, 'no_create_edit':True}"/>
-                                            <field name="movie_type_id"
-                                                   options="{'no_create': True, 'no_create_edit':True}"/>
+                                            <field name="movie_type_id" options="{'no_create': True, 'no_create_edit':True}"/>
                                         </group>
                                         <group>
                                             <field name="movie_type_product_ids" widget="one2many" context="{'default_sheet_id': id}">
@@ -96,14 +86,11 @@
                                         </group>
                                     </group>
                                     <group>
-                                        <field name="specification_width_id"
-                                               options="{'no_create': True, 'no_create_edit':True}"/>
-                                        <field name="specification_long_id"
-                                               options="{'no_create': True, 'no_create_edit':True}"/>
+                                        <field name="specification_width_id" options="{'no_create': True, 'no_create_edit':True}"/>
+                                        <field name="specification_long_id" options="{'no_create': True, 'no_create_edit':True}"/>
                                         <field name="caliber_id" options="{'no_create': True, 'no_create_edit':True}"/>
                                         <field name="overlap_id" options="{'no_create': True, 'no_create_edit':True}"/>
-                                        <field name="overlap_location_id"
-                                               options="{'no_create': True, 'no_create_edit':True}"/>
+                                        <field name="overlap_location_id" options="{'no_create': True, 'no_create_edit':True}"/>
                                         <field name="rhombus" attrs="{'invisible':[('overlap_id', '!=', True)]}"/>
                                     </group>
                                     <group>
@@ -112,58 +99,36 @@
                                         <field name="tolerance_caliber" readonly="True"/>
                                         <field name="tolerance_overlap" readonly="True"/>
                                         <field name="rhombus"/>
-                                        <field name="average_label_weight"
-                                               attrs="{'invisible':[('presentation','=','ROLLO')]}"/>
-                                        <field name="roll_weight"
-                                               attrs="{'invisible':[('presentation','!=','ROLLO')]}"/>
+                                        <h1><br></br></h1>
+                                        <field name="average_label_weight" attrs="{'invisible':[('presentation','=','ROLLO')]}"/>
+                                        <field name="roll_weight" attrs="{'invisible':[('presentation','!=','ROLLO')]}"/>
                                     </group>
                                     <group>
                                         <!--rollo-->
-                                        <field name="presentation_id"
-                                               options="{'no_create': True, 'no_create_edit':True}"/>
+                                        <field name="presentation_id" options="{'no_create': True, 'no_create_edit':True}"/>
                                         <field name="presentation" invisible="True"/>
-                                        <field name="meter_per_roll"
-                                               attrs="{'invisible':[('presentation','!=','ROLLO')]}"/>
-                                        <field name="core_diameter_id"
-                                               options="{'no_create': True, 'no_create_edit':True}"
-                                               attrs="{'invisible':[('presentation','!=','ROLLO')]}"/>
-                                        <field name="embossing_number_id"
-                                               options="{'no_create': True, 'no_create_edit':True}"
-                                               attrs="{'invisible':[('presentation','!=','ROLLO')]}"/>
-                                        <field name="number_splices_id"
-                                               options="{'no_create': True, 'no_create_edit':True}"
-                                               attrs="{'invisible':[('presentation','!=','ROLLO')]}"/>
-                                        <fields name="splice_type_id"
-                                                options="{'no_create': True, 'no_create_edit':True}"
-                                                attrs="{'invisible':[('presentation','!=','ROLLO')]}"/>
-                                        <field name="splicing_tape_id"
-                                               options="{'no_create': True, 'no_create_edit':True}"
-                                               attrs="{'invisible':[('presentation','!=','ROLLO')]}"/>
+                                        <field name="meter_per_roll" attrs="{'invisible':[('presentation','!=','ROLLO')]}"/>
+                                        <field name="core_diameter_id" options="{'no_create': True, 'no_create_edit':True}" attrs="{'invisible':[('presentation','!=','ROLLO')]}"/>
+                                        <field name="embossing_number_id" options="{'no_create': True, 'no_create_edit':True}" attrs="{'invisible':[('presentation','!=','ROLLO')]}"/>
+                                        <field name="number_splices_id" options="{'no_create': True, 'no_create_edit':True}" attrs="{'invisible':[('presentation','!=','ROLLO')]}"/>
+                                        <fields name="splice_type_id" options="{'no_create': True, 'no_create_edit':True}" attrs="{'invisible':[('presentation','!=','ROLLO')]}"/>
+                                        <field name="splicing_tape_id" options="{'no_create': True, 'no_create_edit':True}" attrs="{'invisible':[('presentation','!=','ROLLO')]}"/>
                                     </group>
                                     <group>
                                         <!--sellado-->
-                                        <field name="seal_type_id" options="{'no_create': True, 'no_create_edit':True}"
-                                               attrs="{'invisible':[('presentation', '!=','SELLADO')]}"/>
-                                        <field name="sealing_tab"
-                                               attrs="{'invisible':[('presentation', '!=','SELLADO')]}"/>
+                                        <field name="seal_type_id" options="{'no_create': True, 'no_create_edit':True}" attrs="{'invisible':[('presentation', '!=','SELLADO')]}"/>
+                                        <field name="sealing_tab" attrs="{'invisible':[('presentation', '!=','SELLADO')]}"/>
                                         <field name="seal" invisible="1"/>
                                     </group>
                                     <group>
                                         <!--preformado-->
-                                        <field name="mold_id" options="{'no_create': True, 'no_create_edit':True}"
-                                               attrs="{'invisible':[('presentation', '!=','PREFORMADO')]}"/>
-                                        <field name="bottom_diameter"
-                                               attrs="{'invisible':[('presentation', '!=','PREFORMADO')]}"/>
-                                        <field name="upper_diameter"
-                                               attrs="{'invisible':[('presentation', '!=','PREFORMADO')]}"/>
-                                        <field name="tab_length"
-                                               attrs="{'invisible':[('presentation', '!=','PREFORMADO')]}"/>
-                                        <field name="band_height"
-                                               attrs="{'invisible':[('presentation', '!=','PREFORMADO')]}"/>
-                                        <field name="product"
-                                               attrs="{'invisible':[('presentation', '!=','PREFORMADO')]}"/>
-                                        <field name="long_modification"
-                                               attrs="{'invisible':[('presentation', '!=','PREFORMADO')]}"/>
+                                        <field name="mold_id" options="{'no_create': True, 'no_create_edit':True}" attrs="{'invisible':[('presentation', '!=','PREFORMADO')]}"/>
+                                        <field name="bottom_diameter" attrs="{'invisible':[('presentation', '!=','PREFORMADO')]}"/>
+                                        <field name="upper_diameter" attrs="{'invisible':[('presentation', '!=','PREFORMADO')]}"/>
+                                        <field name="tab_length" attrs="{'invisible':[('presentation', '!=','PREFORMADO')]}"/>
+                                        <field name="band_height" attrs="{'invisible':[('presentation', '!=','PREFORMADO')]}"/>
+                                        <field name="product" attrs="{'invisible':[('presentation', '!=','PREFORMADO')]}"/>
+                                        <field name="long_modification" attrs="{'invisible':[('presentation', '!=','PREFORMADO')]}"/>
                                     </group>
                                     <group>
                                         <!--plano mecanico-->
@@ -174,14 +139,12 @@
                                         </field>
                                     </group>
                                     <group>
-                                        <field name="barcode_type_id"
-                                               options="{'no_create': True, 'no_create_edit':True}"/>
+                                        <field name="barcode_type_id" options="{'no_create': True, 'no_create_edit':True}"/>
                                         <field name="barcode_number"/>
                                     </group>
                                     <group>
                                         <field name="microperforated" widget="checkbox"/>
-                                        <field name="microperforated_ids"
-                                               attrs="{'invisible':[('microperforated', '!=', True)]}">
+                                        <field name="microperforated_ids" attrs="{'invisible':[('microperforated', '!=', True)]}">
                                             <tree>
                                                 <field name="cross"/>
                                                 <field name="logitudinal"/>
@@ -192,39 +155,28 @@
                                     </group>
                                     <group>
                                         <field name="drawn" widget="checkbox"/>
-                                        <field name="drawn_type_id" options="{'no_create': True, 'no_create_edit':True}"
-                                               attrs="{'invisible':[('drawn', '!=', True)]}"/>
-                                        <field name="drawn_presentation_id"
-                                               options="{'no_create': True, 'no_create_edit':True}"
-                                               attrs="{'invisible':[('drawn', '!=', True)]}"/>
+                                        <field name="drawn_type_id" options="{'no_create': True, 'no_create_edit':True}" attrs="{'invisible':[('drawn', '!=', True)]}"/>
+                                        <field name="drawn_presentation_id" options="{'no_create': True, 'no_create_edit':True}" attrs="{'invisible':[('drawn', '!=', True)]}"/>
                                         <field name="tongue" attrs="{'invisible':[('drawn', '!=', True)]}"/>
                                     </group>
                                     <group>
                                         <field name="waistband" widget="checkbox"/>
-                                        <field name="color_movie_id"
-                                               options="{'no_create': True, 'no_create_edit':True}"
-                                               attrs="{'invisible':[('waistband', '!=', True)]}"/>
+                                        <field name="color_movie_id" options="{'no_create': True, 'no_create_edit':True}" attrs="{'invisible':[('waistband', '!=', True)]}"/>
                                     </group>
                                     <group>
                                         <field name="thermal_adhesive" widget="checkbox"/>
-                                        <field name="adhesive_type_id"
-                                               options="{'no_create': True, 'no_create_edit':True}"
-                                               attrs="{'invisible':[('thermal_adhesive', '!=', True )]}"/>
+                                        <field name="adhesive_type_id" options="{'no_create': True, 'no_create_edit':True}" attrs="{'invisible':[('thermal_adhesive', '!=', True )]}"/>
                                         <field name="adhesive_type_selector" invisible="1"/>
-                                        <field name="rod_number"
-                                               attrs="{'invisible':[('adhesive_type_selector', '!=','EN BARRA')]}"/>
+                                        <field name="rod_number" attrs="{'invisible':[('adhesive_type_selector', '!=','EN BARRA')]}"/>
                                     </group>
                                     <group>
-                                        <field name="photo_format" widget="pdf_viewer"
-                                               attrs="{'invisible':[('adhesive_type_selector', '!=','IMPRESO')]}"/>
+                                        <field name="photo_format" widget="pdf_viewer" attrs="{'invisible':[('adhesive_type_selector', '!=','IMPRESO')]}"/>
                                     </group>
                                     <group string="Acabados Especiales">
                                         <field name="cold_foil" widget="checkbox"/>
-                                        <field name="cold_foil_id" options="{'no_create': True, 'no_create_edit':True}"
-                                               attrs="{'invisible':[('cold_foil', '!=',True)]}"/>
+                                        <field name="cold_foil_id" options="{'no_create': True, 'no_create_edit':True}" attrs="{'invisible':[('cold_foil', '!=',True)]}"/>
                                         <field name="cold_foil_selector" invisible="1"/>
-                                        <field name="cold_foil_width"
-                                               attrs="{'invisible':[('cold_foil_selector', '!=','PLATA')]}"/>
+                                        <field name="cold_foil_width" attrs="{'invisible':[('cold_foil_selector', '!=','PLATA')]}"/>
                                         <field name="cast" widget="checkbox"/>
                                         <field name="cast_reference" attrs="{'invisible':[('cast', '!=',True)]}"/>
                                         <field name="cast_width" attrs="{'invisible':[('cast', '!=',True)]}"/>
@@ -243,46 +195,30 @@
                                 <group>
                                     <group>
                                         <field name="required_match_print" widget="checkbox"/>
-                                        <field name="designer" options="{'no_create': True, 'no_create_edit':True}"/>
-                                        <field name="repeat_id" options="{'no_create': True, 'no_create_edit':True}"/>
+                                        <field name="datetime" attrs="{'invisible':[('required_match_print', '!=',True)]}"/>
+                                        <field name="Customer" options="{'no_create': True, 'no_create_edit':True}" attrs="{'invisible':[('required_match_print', '!=',True)]}"/>
+                                        <field name="name" attrs="{'invisible':[('required_match_print', '!=',True)]}" readonly="True"/>
+                                        <field name="deliver_to" attrs="{'invisible':[('required_match_print', '!=',True)]}" options="{'no_create': True, 'no_create_edit':True}"/>
+                                        <field name="vendor_date" attrs="{'invisible':[('required_match_print', '!=',True)]}"/>
+                                        <field name="date_recieved_approved" attrs="{'invisible':[('required_match_print', '!=',True)]}"/>
+                                        <field name="observations" attrs="{'invisible':[('required_match_print', '!=',True)]}"/>
+                                        <field name="repeat_id" options="{'no_create': True, 'no_create_edit':True}" />
                                         <field name="room_large"/>
                                         <field name="large_planned"/>
-                                        <field name="specification_width_planned" readonly="True"/>
-                                        <field name="datetime"
-                                               attrs="{'invisible':[('required_match_print', '!=',True)]}"/>
+                                        <field name="specification_width_planned"/>
                                     </group>
                                     <group>
-                                        <field name="quantity"
-                                               attrs="{'invisible':[('required_match_print', '!=',True)]}"/>
-                                        <field name="Customer" options="{'no_create': True, 'no_create_edit':True}"
-                                               attrs="{'invisible':[('required_match_print', '!=',True)]}"/>
-                                        <field name="name" attrs="{'invisible':[('required_match_print', '!=',True)]}"/>
-                                        <field name="sign_customer" widget="signature"
-                                               attrs="{'invisible':[('required_match_print', '!=',True)]}"/>
+                                        <field name="designer" options="{'no_create': True, 'no_create_edit':True}"/>
+                                        <field name="quantity" attrs="{'invisible':[('required_match_print', '!=',True)]}"/>
+                                        <field name="date" attrs="{'invisible':[('required_match_print', '!=',True)]}"/>
+                                        <field name="sign_vendor" widget="signature" attrs="{'invisible':[('required_match_print', '!=',True)]}"/>
+                                        <field name="sign_designer" widget="signature" attrs="{'invisible':[('required_match_print', '!=',True)]}"/>
                                     </group>
                                     <group>
-                                        <field name="deliver_to"
-                                               attrs="{'invisible':[('required_match_print', '!=',True)]}"
-                                               options="{'no_create': True, 'no_create_edit':True}"/>
-                                        <field name="sign_designer" widget="signature"
-                                               attrs="{'invisible':[('required_match_print', '!=',True)]}"/>
+
                                     </group>
                                     <group>
-                                        <field name="vendor_date"
-                                               attrs="{'invisible':[('required_match_print', '!=',True)]}"/>
-                                        <field name="date_recieved_approved"
-                                               attrs="{'invisible':[('required_match_print', '!=',True)]}"/>
-                                        <field name="observations"
-                                               attrs="{'invisible':[('required_match_print', '!=',True)]}"/>
-                                    </group>
-                                    <group>
-                                        <!--<h5>rodillo</h5>-->
-                                        <!--<field name="specification_width_name"/>-->
-                                        <!--cabida largo-->
-                                    </group>
-                                    <group>
-                                        <field name="color_scale_id"
-                                               options="{'no_create': True, 'no_create_edit':True}"/>
+                                        <field name="color_scale_id" options="{'no_create': True, 'no_create_edit':True}"/>
                                         <field name="complexity"/>
                                     </group>
                                     <group>
@@ -315,65 +251,63 @@
                                 </group>
                             </page>
                             <page string="packaging characteristics">
-                                <group>
-                                    <group string="packing">
-                                        <field name="separator_id"
-                                               options="{'no_create': True, 'no_create_edit':True}"/>
-                                        <field name="core_diameter"/>
-                                    </group>
+                                <!--<group>-->
                                     <group>
-                                        <field name="width_core"/>
-                                        <field name="bag" options="{'no_create': True, 'no_create_edit':True}"/>
-                                        <field name="box" options="{'no_create': True, 'no_create_edit':True}"/>
-                                        <field name="superlon" options="{'no_create': True, 'no_create_edit':True}"/>
+                                        <group string="packing">
+                                            <field name="separator_id" attrs="{'invisible':[('presentation','!=','ROLLO')]}" options="{'no_create': True, 'no_create_edit':True}" />
+                                            <field name="core_diameter"/>
+                                            <field name="width_core"/>
+                                            <field name="bag" options="{'no_create': True, 'no_create_edit':True}"/>
+                                            <field name="box" options="{'no_create': True, 'no_create_edit':True}"/>
+                                            <field name="superlon" options="{'no_create': True, 'no_create_edit':True}"/>
+                                        </group>
+                                        <group string="lashing straps">
+                                            <field name="roll_ids" widget="one2many" context="{'default_sheet_id': id}">
+                                                <tree string="Components" editable="bottom">
+                                                    <field name="product_id" options="{'no_create': True, 'no_create_edit':True}"/>
+                                                </tree>
+                                            </field>
+                                            <field name="for_bag_ids" widget="one2many" context="{'default_sheet_id': id}">
+                                                <tree string="Components" editable="bottom">
+                                                    <field name="product_id" options="{'no_create': True, 'no_create_edit':True}"/>
+                                                </tree>
+                                            </field>
+                                            <field name="for_superlon_ids" widget="one2many" context="{'default_sheet_id': id}">
+                                                <tree string="Components" editable="bottom">
+                                                    <field name="product_id" options="{'no_create': True, 'no_create_edit':True}"/>
+                                                </tree>
+                                            </field>
+                                            <field name="for_box"/>
+                                        </group>
+                                        <group string="Cintas de empalme por proceso ">
+                                            <field name="refile_ids" widget="one2many" context="{'default_sheet_id': id}">
+                                                <tree string="Components" editable="bottom">
+                                                    <field name="product_id" options="{'no_create': True, 'no_create_edit':True}"/>
+                                                </tree>
+                                            </field>
+                                            <field name="revision_ids" widget="one2many" context="{'default_sheet_id': id}">
+                                                <tree string="Components" editable="bottom">
+                                                    <field name="product_id" options="{'no_create': True, 'no_create_edit':True}"/>
+                                                </tree>
+                                            </field>
+                                            <field name="gluped_ids" widget="one2many" context="{'default_sheet_id': id}">
+                                                <tree string="Components" editable="bottom">
+                                                    <field name="product_id" options="{'no_create': True, 'no_create_edit':True}"/>
+                                                </tree>
+                                            </field>
+                                            <field name="gluped2_ids" widget="one2many" context="{'default_sheet_id': id}">
+                                                <tree string="Components" editable="bottom">
+                                                    <field name="product_id" options="{'no_create': True, 'no_create_edit':True}"/>
+                                                </tree>
+                                            </field>
+                                            <field name="rebobine_ids" widget="one2many" context="{'default_sheet_id': id}">
+                                                <tree string="Components" editable="bottom">
+                                                    <field name="product_id" options="{'no_create': True, 'no_create_edit':True}"/>
+                                                </tree>
+                                            </field>
+                                        </group>
                                     </group>
-                                    <group string="lashing straps">
-                                        <!--<field name="for_rolls_ids"
-                                               options="{'no_create': True, 'no_create_edit':True}">
-                                            <tree>
-                                                <field name="name"/>
-                                            </tree>
-                                        </field>-->
-                                        <field name="roll_ids" widget="one2many" context="{'default_sheet_id': id}">
-                                            <tree string="Components" editable="bottom">
-                                                <field name="product_id" options="{'no_create': True, 'no_create_edit':True}"/>
-                                            </tree>
-                                        </field>
-                                        <field name="for_bag_ids" widget="one2many" context="{'default_sheet_id': id}">
-                                            <tree string="Components" editable="bottom">
-                                                <field name="product_id" options="{'no_create': True, 'no_create_edit':True}"/>
-                                            </tree>
-                                        </field>
-                                        <field name="for_superlon_ids" widget="one2many" context="{'default_sheet_id': id}">
-                                            <tree string="Components" editable="bottom">
-                                                <field name="product_id" options="{'no_create': True, 'no_create_edit':True}"/>
-                                            </tree>
-                                        </field>
-                                        <field name="for_box"/>
-                                    </group>
-                                    <group string="Cintas de empalme por proceso ">
-                                        <field name="refile_ids" widget="one2many" context="{'default_sheet_id': id}">
-                                            <tree string="Components" editable="bottom">
-                                                <field name="product_id" options="{'no_create': True, 'no_create_edit':True}"/>
-                                            </tree>
-                                        </field>
-                                        <field name="revision_ids" widget="one2many" context="{'default_sheet_id': id}">
-                                            <tree string="Components" editable="bottom">
-                                                <field name="product_id" options="{'no_create': True, 'no_create_edit':True}"/>
-                                            </tree>
-                                        </field>
-                                        <field name="gluped_ids" widget="one2many" context="{'default_sheet_id': id}">
-                                            <tree string="Components" editable="bottom">
-                                                <field name="product_id" options="{'no_create': True, 'no_create_edit':True}"/>
-                                            </tree>
-                                        </field>
-                                        <field name="gluped2_ids" widget="one2many" context="{'default_sheet_id': id}">
-                                            <tree string="Components" editable="bottom">
-                                                <field name="product_id" options="{'no_create': True, 'no_create_edit':True}"/>
-                                            </tree>
-                                        </field>
-                                    </group>
-                                </group>
+                                <!--</group>-->
                             </page>
                             <page string="Bills of Materials">
                                 <group>
@@ -392,8 +326,7 @@
                             </page>
                             <page string="Versions">
                                 <group>
-                                    <field name="bom_id" options="{'no_create': True, 'no_create_edit':True}"
-                                           readonly="True"/>
+                                    <field name="bom_id" options="{'no_create': True, 'no_create_edit':True}" readonly="True"/>
                                 </group>
                                 <group>
                                     <field name="bom_ids">
@@ -420,6 +353,7 @@
                         <field name="message_ids" widget="mail_thread" options="{'post_refresh': 'recipients'}"/>
                     </div>
                 </form>
+
             </field>
         </record>
         <record id="tree_data_sheet" model="ir.ui.view">
@@ -512,11 +446,6 @@
         <record model="ir.actions.act_window" id="action_data_application_position">
             <field name="name">Data Application Position</field>
             <field name="res_model">data.application.position</field>
-            <field name="view_mode">tree,form</field>
-        </record>
-        <record model="ir.actions.act_window" id="action_data_application_contents">
-            <field name="name">Data Application Contents</field>
-            <field name="res_model">data.application.contents</field>
             <field name="view_mode">tree,form</field>
         </record>
         <record model="ir.actions.act_window" id="action_data_form">

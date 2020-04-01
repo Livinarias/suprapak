@@ -9,7 +9,8 @@
                     <field name="customer_reference"/>
        		 		<field name="x_currency_id"/>
         		 	<field name="date_version"/>
-        		</xpath>   
+        		 	<field name="tipo_producto"/>
+        		</xpath>
             </field>
         </record>
 

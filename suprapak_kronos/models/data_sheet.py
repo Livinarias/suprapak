@@ -2,6 +2,7 @@
 
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
+from odoo.exceptions import AccessDenied
 
 
 class DataSheetLine(models.Model):
@@ -14,6 +15,7 @@ class DataSheetLine(models.Model):
     uom_id = fields.Many2one('uom.uom', 'Unit of measure')
     uom_categ_id = fields.Many2one('uom.category', 'Uom category')
     field_char = fields.Char('Field', default='None')
+    field_product = fields.Char('Product Type')
 
     # cost = fields.Float('Cost', digits='Account')
     # One2many
@@ -26,12 +28,19 @@ class DataSheetLine(models.Model):
     gluped_id = fields.Many2one('data.sheet','Sheet')
     gluped2_id = fields.Many2one('data.sheet','Sheet')
     movie_type_product_id = fields.Many2one('data.sheet','Sheet')
+    rebobine_id = fields.Many2one('data.sheer','Sheet')
 
     @api.onchange('product_id')
     def _oncahnge_product_id(self):
         if self.product_id:
             self.uom_id = self.product_id.uom_id
             self.uom_categ_id = self.product_id.uom_id.category_id
+
+    @api.onchange('field_product')
+    def _onchange_field_product(self):
+        self.field_product = self.product_id.tipo_producto
+        if self.product_id:
+            self.field_product = self.product_id.tipo_producto
 
 
 class DataSheet(models.Model):
@@ -71,10 +80,11 @@ class DataSheet(models.Model):
     for_bag_ids = fields.One2many('data.sheet.line','for_bag_id','Bag')
     for_superlon_ids = fields.One2many('data.sheet.line','for_superlon_id','Superlon')
     refile_ids = fields.One2many('data.sheet.line','refile_id','Refile')
-    revision_ids = fields.One2many('data.sheet.line','revision_id','Refile')
+    revision_ids = fields.One2many('data.sheet.line','revision_id','Revision')
     gluped_ids = fields.One2many('data.sheet.line','gluped_id','Gluped 1 to 2')
     gluped2_ids = fields.One2many('data.sheet.line','gluped2_id','Gluped 2 to 3')
     movie_type_product_ids = fields.One2many('data.sheet.line','movie_type_product_id','Product of Movie Type')
+    rebobine_ids = fields.One2many('data.sheet.line','rebobine_id','Rebobine')
     # Info Tec
     print_class = fields.Selection([('external','External'),('internal','Internal')],'Print Class')
     print_type_id = fields.Many2one('print.type','Print Type')
@@ -88,7 +98,7 @@ class DataSheet(models.Model):
     # Info cant
     specification_width_id = fields.Many2one('specification.width','Specification width')
     specification_width_name = fields.Char('Long Planned')
-    specification_width_planned = fields.Float('Width Planned')
+    specification_width_planned = fields.Selection([('1','1'),('2','2'),('3','3'),('4','4')],'Width Planned')
     specification_long_id = fields.Many2one('specification.long','Specification long')
     caliber_id = fields.Many2one('data.caliber.type', 'Specification caliber')
     tolerance_width = fields.Float('Tolerance width')
@@ -112,7 +122,7 @@ class DataSheet(models.Model):
     material_id = fields.Many2one('data.material','Material')
     application_id = fields.Many2one('data.application.mode','Application Mode')
     position_id = fields.Many2one('data.application.position','Application Position')
-    content_id = fields.Many2one('data.application.contents','Package Contents')
+    content_id = fields.Char('Package Contents')
     quantity = fields.Char('Quantity')
     form_id = fields.Many2one('data.form','Form')
     overlap_id = fields.Many2one('width.overlap','Width Overlap')
@@ -167,8 +177,9 @@ class DataSheet(models.Model):
     required_match_print = fields.Boolean('required match Print')
     designer = fields.Many2one('designer', 'Designer')
     datetime = fields.Datetime('Date and Hour')
+    date = fields.Date('Date')
     Customer = fields.Many2one('res.partner','Customer')
-    sign_customer = fields.Binary('Sign Customer')
+    sign_vendor = fields.Binary('Sign Vendor')
     deliver_to = fields.Many2one('res.partner','Deliver to')
     sign_designer = fields.Binary('Sign Designer')
     vendor_date = fields.Date('Application date vendor')
@@ -191,44 +202,49 @@ class DataSheet(models.Model):
     plane_art = fields.Binary('Plane Art')
     funtional_test = fields.Binary('Funtional Test')
     repeat_id = fields.Many2one('repeat','Roller')
-    room_large = fields.Char('Room Large')
-    large_planned = fields.Char('Large Planned')
+    room_large = fields.Char('Room Large',readonly=True)
+    large_planned = fields.Char('Large Planned',readonly=True)
     gluped_id = fields.Many2one('product.product')
     for_rolls_ids = fields.Many2many('product.product','sheet_gluped_rel','sheet_id','gluped_id','For Rolls')
     for_bags_ids = fields.Many2many('product.product','sheet_gluped_rel','sheet_id','gluped_id','For Bags')
     for_superlon_id = fields.Many2one('product.product')
+    rebobine_id = fields.Many2one('product.product')
     for_superlons_ids = fields.Many2many('product.product','sheet_superlon_rel','sheet_id','for_superlon_id','For Superlon')
     for_box = fields.Selection([('supra','SUPRAPAK 2" 100 m BLANCA'),('supra2','SUPRAPAK 2" 100 m TRANSPARENTE')],'For Box')
     refiles_ids = fields.Many2many('product.product', 'sheet_gluped_rel', 'sheet_id', 'gluped_id', 'Tapes')
     revisions_ids = fields.Many2many('product.product','sheet_gluped_rel','sheet_id','gluped_id','Revisión')
     glupeds_ids = fields.Many2many('product.product','sheet_gluped_rel','sheet_id','gluped_id','Gluped 1 to 2')
     glupeds2_ids = fields.Many2many('product.product','sheet_gluped_rel','sheet_id','gluped_id','Gluped 3 to 4')
+    rebobine = fields.Many2many('product.product','sheet_rebobine_rel','sheet_id','rebobine_id','Rebobine')
     # Production
     production_ids = fields.One2many('mrp.production', 'sheet_id', 'Productions', compute='_compute_production_ids')
 
 
-    @api.depends('color_scale_id.name','specification_width_id.name','overlap_id.name')
-    def _compute_specification_width_planned(self):
-        self.specification_width_planned = self.overlap_id.name * 2 + self.specification_width_id.name\
-                                          + self.color_scale_id.name
+    @api.constrains('rod_number')
+    def _check_rod_number(self):
+        for record in self:
+            if record.rod_number > 4 :
+                raise AccessDenied(("No puede superar 4"))
 
+    @api.onchange('specification_long_id')
+    def _onchange_specification_long_id(self):
+        if specification_long_id:
+            self.repeat_id.large_planned = self.specification_long_id.large_planned
+            for roller in self:
+                return  {'domain':{'repeat_id':[('repeat_id.large_planned','=',roller.specification_long_id.large_planned)]}}
 
     @api.onchange('specification_long_id')
     def _onchange_specification_long_id(self):
         if self.specification_long_id:
             self.tolerance_long = self.specification_long_id.tolerance
+            self.large_planned = self.specification_long_id.name
+            self.room_large = self.specification_long_id.room_large
+
 
     @api.onchange('width_core')
     def _onchange_width_core(self):
         if self.width_core:
             self.width_core += 4
-
-    @api.onchange('repeat_id')
-    def _onchange_repeat_id(self):
-        if self.repeat_id:
-            self.room_large = self.repeat_id.room_large
-            self.large_planned = self.repeat_id.large_planned
-
 
     @api.onchange('presentation_id')
     def _onchange_presentation_id(self):
@@ -344,7 +360,7 @@ class DataSheet(models.Model):
         if values:
             self.write({'line_ids': values})
 
-    @api.onchange('roll_ids', 'for_bag_ids', 'for_superlon_ids', 'refile_ids', 'revision_ids', 'gluped_ids', 'gluped2_ids', 'movie_type_product_ids')
+    @api.onchange('roll_ids', 'for_bag_ids', 'for_superlon_ids', 'refile_ids', 'revision_ids', 'gluped_ids', 'gluped2_ids', 'movie_type_product_ids','rebobine_ids')
     def _onchange_one2many(self):
         for line in self.roll_ids:
             line.sheet_id = self
@@ -361,6 +377,8 @@ class DataSheet(models.Model):
         for line in self.gluped2_ids:
             line.sheet_id = self
         for line in self.movie_type_product_ids:
+            line.sheet_id = self
+        for line in self.rebobine_ids:
             line.sheet_id = self
 
     """def write(self, values):
@@ -548,14 +566,6 @@ class DataAplicationPosition(models.Model):
     code = fields.Char('code')
 
 
-class DataContents(models.Model):
-    _name = 'data.application.contents'
-    _description = 'Package Contents'
-
-    name = fields.Char('Package Contents')
-    code = fields.Char('code')
-
-
 class PrintType(models.Model):
     _name = 'print.type'
     _description = 'Print Type'
@@ -587,6 +597,8 @@ class SpecificationLong(models.Model):
 
     name = fields.Float('Specification Long')
     tolerance = fields.Float("Tolerance")
+    room_large = fields.Char('Room Large')
+    large_planned = fields.Float('Large Planned')
     code = fields.Char('code')
 
 
@@ -790,7 +802,6 @@ class Repeat(models.Model):
     _description = 'Repeat'
 
     name = fields.Char('Roller')
-    room_large = fields.Char('Room Large')
     large_planned = fields.Float('Large Planned')
 
 
