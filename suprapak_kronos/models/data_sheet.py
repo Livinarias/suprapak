@@ -230,7 +230,14 @@ class DataSheet(models.Model):
     #variables para domain
     #largo = fields.Float('largo')
     largo2 = fields.Float('largo2')
+    transversal = fields.Char('Transversal',readonly=True)
+    longitudinal = fields.Char('Longitudinal',readonly=True)
 
+    @api.onchange('movie_type_id')
+    def _onchange_movie_type_id(self):
+        if self.movie_type_id:
+            self.transversal = self.movie_type_id.transversal
+            self.longitudinal = self.movie_type_id.longitudinal
 
     @api.constrains('rod_number')
     def _check_rod_number(self):

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-31 15:30+0000\n"
-"PO-Revision-Date: 2020-03-31 15:30+0000\n"
+"POT-Creation-Date: 2020-04-01 19:55+0000\n"
+"PO-Revision-Date: 2020-04-01 19:55+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -134,7 +134,7 @@ msgid "Application Position"
 msgstr "Posicion Aplicacion"
 
 #. module: suprapak_kronos
-#: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__vendor_date
+#: model:ir.model.fields,field_description:suprapak_kronos.field_match_print_line__vendor_date
 msgid "Application date vendor"
 msgstr "Fecha de solicitud del vendedor"
 
@@ -347,6 +347,7 @@ msgstr "Comentarios"
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__company_id
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet_line__company_id
+#: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet_sheet__company_id
 msgid "Company"
 msgstr "Compañia"
 
@@ -401,7 +402,6 @@ msgstr "Diametro de Core"
 #: model:ir.model.fields,field_description:suprapak_kronos.field_color_scale__create_uid
 #: model:ir.model.fields,field_description:suprapak_kronos.field_control_change__create_uid
 #: model:ir.model.fields,field_description:suprapak_kronos.field_core_diameter__create_uid
-#: model:ir.model.fields,field_description:suprapak_kronos.field_data_application_contents__create_uid
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_application_mode__create_uid
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_application_position__create_uid
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_caliber_type__create_uid
@@ -414,12 +414,14 @@ msgstr "Diametro de Core"
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sector_type__create_uid
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__create_uid
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet_line__create_uid
+#: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet_sheet__create_uid
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_tag_form__create_uid
 #: model:ir.model.fields,field_description:suprapak_kronos.field_designer__create_uid
 #: model:ir.model.fields,field_description:suprapak_kronos.field_drawn_presentation__create_uid
 #: model:ir.model.fields,field_description:suprapak_kronos.field_embossing_number__create_uid
 #: model:ir.model.fields,field_description:suprapak_kronos.field_for_superlon__create_uid
 #: model:ir.model.fields,field_description:suprapak_kronos.field_inks__create_uid
+#: model:ir.model.fields,field_description:suprapak_kronos.field_match_print_line__create_uid
 #: model:ir.model.fields,field_description:suprapak_kronos.field_mechanic_plan__create_uid
 #: model:ir.model.fields,field_description:suprapak_kronos.field_microperforated__create_uid
 #: model:ir.model.fields,field_description:suprapak_kronos.field_number_splices__create_uid
@@ -449,7 +451,6 @@ msgstr "Creado por"
 #: model:ir.model.fields,field_description:suprapak_kronos.field_color_scale__create_date
 #: model:ir.model.fields,field_description:suprapak_kronos.field_control_change__create_date
 #: model:ir.model.fields,field_description:suprapak_kronos.field_core_diameter__create_date
-#: model:ir.model.fields,field_description:suprapak_kronos.field_data_application_contents__create_date
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_application_mode__create_date
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_application_position__create_date
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_caliber_type__create_date
@@ -462,12 +463,14 @@ msgstr "Creado por"
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sector_type__create_date
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__create_date
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet_line__create_date
+#: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet_sheet__create_date
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_tag_form__create_date
 #: model:ir.model.fields,field_description:suprapak_kronos.field_designer__create_date
 #: model:ir.model.fields,field_description:suprapak_kronos.field_drawn_presentation__create_date
 #: model:ir.model.fields,field_description:suprapak_kronos.field_embossing_number__create_date
 #: model:ir.model.fields,field_description:suprapak_kronos.field_for_superlon__create_date
 #: model:ir.model.fields,field_description:suprapak_kronos.field_inks__create_date
+#: model:ir.model.fields,field_description:suprapak_kronos.field_match_print_line__create_date
 #: model:ir.model.fields,field_description:suprapak_kronos.field_mechanic_plan__create_date
 #: model:ir.model.fields,field_description:suprapak_kronos.field_microperforated__create_date
 #: model:ir.model.fields,field_description:suprapak_kronos.field_number_splices__create_date
@@ -501,8 +504,8 @@ msgid "Currency"
 msgstr "Moneda"
 
 #. module: suprapak_kronos
-#: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__Customer
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__partner_id
+#: model:ir.model.fields,field_description:suprapak_kronos.field_match_print_line__customer
 msgid "Customer"
 msgstr "Cliente"
 
@@ -516,11 +519,6 @@ msgstr "Cliente Portal URL"
 #: model:ir.model.fields,help:suprapak_kronos.field_data_sheet__product_code
 msgid "Customer product code"
 msgstr "Codigo Cliente Producto"
-
-#. module: suprapak_kronos
-#: model:ir.actions.act_window,name:suprapak_kronos.action_data_application_contents
-msgid "Data Application Contents"
-msgstr "Contenido del envase"
 
 #. module: suprapak_kronos
 #: model:ir.actions.act_window,name:suprapak_kronos.action_data_application_mode
@@ -558,22 +556,27 @@ msgid "Data sheet line"
 msgstr "Ficha de datos en linea"
 
 #. module: suprapak_kronos
+#: model:ir.model,name:suprapak_kronos.model_data_sheet_sheet
+msgid "Data sheet sheet"
+msgstr "Hoja de datos"
+
+#. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_control_change__date
 msgid "Date"
 msgstr "Fecha"
 
 #. module: suprapak_kronos
-#: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__date_recieved_approved
+#: model:ir.model.fields,field_description:suprapak_kronos.field_match_print_line__date_recieved_approved
 msgid "Date Recieved Approved"
 msgstr "Fecha de recepción aprobada"
 
 #. module: suprapak_kronos
-#: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__datetime
+#: model:ir.model.fields,field_description:suprapak_kronos.field_match_print_line__datetime
 msgid "Date and Hour"
 msgstr "Fecha y Hora"
 
 #. module: suprapak_kronos
-#: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__deliver_to
+#: model:ir.model.fields,field_description:suprapak_kronos.field_match_print_line__deliver_to
 msgid "Deliver to"
 msgstr "Entregar a"
 
@@ -581,6 +584,11 @@ msgstr "Entregar a"
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_movie_type__density
 msgid "Density"
 msgstr "Densidad"
+
+#. module: suprapak_kronos
+#: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet_sheet__description
+msgid "Description"
+msgstr "Descripcion"
 
 #. module: suprapak_kronos
 #: model_terms:ir.ui.view,arch_db:suprapak_kronos.form_data_sheet
@@ -609,7 +617,6 @@ msgstr "Diseñador"
 #: model:ir.model.fields,field_description:suprapak_kronos.field_color_scale__display_name
 #: model:ir.model.fields,field_description:suprapak_kronos.field_control_change__display_name
 #: model:ir.model.fields,field_description:suprapak_kronos.field_core_diameter__display_name
-#: model:ir.model.fields,field_description:suprapak_kronos.field_data_application_contents__display_name
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_application_mode__display_name
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_application_position__display_name
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_caliber_type__display_name
@@ -622,12 +629,14 @@ msgstr "Diseñador"
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sector_type__display_name
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__display_name
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet_line__display_name
+#: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet_sheet__display_name
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_tag_form__display_name
 #: model:ir.model.fields,field_description:suprapak_kronos.field_designer__display_name
 #: model:ir.model.fields,field_description:suprapak_kronos.field_drawn_presentation__display_name
 #: model:ir.model.fields,field_description:suprapak_kronos.field_embossing_number__display_name
 #: model:ir.model.fields,field_description:suprapak_kronos.field_for_superlon__display_name
 #: model:ir.model.fields,field_description:suprapak_kronos.field_inks__display_name
+#: model:ir.model.fields,field_description:suprapak_kronos.field_match_print_line__display_name
 #: model:ir.model.fields,field_description:suprapak_kronos.field_mechanic_plan__display_name
 #: model:ir.model.fields,field_description:suprapak_kronos.field_microperforated__display_name
 #: model:ir.model.fields,field_description:suprapak_kronos.field_number_splices__display_name
@@ -704,6 +713,11 @@ msgstr "Externa"
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet_line__field_char
 msgid "Field"
 msgstr "Campo"
+
+#. module: suprapak_kronos
+#: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet_line__field_product
+msgid "Field Product"
+msgstr "Campo del Producto"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__message_follower_ids
@@ -804,7 +818,6 @@ msgstr "Alta"
 #: model:ir.model.fields,field_description:suprapak_kronos.field_color_scale__id
 #: model:ir.model.fields,field_description:suprapak_kronos.field_control_change__id
 #: model:ir.model.fields,field_description:suprapak_kronos.field_core_diameter__id
-#: model:ir.model.fields,field_description:suprapak_kronos.field_data_application_contents__id
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_application_mode__id
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_application_position__id
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_caliber_type__id
@@ -817,12 +830,14 @@ msgstr "Alta"
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sector_type__id
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__id
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet_line__id
+#: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet_sheet__id
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_tag_form__id
 #: model:ir.model.fields,field_description:suprapak_kronos.field_designer__id
 #: model:ir.model.fields,field_description:suprapak_kronos.field_drawn_presentation__id
 #: model:ir.model.fields,field_description:suprapak_kronos.field_embossing_number__id
 #: model:ir.model.fields,field_description:suprapak_kronos.field_for_superlon__id
 #: model:ir.model.fields,field_description:suprapak_kronos.field_inks__id
+#: model:ir.model.fields,field_description:suprapak_kronos.field_match_print_line__id
 #: model:ir.model.fields,field_description:suprapak_kronos.field_mechanic_plan__id
 #: model:ir.model.fields,field_description:suprapak_kronos.field_microperforated__id
 #: model:ir.model.fields,field_description:suprapak_kronos.field_number_splices__id
@@ -897,6 +912,7 @@ msgstr ""
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__large_planned
 #: model:ir.model.fields,field_description:suprapak_kronos.field_repeat__large_planned
+#: model:ir.model.fields,field_description:suprapak_kronos.field_specification_long__large_planned
 msgid "Large Planned"
 msgstr "Largo Planeado"
 
@@ -908,7 +924,6 @@ msgstr "Largo Planeado"
 #: model:ir.model.fields,field_description:suprapak_kronos.field_color_scale____last_update
 #: model:ir.model.fields,field_description:suprapak_kronos.field_control_change____last_update
 #: model:ir.model.fields,field_description:suprapak_kronos.field_core_diameter____last_update
-#: model:ir.model.fields,field_description:suprapak_kronos.field_data_application_contents____last_update
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_application_mode____last_update
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_application_position____last_update
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_caliber_type____last_update
@@ -921,12 +936,14 @@ msgstr "Largo Planeado"
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sector_type____last_update
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet____last_update
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet_line____last_update
+#: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet_sheet____last_update
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_tag_form____last_update
 #: model:ir.model.fields,field_description:suprapak_kronos.field_designer____last_update
 #: model:ir.model.fields,field_description:suprapak_kronos.field_drawn_presentation____last_update
 #: model:ir.model.fields,field_description:suprapak_kronos.field_embossing_number____last_update
 #: model:ir.model.fields,field_description:suprapak_kronos.field_for_superlon____last_update
 #: model:ir.model.fields,field_description:suprapak_kronos.field_inks____last_update
+#: model:ir.model.fields,field_description:suprapak_kronos.field_match_print_line____last_update
 #: model:ir.model.fields,field_description:suprapak_kronos.field_mechanic_plan____last_update
 #: model:ir.model.fields,field_description:suprapak_kronos.field_microperforated____last_update
 #: model:ir.model.fields,field_description:suprapak_kronos.field_number_splices____last_update
@@ -956,7 +973,6 @@ msgstr "Última modificación en"
 #: model:ir.model.fields,field_description:suprapak_kronos.field_color_scale__write_uid
 #: model:ir.model.fields,field_description:suprapak_kronos.field_control_change__write_uid
 #: model:ir.model.fields,field_description:suprapak_kronos.field_core_diameter__write_uid
-#: model:ir.model.fields,field_description:suprapak_kronos.field_data_application_contents__write_uid
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_application_mode__write_uid
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_application_position__write_uid
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_caliber_type__write_uid
@@ -969,12 +985,14 @@ msgstr "Última modificación en"
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sector_type__write_uid
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__write_uid
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet_line__write_uid
+#: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet_sheet__write_uid
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_tag_form__write_uid
 #: model:ir.model.fields,field_description:suprapak_kronos.field_designer__write_uid
 #: model:ir.model.fields,field_description:suprapak_kronos.field_drawn_presentation__write_uid
 #: model:ir.model.fields,field_description:suprapak_kronos.field_embossing_number__write_uid
 #: model:ir.model.fields,field_description:suprapak_kronos.field_for_superlon__write_uid
 #: model:ir.model.fields,field_description:suprapak_kronos.field_inks__write_uid
+#: model:ir.model.fields,field_description:suprapak_kronos.field_match_print_line__write_uid
 #: model:ir.model.fields,field_description:suprapak_kronos.field_mechanic_plan__write_uid
 #: model:ir.model.fields,field_description:suprapak_kronos.field_microperforated__write_uid
 #: model:ir.model.fields,field_description:suprapak_kronos.field_number_splices__write_uid
@@ -1004,7 +1022,6 @@ msgstr "Última actualización por"
 #: model:ir.model.fields,field_description:suprapak_kronos.field_color_scale__write_date
 #: model:ir.model.fields,field_description:suprapak_kronos.field_control_change__write_date
 #: model:ir.model.fields,field_description:suprapak_kronos.field_core_diameter__write_date
-#: model:ir.model.fields,field_description:suprapak_kronos.field_data_application_contents__write_date
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_application_mode__write_date
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_application_position__write_date
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_caliber_type__write_date
@@ -1017,12 +1034,14 @@ msgstr "Última actualización por"
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sector_type__write_date
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__write_date
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet_line__write_date
+#: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet_sheet__write_date
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_tag_form__write_date
 #: model:ir.model.fields,field_description:suprapak_kronos.field_designer__write_date
 #: model:ir.model.fields,field_description:suprapak_kronos.field_drawn_presentation__write_date
 #: model:ir.model.fields,field_description:suprapak_kronos.field_embossing_number__write_date
 #: model:ir.model.fields,field_description:suprapak_kronos.field_for_superlon__write_date
 #: model:ir.model.fields,field_description:suprapak_kronos.field_inks__write_date
+#: model:ir.model.fields,field_description:suprapak_kronos.field_match_print_line__write_date
 #: model:ir.model.fields,field_description:suprapak_kronos.field_mechanic_plan__write_date
 #: model:ir.model.fields,field_description:suprapak_kronos.field_microperforated__write_date
 #: model:ir.model.fields,field_description:suprapak_kronos.field_number_splices__write_date
@@ -1084,6 +1103,16 @@ msgstr "Bajo"
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__message_main_attachment_id
 msgid "Main Attachment"
 msgstr "Adjunto Principal"
+
+#. module: suprapak_kronos
+#: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__match_print_ids
+msgid "Match Print"
+msgstr ""
+
+#. module: suprapak_kronos
+#: model:ir.model,name:suprapak_kronos.model_match_print_line
+msgid "Match Print Line"
+msgstr "Linea Match Print"
 
 #. module: suprapak_kronos
 #: model:ir.model,name:suprapak_kronos.model_data_material
@@ -1148,7 +1177,7 @@ msgstr "Molde"
 #. module: suprapak_kronos
 #: model_terms:ir.ui.view,arch_db:suprapak_kronos.report_saleorder_document_inherit_sale_supra
 msgid "Movie Type"
-msgstr ""
+msgstr "Tipo de Pelicula"
 
 #. module: suprapak_kronos
 #: model:ir.actions.act_window,name:suprapak_kronos.action_data_movie_color
@@ -1167,11 +1196,18 @@ msgid "Movie type"
 msgstr "Tipo de pelicula"
 
 #. module: suprapak_kronos
+#: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__sheet_ids
+msgid "Multiple mount"
+msgstr "Montaje múltiple"
+
+#. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_drawn_type__name
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_movie_color__name
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_movie_type__name
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_product_type__name
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__name
+#: model:ir.model.fields,field_description:suprapak_kronos.field_match_print_line__match_print_id
+#: model:ir.model.fields,field_description:suprapak_kronos.field_match_print_line__name1
 #: model_terms:ir.ui.view,arch_db:suprapak_kronos.form_data_sheet
 msgid "Name"
 msgstr "Nombre"
@@ -1265,7 +1301,7 @@ msgstr "Número de Empalmes"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__change_observation
-#: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__observations
+#: model:ir.model.fields,field_description:suprapak_kronos.field_match_print_line__observations
 msgid "Observations"
 msgstr "Observaciones"
 
@@ -1299,10 +1335,7 @@ msgid "Overlap Location"
 msgstr "Ubicacion de Traslape"
 
 #. module: suprapak_kronos
-#: model:ir.model,name:suprapak_kronos.model_data_application_contents
-#: model:ir.model.fields,field_description:suprapak_kronos.field_data_application_contents__name
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__content_id
-#: model:ir.ui.menu,name:suprapak_kronos.menu_data_package_contents
 msgid "Package Contents"
 msgstr "Contenido del Envase"
 
@@ -1453,6 +1486,7 @@ msgstr "Produccion"
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__quantity
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet_line__product_qty
+#: model:ir.model.fields,field_description:suprapak_kronos.field_match_print_line__quantity
 msgid "Quantity"
 msgstr "Cantidad"
 
@@ -1467,6 +1501,13 @@ msgid "Quote sheet"
 msgstr "Hoja de cotización"
 
 #. module: suprapak_kronos
+#: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__rebobine
+#: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__rebobine_id
+#: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__rebobine_ids
+msgid "Rebobine"
+msgstr ""
+
+#. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__bom_ids
 msgid "Record"
 msgstr "Versiones"
@@ -1478,7 +1519,6 @@ msgstr "Referencia"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__refile_ids
-#: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__revision_ids
 msgid "Refile"
 msgstr ""
 
@@ -1500,9 +1540,15 @@ msgstr "Rechazo por tecnico"
 #. module: suprapak_kronos
 #: model:ir.actions.act_window,name:suprapak_kronos.action_repeat
 #: model:ir.model,name:suprapak_kronos.model_repeat
+#: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet_sheet__repeat_id
 #: model:ir.ui.menu,name:suprapak_kronos.menu_repeat
 msgid "Repeat"
 msgstr "Repite"
+
+#. module: suprapak_kronos
+#: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet_sheet__repetition
+msgid "Repetition"
+msgstr "Repeticion"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__guillotine
@@ -1518,6 +1564,11 @@ msgstr "Usuario responsable"
 #: model:ir.model.fields.selection,name:suprapak_kronos.selection__data_sheet__type_sheet__review
 msgid "Review"
 msgstr "Revisadora"
+
+#. module: suprapak_kronos
+#: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__revision_ids
+msgid "Revision"
+msgstr ""
 
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__revisions_ids
@@ -1555,11 +1606,11 @@ msgstr "Rodillo"
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__roll_ids
 msgid "Rolls"
-msgstr ""
+msgstr "Rollos"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__room_large
-#: model:ir.model.fields,field_description:suprapak_kronos.field_repeat__room_large
+#: model:ir.model.fields,field_description:suprapak_kronos.field_specification_long__room_large
 msgid "Room Large"
 msgstr "Cabida Largo"
 
@@ -1659,7 +1710,7 @@ msgstr "Sector del cliente"
 #: model:ir.model.fields,field_description:suprapak_kronos.field_res_partner__sectors_ids
 #: model:ir.model.fields,field_description:suprapak_kronos.field_res_users__sectors_ids
 msgid "Sectors"
-msgstr ""
+msgstr "Sectores"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__access_token
@@ -1677,10 +1728,13 @@ msgstr "Separador"
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet_line__gluped2_id
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet_line__gluped_id
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet_line__movie_type_product_id
+#: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet_line__rebobine_id
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet_line__refile_id
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet_line__revision_id
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet_line__roll_id
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet_line__sheet_id
+#: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet_sheet__id_sheet
+#: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet_sheet__sheet_id
 #: model:ir.model.fields,field_description:suprapak_kronos.field_mrp_bom__sheet_id
 #: model:ir.model.fields,field_description:suprapak_kronos.field_mrp_bom_line__sheet_id
 #: model:ir.model.fields,field_description:suprapak_kronos.field_sale_order__sheet_id
@@ -1689,19 +1743,24 @@ msgid "Sheet"
 msgstr "Hoja"
 
 #. module: suprapak_kronos
+#: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet_sheet__id_char
+msgid "Sheet id"
+msgstr "Id Hoja"
+
+#. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_crm_lead__sheet_ids
 msgid "Sheets"
 msgstr "Hojas"
 
 #. module: suprapak_kronos
-#: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__sign_customer
-msgid "Sign Customer"
-msgstr "Firma Cliente"
-
-#. module: suprapak_kronos
-#: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__sign_designer
+#: model:ir.model.fields,field_description:suprapak_kronos.field_match_print_line__sign_designer
 msgid "Sign Designer"
 msgstr "Firma Diseñador"
+
+#. module: suprapak_kronos
+#: model:ir.model.fields,field_description:suprapak_kronos.field_match_print_line__sign_vendor
+msgid "Sign Vendor"
+msgstr "Firma Vendedor"
 
 #. module: suprapak_kronos
 #: model:ir.model,name:suprapak_kronos.model_inks
@@ -1830,7 +1889,7 @@ msgstr "Información técnica"
 #. module: suprapak_kronos
 #: model_terms:ir.ui.view,arch_db:suprapak_kronos.report_saleorder_document_inherit_sale_supra
 msgid "Termal Adhesive"
-msgstr ""
+msgstr "Adhesivo térmico"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__thermal_adhesive
@@ -1946,9 +2005,19 @@ msgid "Vendor"
 msgstr "Vendedor"
 
 #. module: suprapak_kronos
+#: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__version
+msgid "Version"
+msgstr ""
+
+#. module: suprapak_kronos
 #: model_terms:ir.ui.view,arch_db:suprapak_kronos.form_data_sheet
 msgid "Versions"
 msgstr "Versiones"
+
+#. module: suprapak_kronos
+#: model_terms:ir.ui.view,arch_db:suprapak_kronos.form_data_sheet
+msgid "Versión"
+msgstr ""
 
 #. module: suprapak_kronos
 #: model:ir.model.fields.selection,name:suprapak_kronos.selection__data_sheet__priority__3
@@ -2010,7 +2079,6 @@ msgstr "Zona"
 #: model:ir.model.fields,field_description:suprapak_kronos.field_chemical_composition__code
 #: model:ir.model.fields,field_description:suprapak_kronos.field_cold_foil__code
 #: model:ir.model.fields,field_description:suprapak_kronos.field_core_diameter__code
-#: model:ir.model.fields,field_description:suprapak_kronos.field_data_application_contents__code
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_application_mode__code
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_application_position__code
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_form__code
@@ -2041,9 +2109,14 @@ msgid "customer packaging"
 msgstr "Embalaje del cliente"
 
 #. module: suprapak_kronos
+#: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__largo2
+msgid "largo2"
+msgstr ""
+
+#. module: suprapak_kronos
 #: model_terms:ir.ui.view,arch_db:suprapak_kronos.form_data_sheet
 msgid "lashing straps"
-msgstr "Empaque"
+msgstr "Cinta de Amarre"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__guillotine_mm
