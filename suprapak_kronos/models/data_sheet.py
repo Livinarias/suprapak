@@ -28,8 +28,7 @@ class DataSheetLine(models.Model):
     uom_id = fields.Many2one('uom.uom', 'Unit of measure')
     uom_categ_id = fields.Many2one('uom.category', 'Uom category')
     field_char = fields.Char('Field', default='None')
-    field_product = fields.Char('Product Type')
-
+    field_product = fields.Char()
     # cost = fields.Float('Cost', digits='Account')
     # One2many
     sheet_id = fields.Many2one('data.sheet', 'Sheet')
@@ -41,7 +40,7 @@ class DataSheetLine(models.Model):
     gluped_id = fields.Many2one('data.sheet','Sheet')
     gluped2_id = fields.Many2one('data.sheet','Sheet')
     movie_type_product_id = fields.Many2one('data.sheet','Sheet')
-    rebobine_id = fields.Many2one('data.sheer','Sheet')
+    rebobine_id = fields.Many2one('data.sheet','Sheet')
 
     @api.onchange('product_id')
     def _oncahnge_product_id(self):
@@ -131,6 +130,7 @@ class DataSheet(models.Model):
     comments = fields.Text('Comments')
     # Button
     quotation_count = fields.Integer(compute='_compute_sale_data', string="Number of Quotations")
+    quantity = fields.Char('Quantity')
     order_ids = fields.One2many('sale.order', 'sheet_id', string='Orders')
     photo = fields.Binary()
     tag_form_id = fields.Many2one('data.tag.form','Tag Form')
@@ -138,7 +138,6 @@ class DataSheet(models.Model):
     application_id = fields.Many2one('data.application.mode','Application Mode')
     position_id = fields.Many2one('data.application.position','Application Position')
     content_id = fields.Char('Package Contents')
-    quantity = fields.Char('Quantity')
     form_id = fields.Many2one('data.form','Form')
     overlap_id = fields.Many2one('width.overlap','Width Overlap')
     tolerance_overlap = fields.Float('Tolerance Overlap')
@@ -193,15 +192,6 @@ class DataSheet(models.Model):
     ink_ids = fields.Many2many('inks','sheet_inks_rel','shhet_id','inks_id','Inks')
     required_match_print = fields.Boolean('required match Print')
     designer = fields.Many2one('designer', 'Designer')
-    datetime = fields.Datetime('Date and Hour')
-    date = fields.Date('Date')
-    Customer = fields.Many2one('res.partner','Customer')
-    sign_vendor = fields.Binary('Sign Vendor')
-    deliver_to = fields.Many2one('res.partner','Deliver to')
-    sign_designer = fields.Binary('Sign Designer')
-    vendor_date = fields.Date('Application date vendor')
-    date_recieved_approved = fields.Date('Date Recieved Approved')
-    observations = fields.Char('Observations')
     color_scale_id = fields.Many2one('color.scale','Color scale/check mark')
     complexity = fields.Selection([('poca','poca'),('baja','Baja'),('media','Media'),('alta','Alta')])
     control_change_id = fields.Many2one('control.change')
@@ -235,8 +225,12 @@ class DataSheet(models.Model):
     rebobine = fields.Many2many('product.product','sheet_rebobine_rel','sheet_id','rebobine_id','Rebobine')
     # Production
     production_ids = fields.One2many('mrp.production', 'sheet_id', 'Productions', compute='_compute_production_ids')
+    match_print_ids = fields.One2many('match.print.line','match_print_id','Match Print')
 
-<<<<<<< HEAD
+    #variables para domain
+    #largo = fields.Float('largo')
+    largo2 = fields.Float('largo2')
+
 
     @api.constrains('rod_number')
     def _check_rod_number(self):
@@ -246,18 +240,17 @@ class DataSheet(models.Model):
 
     @api.onchange('specification_long_id')
     def _onchange_specification_long_id(self):
-        if specification_long_id:
-            self.repeat_id.large_planned = self.specification_long_id.large_planned
-            for roller in self:
-                return  {'domain':{'repeat_id':[('repeat_id.large_planned','=',roller.specification_long_id.large_planned)]}}
+        if self.specification_long_id:
+            self.largo2 = self.repeat_id.large_planned
+            self.repeat_id.large_planned = self.specification_long_id.name
 
-=======
+
+
     @api.depends('color_scale_id.name','specification_width_id.name','overlap_id.name')
     def _compute_specification_width_planned(self):
         self.specification_width_planned = self.overlap_id.name * 2 + self.specification_width_id.name\
                                           + self.color_scale_id.name
 
->>>>>>> ef2f2b6f657ad4afdf1fd0a5102314cfb6221c97
     @api.onchange('specification_long_id')
     def _onchange_specification_long_id(self):
         if self.specification_long_id:
@@ -271,15 +264,7 @@ class DataSheet(models.Model):
         if self.width_core:
             self.width_core += 4
 
-<<<<<<< HEAD
-=======
-    @api.onchange('repeat_id')
-    def _onchange_repeat_id(self):
-        if self.repeat_id:
-            self.room_large = self.repeat_id.room_large
-            self.large_planned = self.repeat_id.large_planned
 
->>>>>>> ef2f2b6f657ad4afdf1fd0a5102314cfb6221c97
     @api.onchange('presentation_id')
     def _onchange_presentation_id(self):
         if self.presentation_id:
@@ -840,8 +825,8 @@ class Repeat(models.Model):
     _name ='repeat'
     _description = 'Repeat'
 
-    name = fields.Char('Roller')
-    large_planned = fields.Float('Large Planned')
+    name = fields.Char('Roller',required = True)
+    large_planned = fields.Many2one('specification.long','Large Planned',required = True)
 
 
 class ForSuperlon(models.Model):
@@ -849,3 +834,25 @@ class ForSuperlon(models.Model):
     _description = 'For Superlon'
 
     name = fields.Char('For Superlon')
+
+
+class MathPrint(models.Model):
+    _name = 'match.print.line'
+    _description = 'Match Print Line'
+
+    match_print_id = fields.Many2one('data.sheet','Name')
+    datetime = fields.Datetime('Date and Hour')
+    quantity = fields.Char('Quantity')
+    customer = fields.Many2one('res.partner', 'Customer')
+    sign_vendor = fields.Binary('Sign Vendor')
+    deliver_to = fields.Many2one('res.partner', 'Deliver to')
+    sign_designer = fields.Binary('Sign Designer')
+    vendor_date = fields.Date('Application date vendor')
+    date_recieved_approved = fields.Date('Date Recieved Approved')
+    observations = fields.Char('Observations')
+    name1 = fields.Char('Name')
+
+    @api.onchange('name')
+    def _onchange_name(self):
+        if self.name:
+            self.name1 = self.name

@@ -43,3 +43,4 @@ user_for_superlon,user_for_superlon,suprapak_kronos.model_for_superlon,suprapak_
 user_repeat,user_repeat,suprapak_kronos.model_repeat,suprapak_kronos.group_data_sheet_user,1,1,1,1
 user_res_sector,user_res_sector,suprapak_kronos.model_res_sector,suprapak_kronos.group_data_sheet_user,1,1,1,1
 user_data_sheet_sheet,user_data_sheet_sheet,model_data_sheet_sheet,suprapak_kronos.group_data_sheet_user,1,1,1,1
+user_match_print_line,user_match_print_line,model_match_print_line,suprapak_kronos.group_data_sheet_user,1,1,1,1
