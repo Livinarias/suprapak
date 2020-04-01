@@ -4,6 +4,19 @@ from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 
 
+class DataSheetSheet(models.Model):
+    _name = 'data.sheet.sheet'
+    _description = 'Data sheet sheet'
+
+    company_id = fields.Many2one('res.company', 'Company', default=lambda self: self.env.company.id)
+    sheet_id = fields.Many2one('data.sheet', 'Sheet', required=True)
+    id_sheet = fields.Many2one('data.sheet', 'Sheet', required=True)
+    id_char = fields.Char('Sheet id')
+    repeat_id = fields.Many2one('repeat', 'Repeat')
+    repetition = fields.Integer('Repetition', default=1.00)
+    description = fields.Char('Description')
+
+
 class DataSheetLine(models.Model):
     _name = 'data.sheet.line'
     _description = 'Data sheet line'
@@ -54,6 +67,8 @@ class DataSheet(models.Model):
                                    ('approved','Approved'),('rejected','Rejected'),('obsolete','Obsolete'),
                                    ('rejected ','Rejected Technical '),('rejected_d','Rejected Design')], 'Type sheet')
     name = fields.Char('Name')
+    # Version
+    version = fields.Integer('Version', default=1, required=True)
     product_id = fields.Many2one('product.template', 'Product')
     priority = fields.Selection([('0', 'Normal'), ('1', 'Low'), ('2', 'High'), ('3', 'Very High')], 'Priority')
     # Info Customer
@@ -146,6 +161,8 @@ class DataSheet(models.Model):
     barcode_number = fields.Integer('Number')
     mechanic_plan_id = fields.Many2one('mechanic.plan')
     mechanic_plan_ids = fields.Many2many('mechanic.plan','sheet_mechanic_rel','sheet_id','mechanic_id','Mechanic Plan')
+    # Montaje multiple
+    sheet_ids = fields.One2many('data.sheet.sheet', 'sheet_id', 'Multiple mount')
     microperforated = fields.Boolean('Microperforated')
     microperforated_id = fields.Many2one('microperforated')
     microperforated_ids = fields.Many2many('microperforated','sheet_microperfored_rel','sheed_id','microperfored_id','Microperfored')
@@ -206,12 +223,10 @@ class DataSheet(models.Model):
     # Production
     production_ids = fields.One2many('mrp.production', 'sheet_id', 'Productions', compute='_compute_production_ids')
 
-
     @api.depends('color_scale_id.name','specification_width_id.name','overlap_id.name')
     def _compute_specification_width_planned(self):
         self.specification_width_planned = self.overlap_id.name * 2 + self.specification_width_id.name\
                                           + self.color_scale_id.name
-
 
     @api.onchange('specification_long_id')
     def _onchange_specification_long_id(self):
@@ -228,7 +243,6 @@ class DataSheet(models.Model):
         if self.repeat_id:
             self.room_large = self.repeat_id.room_large
             self.large_planned = self.repeat_id.large_planned
-
 
     @api.onchange('presentation_id')
     def _onchange_presentation_id(self):
@@ -367,6 +381,11 @@ class DataSheet(models.Model):
         res = super(DataSheet, self).write(values)
         self.action_create_quotation()
         return res"""
+
+    def copy(self, default=None):
+        default = dict(default or {})
+        default['version'] = self.version + 1
+        return super(DataSheet, self).copy(default)
 
     def action_create_quotation(self):
         so_obj = self.env['sale.order']
@@ -792,7 +811,6 @@ class Repeat(models.Model):
     name = fields.Char('Roller')
     room_large = fields.Char('Room Large')
     large_planned = fields.Float('Large Planned')
-
 
 
 class ForSuperlon(models.Model):
