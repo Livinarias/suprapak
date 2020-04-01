@@ -22,6 +22,8 @@
                             <h1>
                                 <field name="name" required="True"/>
                             </h1>
+                            <!-- Montaje multiple -->
+                            <field name="version" readonly="True"/>
                         </div>
                         <separator string="General" colspan="2"/>
                         <group>
@@ -135,6 +137,16 @@
                                         <field name="mechanic_plan_ids">
                                             <tree>
                                                 <field name="name" widget="pdf_viewer"/>
+                                            </tree>
+                                        </field>
+                                        <!-- Montaje multiple -->
+                                        <field name="sheet_ids" context="{'default_repeat_id': repeat_id, 'default_id_char': id}">
+                                            <tree editable="bottom">
+                                                <field name="repeat_id" invisible="True"/>
+                                                <field name="id_char" invisible="True"/>
+                                                <field name="id_sheet" domain="[('repeat_id','=',repeat_id),('id','!=',id_char)]"/>
+                                                <field name="repetition" required="True" />
+                                                <field name="description"/>
                                             </tree>
                                         </field>
                                     </group>
