@@ -145,7 +145,8 @@
                                             </tree>
                                         </field>
                                         <!-- Montaje multiple -->
-                                        <field name="sheet_ids" context="{'default_repeat_id': repeat_id, 'default_id_char': id}">
+                                        <field name="multiple_mount" widget="checkbox"/>
+                                        <field name="sheet_ids" context="{'default_repeat_id': repeat_id, 'default_id_char': id}" attrs="{'invisible':[('multiple_mount', '!=', True)]}">
                                             <tree editable="bottom">
                                                 <field name="repeat_id" invisible="True"/>
                                                 <field name="id_char" invisible="True"/>
@@ -241,7 +242,7 @@
                                     <group>
                                         <field name="prints_ids">
                                             <tree>
-                                                <field name="name"/>
+                                                <field name="name" options="{'no_create': True, 'no_create_edit':True}"/>
                                                 <field name="press"/>
                                                 <field name="line"/>
                                                 <field name="lineatura"/>
@@ -268,15 +269,14 @@
                                 </group>
                             </page>
                             <page string="packaging characteristics">
-                                <group>
                                     <group>
                                         <group string="packing">
-                                            <field name="separator_id" attrs="{'invisible':[('presentation','!=','ROLLO')]}" options="{'no_create': True, 'no_create_edit':True}" />
-                                            <field name="core_diameter"/>
-                                            <field name="width_core"/>
-                                            <field name="bag" options="{'no_create': True, 'no_create_edit':True}"/>
-                                            <field name="box" options="{'no_create': True, 'no_create_edit':True}"/>
-                                            <field name="superlon" options="{'no_create': True, 'no_create_edit':True}"/>
+                                            <field name="separator_id" attrs="{'invisible':[('presentation','!=','ROLLO')]}" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia')]"/>
+                                            <field name="core_diameter" attrs="{'invisible':[('presentation','!=','ROLLO')]}" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia')]"/>
+                                            <field name="width_core" attrs="{'invisible':[('presentation','!=','ROLLO')]}" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia')]"/>
+                                            <field name="bag" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia')]"/>
+                                            <field name="box" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia')]"/>
+                                            <field name="superlon" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia')]"/>
                                         </group>
                                         <group string="lashing straps">
                                             <field name="roll_ids" widget="one2many" context="{'default_sheet_id': id}">
@@ -324,13 +324,12 @@
                                             </field>
                                         </group>
                                     </group>
-                                </group>
                             </page>
                             <page string="Bills of materials">
                                 <group>
                                     <field name="line_ids">
                                         <tree editable="bottom">
-                                            <field name="product_id" domain="[('tipo_producto','=','materia')]"/>
+                                            <field name="product_id" options="{'no_create': True, 'no_create_edit':True}"/>
                                             <field name="product_qty"/>
                                             <field name="uom_categ_id" invisible="True"/>
                                             <field name="uom_id"/>

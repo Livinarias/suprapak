@@ -171,6 +171,7 @@ class DataSheet(models.Model):
     mechanic_plan_id = fields.Many2one('mechanic.plan')
     mechanic_plan_ids = fields.Many2many('mechanic.plan','sheet_mechanic_rel','sheet_id','mechanic_id','Mechanic Plan')
     # Montaje multiple
+    multiple_mount = fields.Boolean('This data have multiple Mount?')
     sheet_ids = fields.One2many('data.sheet.sheet', 'sheet_id', 'Multiple mount')
     microperforated = fields.Boolean('Microperforated')
     microperforated_id = fields.Many2one('microperforated')
