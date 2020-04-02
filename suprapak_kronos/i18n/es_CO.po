@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-01 19:55+0000\n"
-"PO-Revision-Date: 2020-04-01 19:55+0000\n"
+"POT-Creation-Date: 2020-04-02 15:23+0000\n"
+"PO-Revision-Date: 2020-04-02 15:23+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -221,8 +221,12 @@ msgstr "Línea de Lista de Materiales"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__line_ids
-#: model_terms:ir.ui.view,arch_db:suprapak_kronos.form_data_sheet
 msgid "Bills of Materials"
+msgstr "Listas de Materiales"
+
+#. module: suprapak_kronos
+#: model_terms:ir.ui.view,arch_db:suprapak_kronos.form_data_sheet
+msgid "Bills of materials"
 msgstr "Listas de Materiales"
 
 #. module: suprapak_kronos
@@ -531,14 +535,14 @@ msgid "Data Application Position"
 msgstr "Posicion de Aplicacion de Datos"
 
 #. module: suprapak_kronos
-#: model:ir.actions.act_window,name:suprapak_kronos.action_data_material
-msgid "Data Material"
-msgstr "Datos Materiales"
-
-#. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_mrp_production__sheet_id
 msgid "Data Sheet"
 msgstr "Ficha de datos"
+
+#. module: suprapak_kronos
+#: model:ir.actions.act_window,name:suprapak_kronos.action_data_material
+msgid "Data material"
+msgstr "Datos de Material"
 
 #. module: suprapak_kronos
 #: model:ir.actions.act_window,name:suprapak_kronos.action_data_sheet
@@ -1090,6 +1094,7 @@ msgstr "Largo Planeado"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_movie_type__longitudinal
+#: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__longitudinal
 #: model:ir.model.fields,field_description:suprapak_kronos.field_microperforated__logitudinal
 msgid "Longitudinal"
 msgstr ""
@@ -1399,7 +1404,7 @@ msgstr "Presentacion"
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__print
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__print_id
 msgid "Print"
-msgstr "Imprimir"
+msgstr "Impreso"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__print_class
@@ -1898,6 +1903,11 @@ msgid "Thermal adhesive"
 msgstr "Adhesivo térmico"
 
 #. module: suprapak_kronos
+#: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__multiple_mount
+msgid "This data have multiple Mount?"
+msgstr "Esta Ficha tienen montaje múltiple?"
+
+#. module: suprapak_kronos
 #: model_terms:ir.ui.view,arch_db:suprapak_kronos.form_data_sheet
 msgid "Tintas Especiales"
 msgstr ""
@@ -1944,6 +1954,7 @@ msgstr "Lengueta"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_movie_type__transversal
+#: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__transversal
 msgid "Transversal"
 msgstr ""
 
