@@ -194,7 +194,7 @@ class DataSheet(models.Model):
     required_match_print = fields.Boolean('required match Print')
     designer = fields.Many2one('designer', 'Designer')
     color_scale_id = fields.Many2one('color.scale','Color scale/check mark')
-    complexity = fields.Selection([('poca','poca'),('baja','Baja'),('media','Media'),('alta','Alta')])
+    complexity = fields.Selection([('baja','Baja'),('media','Media'),('alta','Alta')])
     control_change_id = fields.Many2one('control.change')
     control_changes_ids = fields.Many2many('control.change','sheet_control_rel','sheet_id','control_change_id')
     change_observation = fields.Char('Observations')

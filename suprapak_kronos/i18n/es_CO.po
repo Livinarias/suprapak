@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-02 15:23+0000\n"
-"PO-Revision-Date: 2020-04-02 15:23+0000\n"
+"POT-Creation-Date: 2020-04-03 12:37+0000\n"
+"PO-Revision-Date: 2020-04-03 12:37+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -83,7 +83,7 @@ msgstr "Estado Actividad"
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__bom_id
 msgid "Actual BOM"
-msgstr ""
+msgstr "Lista de materiales actual"
 
 #. module: suprapak_kronos
 #: model:ir.actions.act_window,name:suprapak_kronos.action_adhesive_type
@@ -325,7 +325,7 @@ msgstr "Escala Color"
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__color_movie_id
 msgid "Color movie"
-msgstr "Color Pelicula"
+msgstr "Color Cintilla"
 
 #. module: suprapak_kronos
 #: model:ir.model,name:suprapak_kronos.model_color_scale
@@ -1568,7 +1568,7 @@ msgstr "Usuario responsable"
 #. module: suprapak_kronos
 #: model:ir.model.fields.selection,name:suprapak_kronos.selection__data_sheet__type_sheet__review
 msgid "Review"
-msgstr "Revisadora"
+msgstr "Revision"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__revision_ids
