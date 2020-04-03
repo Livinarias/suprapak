@@ -8,7 +8,7 @@
                 <form string="Data sheet">
                     <header>
                         <button string="New Quotation" name="action_sale_quotations_new" type="object" class="oe_highlight"/>
-                        <button class="oe_highlight" type="object" name="action_bom_line" string="To produce"/>
+                        <button class="oe_highlight" type="object" name="action_bom_line" string="Create Versions"/>
                         <field name="state" widget="statusbar" clickable="True"/>
                     </header>
                     <sheet>
@@ -98,6 +98,7 @@
                                         <field name="caliber_id" options="{'no_create': True, 'no_create_edit':True}"/>
                                         <field name="overlap_id" options="{'no_create': True, 'no_create_edit':True}"/>
                                         <field name="overlap_location_id" options="{'no_create': True, 'no_create_edit':True}"/>
+                                        <h1><br></br></h1>
                                         <field name="rhombus" attrs="{'invisible':[('overlap_id', '!=', True)]}"/>
                                     </group>
                                     <group>
