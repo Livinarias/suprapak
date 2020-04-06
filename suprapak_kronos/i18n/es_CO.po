@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-03 12:37+0000\n"
-"PO-Revision-Date: 2020-04-03 12:37+0000\n"
+"POT-Creation-Date: 2020-04-03 14:38+0000\n"
+"PO-Revision-Date: 2020-04-03 14:38+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -397,6 +397,11 @@ msgstr "Control de Cambios"
 #: model:ir.ui.menu,name:suprapak_kronos.menu_core_diameter
 msgid "Core Diameter"
 msgstr "Diametro de Core"
+
+#. module: suprapak_kronos
+#: model_terms:ir.ui.view,arch_db:suprapak_kronos.form_data_sheet
+msgid "Create Versions"
+msgstr "Crear Versión"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_adhesive_type__create_uid
@@ -1913,11 +1918,6 @@ msgid "Tintas Especiales"
 msgstr ""
 
 #. module: suprapak_kronos
-#: model_terms:ir.ui.view,arch_db:suprapak_kronos.form_data_sheet
-msgid "To produce"
-msgstr "A producir"
-
-#. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_caliber_type__tolerance
 #: model:ir.model.fields,field_description:suprapak_kronos.field_specification_long__tolerance
 #: model:ir.model.fields,field_description:suprapak_kronos.field_specification_width__tolerance
@@ -2143,11 +2143,6 @@ msgstr "Caracteristicas de Empaque"
 #: model_terms:ir.ui.view,arch_db:suprapak_kronos.form_data_sheet
 msgid "packing"
 msgstr "Empaque"
-
-#. module: suprapak_kronos
-#: model:ir.model.fields.selection,name:suprapak_kronos.selection__data_sheet__complexity__poca
-msgid "poca"
-msgstr "Poca"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__required_match_print
