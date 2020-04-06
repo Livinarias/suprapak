@@ -73,7 +73,7 @@ class DataSheet(models.Model):
                              'state', copy=False, default='draft')
     type_sheet = fields.Selection([('review', 'Review'), ('technical', 'Technical Approval'), ('design', 'Design approval'),
                                    ('approved','Approved'),('rejected','Rejected'),('obsolete','Obsolete'),
-                                   ('rejected ','Rejected Technical '),('rejected_d','Rejected Design')], 'Type sheet')
+                                   ('rejected','Rejected Technical'),('rejected_d','Rejected Design')], 'Type sheet')
     name = fields.Char('Name')
     # Version
     version = fields.Integer('Version', default=1, required=True)
@@ -116,8 +116,8 @@ class DataSheet(models.Model):
     specification_long_id = fields.Many2one('specification.long','Specification long')
     caliber_id = fields.Many2one('data.caliber.type', 'Specification caliber')
     tolerance_width = fields.Float('Tolerance width')
-    tolerance_long = fields.Float('Tolerance long')
-    tolerance_caliber = fields.Float('Tolerance caliber')
+    tolerance_long = fields.Float('Tolerance long', compute = '_compute_specification_long_id')
+    tolerance_caliber = fields.Float('Tolerance caliber', compute = '_compute_caliber_id')
     # Bool
     tongue = fields.Boolean('Tongue')
     thermal_adhesive = fields.Boolean('Thermal adhesive')
@@ -134,13 +134,14 @@ class DataSheet(models.Model):
     order_ids = fields.One2many('sale.order', 'sheet_id', string='Orders')
     photo = fields.Binary()
     tag_form_id = fields.Many2one('data.tag.form','Tag Form')
+    tag_color_id = fields.Many2one('data.movie.color','Tag Color')
     material_id = fields.Many2one('data.material','Material')
     application_id = fields.Many2one('data.application.mode','Application Mode')
     position_id = fields.Many2one('data.application.position','Application Position')
     content_id = fields.Char('Package Contents')
     form_id = fields.Many2one('data.form','Form')
     overlap_id = fields.Many2one('width.overlap','Width Overlap')
-    tolerance_overlap = fields.Float('Tolerance Overlap')
+    tolerance_overlap = fields.Float('Tolerance Overlap', compute = '_compute_overlap_id')
     overlap_location_id = fields.Many2one('overlap.location','Overlap Location')
     bom_id = fields.Many2one('mrp.bom', 'Actual BOM')
     bom_ids = fields.One2many('mrp.bom', 'sheet_id', 'Record')
@@ -167,7 +168,7 @@ class DataSheet(models.Model):
     product = fields.Char('Product')
     long_modification = fields.Float('Long Modification')
     barcode_type_id = fields.Many2one('barcode.type','Barcode Type')
-    barcode_number = fields.Integer('Number')
+    barcode_number = fields.Char('Number')
     mechanic_plan_id = fields.Many2one('mechanic.plan')
     mechanic_plan_ids = fields.Many2many('mechanic.plan','sheet_mechanic_rel','sheet_id','mechanic_id','Mechanic Plan')
     # Montaje multiple
@@ -194,7 +195,7 @@ class DataSheet(models.Model):
     required_match_print = fields.Boolean('required match Print')
     designer = fields.Many2one('designer', 'Designer')
     color_scale_id = fields.Many2one('color.scale','Color scale/check mark')
-    complexity = fields.Selection([('poca','poca'),('baja','Baja'),('media','Media'),('alta','Alta')])
+    complexity = fields.Selection([('baja','Baja'),('media','Media'),('alta','Alta')])
     control_change_id = fields.Many2one('control.change')
     control_changes_ids = fields.Many2many('control.change','sheet_control_rel','sheet_id','control_change_id')
     change_observation = fields.Char('Observations')
@@ -210,8 +211,8 @@ class DataSheet(models.Model):
     plane_art = fields.Binary('Plane Art')
     funtional_test = fields.Binary('Funtional Test')
     repeat_id = fields.Many2one('repeat','Roller')
-    room_large = fields.Char('Room Large',readonly=True)
-    large_planned = fields.Char('Large Planned',readonly=True)
+    room_large = fields.Char('Room Large',compute = '_compute_specification_long_id')
+    large_planned = fields.Char('Large Planned',compute = '_compute_specification_long_id')
     gluped_id = fields.Many2one('product.product')
     for_rolls_ids = fields.Many2many('product.product','sheet_gluped_rel','sheet_id','gluped_id','For Rolls')
     for_bags_ids = fields.Many2many('product.product','sheet_gluped_rel','sheet_id','gluped_id','For Bags')
@@ -231,11 +232,52 @@ class DataSheet(models.Model):
     #variables para domain
     #largo = fields.Float('largo')
     largo2 = fields.Float('largo2')
-    transversal = fields.Char('Transversal',readonly=True)
-    longitudinal = fields.Char('Longitudinal',readonly=True)
+    transversal = fields.Char('Transversal',compute = '_compute_movie_type_id')
+    longitudinal = fields.Char('Longitudinal',compute = '_compute_movie_type_id')
 
-    @api.onchange('movie_type_id')
-    def _onchange_movie_type_id(self):
+    def progressbar_review(self):
+        self.write({
+            'type_sheet': 'review',
+        })
+
+    def progressbar_technical(self):
+        self.write({
+            'type_sheet': 'technical',
+        })
+
+    def progressbar_design(self):
+        self.write({
+            'type_sheet': 'design',
+        })
+
+    def progressbar_approved(self):
+        self.write({
+            'type_sheet': 'approved',
+        })
+
+    def progressbar_rejected(self):
+        self.write({
+            'type_sheet': 'rejected',
+        })
+
+    def progressbar_obsolete(self):
+        self.write({
+            'type_sheet': 'obsolete',
+        })
+
+    def progressbar_rejected(self):
+        self.write({
+            'type_sheet': 'rejected',
+        })
+
+    def progressbar_rejected_d(self):
+        self.write({
+            'type_sheet': 'rejected_d',
+        })
+
+
+    @api.depends('movie_type_id')
+    def _compute_movie_type_id(self):
         if self.movie_type_id:
             self.transversal = self.movie_type_id.transversal
             self.longitudinal = self.movie_type_id.longitudinal
@@ -259,8 +301,8 @@ class DataSheet(models.Model):
         self.specification_width_planned = self.overlap_id.name * 2 + self.specification_width_id.name\
                                           + self.color_scale_id.name
 
-    @api.onchange('specification_long_id')
-    def _onchange_specification_long_id(self):
+    @api.depends('specification_long_id')
+    def _compute_specification_long_id(self):
         if self.specification_long_id:
             self.tolerance_long = self.specification_long_id.tolerance
             self.large_planned = self.specification_long_id.name
@@ -321,8 +363,8 @@ class DataSheet(models.Model):
             self.band_height = self.mold_id.band_height
             self.product = self.mold_id.product
 
-    @api.onchange('overlap_id')
-    def _onchange_overlap_id(self):
+    @api.depends('overlap_id')
+    def _compute_overlap_id(self):
         if self.overlap_id:
             self.tolerance_overlap = self.overlap_id.tolerance
 
@@ -335,8 +377,8 @@ class DataSheet(models.Model):
         if self.movie_type_id:
             self.color_movie_id = self.movie_type_id.color_id"""
 
-    @api.onchange('caliber_id')
-    def _onchange_caliber_id(self):
+    @api.depends('caliber_id')
+    def _compute_caliber_id(self):
         if self.caliber_id:
             self.tolerance_caliber = self.caliber_id.tolerance
 
@@ -531,9 +573,9 @@ class DataDrawType(models.Model):
 
 class DataMovieColor(models.Model):
     _name = 'data.movie.color'
-    _description = 'Movie color'
+    _description = 'Colors'
 
-    name = fields.Char('Name')
+    name = fields.Char('Color')
     code = fields.Char('Code')
 
 
