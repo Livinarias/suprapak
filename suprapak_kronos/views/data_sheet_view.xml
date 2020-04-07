@@ -8,7 +8,7 @@
                 <form string="Data sheet">
                     <header>
                         <button string="New Quotation" name="action_sale_quotations_new" type="object" class="oe_highlight"/>
-                        <button class="oe_highlight" type="object" name="action_bom_line" string="Create Versions"/>
+                        <button class="oe_highlight" type="object" name="action_bom_line" string="Create Versions" attrs="{'invisible':[('type_sheet', '=', 'obsolete')]}"/>
                         <field name="state" widget="statusbar" clickable="True"/>
                     </header>
                     <header>
@@ -48,7 +48,7 @@
                             </group>
                             <group>
                                 <field name="priority" widget="priority"/>
-                                <field name="type_sheet"/>
+                                <field name="type_sheet" readonly="True"/>
                             </group>
                         </group>
                         <notebook>

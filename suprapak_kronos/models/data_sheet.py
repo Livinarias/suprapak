@@ -275,12 +275,13 @@ class DataSheet(models.Model):
             'type_sheet': 'rejected_d',
         })
 
-
-    @api.depends('movie_type_id')
+    @api.constrains('movie_type_id')
     def _compute_movie_type_id(self):
-        if self.movie_type_id:
-            self.transversal = self.movie_type_id.transversal
-            self.longitudinal = self.movie_type_id.longitudinal
+            if self.movie_type_id:
+                self.transversal = self.movie_type_id.transversal
+                self.longitudinal = self.movie_type_id.longitudinal
+            else:
+                raise AccessDenied(("Falta tipo de pelicula"))
 
     @api.constrains('rod_number')
     def _check_rod_number(self):
@@ -295,13 +296,12 @@ class DataSheet(models.Model):
             self.repeat_id.large_planned = self.specification_long_id.name
 
 
-
     @api.depends('color_scale_id.name','specification_width_id.name','overlap_id.name')
     def _compute_specification_width_planned(self):
         self.specification_width_planned = self.overlap_id.name * 2 + self.specification_width_id.name\
                                           + self.color_scale_id.name
 
-    @api.depends('specification_long_id')
+    @api.constrains('specification_long_id')
     def _compute_specification_long_id(self):
         if self.specification_long_id:
             self.tolerance_long = self.specification_long_id.tolerance
@@ -363,7 +363,7 @@ class DataSheet(models.Model):
             self.band_height = self.mold_id.band_height
             self.product = self.mold_id.product
 
-    @api.depends('overlap_id')
+    @api.constrains('overlap_id')
     def _compute_overlap_id(self):
         if self.overlap_id:
             self.tolerance_overlap = self.overlap_id.tolerance
@@ -377,7 +377,7 @@ class DataSheet(models.Model):
         if self.movie_type_id:
             self.color_movie_id = self.movie_type_id.color_id"""
 
-    @api.depends('caliber_id')
+    @api.constrains('caliber_id')
     def _compute_caliber_id(self):
         if self.caliber_id:
             self.tolerance_caliber = self.caliber_id.tolerance
@@ -459,6 +459,8 @@ class DataSheet(models.Model):
         default = dict(default or {})
         default['version'] = self.version + 1
         return super(DataSheet, self).copy(default)
+
+    #def version(self):
 
     def action_create_quotation(self):
         so_obj = self.env['sale.order']

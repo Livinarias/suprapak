@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-07 14:37+0000\n"
-"PO-Revision-Date: 2020-04-07 14:37+0000\n"
+"POT-Creation-Date: 2020-04-07 16:32+0000\n"
+"PO-Revision-Date: 2020-04-07 16:32+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -1540,6 +1540,7 @@ msgid "Refile"
 msgstr ""
 
 #. module: suprapak_kronos
+#: model:ir.model.fields.selection,name:suprapak_kronos.selection__data_sheet__type_sheet__rejected
 #: model_terms:ir.ui.view,arch_db:suprapak_kronos.form_data_sheet
 msgid "Rejected"
 msgstr "Rechazado"
@@ -1551,7 +1552,7 @@ msgid "Rejected Design"
 msgstr "rechazada Diseño"
 
 #. module: suprapak_kronos
-#: model:ir.model.fields.selection,name:suprapak_kronos.selection__data_sheet__type_sheet__rejected
+#: model:ir.model.fields.selection,name:suprapak_kronos.selection__data_sheet__type_sheet__rejected_t
 #: model_terms:ir.ui.view,arch_db:suprapak_kronos.form_data_sheet
 msgid "Rejected Technical"
 msgstr "Rechazada Técnico"
@@ -1667,8 +1668,8 @@ msgstr "Pedido de Venta"
 #. module: suprapak_kronos
 #: model:ir.model,name:suprapak_kronos.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Lineas de orden de venta"
-"LInea de orden de ventaLínea de orden de ventaPedido de Venta en Linea#-#-#-#-#  es_CO.po (Odoo 9.0)  #-#-#-#-#\n"
+msgstr "Lineas de Orden de Venta"
+"Lineas de orden de ventaLInea de orden de ventaLínea de orden de ventaPedido de Venta en Linea#-#-#-#-#  es_CO.po (Odoo 9.0)  #-#-#-#-#\n"
 "Línea Orden de Venta\n"
 "#-#-#-#-#  es_CO.po (Odoo 9.0)  #-#-#-#-#\n"
 "Línea de Pedido de Venta"
