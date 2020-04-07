@@ -18,7 +18,7 @@
                             <button string="Approved" type="object" name="progressbar_approved" />
                             <button string="Rejected" type="object" name="progressbar_rejected" />
                             <button string="Obsolete" type="object" name="progressbar_obsolete" />
-                            <button string="Rejected Technical" type="object" name="progressbar_rejected" />
+                            <button string="Rejected Technical" type="object" name="progressbar_rejected_t" />
                             <button string="Rejected Design" type="object" name="progressbar_rejected_d" />
                     </header>
                     <sheet>
@@ -293,17 +293,17 @@
                                         <group string="lashing straps">
                                             <field name="roll_ids" widget="one2many" context="{'default_sheet_id': id}">
                                                 <tree string="Components" editable="bottom">
-                                                    <field name="product_id" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia')]"/>
+                                                    <field name="product_id" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia'),('categ_id','=','CINTAS')]"/>
                                                 </tree>
                                             </field>
                                             <field name="for_bag_ids" widget="one2many" context="{'default_sheet_id': id}">
                                                 <tree string="Components" editable="bottom">
-                                                    <field name="product_id" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia')]"/>
+                                                    <field name="product_id" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia'),('categ_id','=','BOLSAS')]"/>
                                                 </tree>
                                             </field>
                                             <field name="for_superlon_ids" widget="one2many" context="{'default_sheet_id': id}">
                                                 <tree string="Components" editable="bottom">
-                                                    <field name="product_id" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia')]"/>
+                                                    <field name="product_id" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia'),('categ_id','=','AISLANTES TERMICOS')]"/>
                                                 </tree>
                                             </field>
                                             <field name="for_box"/>
@@ -311,27 +311,27 @@
                                         <group string="Cintas de empalme por proceso ">
                                             <field name="refile_ids" widget="one2many" context="{'default_sheet_id': id}">
                                                 <tree string="Components" editable="bottom">
-                                                    <field name="product_id" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia')]"/>
+                                                    <field name="product_id" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia'),('categ_id','=','CINTAS')]"/>
                                                 </tree>
                                             </field>
                                             <field name="revision_ids" widget="one2many" context="{'default_sheet_id': id}">
                                                 <tree string="Components" editable="bottom">
-                                                    <field name="product_id" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia')]"/>
+                                                    <field name="product_id" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia'),('categ_id','=','CINTAS')]"/>
                                                 </tree>
                                             </field>
                                             <field name="gluped_ids" widget="one2many" context="{'default_sheet_id': id}">
                                                 <tree string="Components" editable="bottom">
-                                                    <field name="product_id" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia')]"/>
+                                                    <field name="product_id" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia'),('categ_id','=','CINTAS')]"/>
                                                 </tree>
                                             </field>
                                             <field name="gluped2_ids" widget="one2many" context="{'default_sheet_id': id}">
                                                 <tree string="Components" editable="bottom">
-                                                    <field name="product_id" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia')]"/>
+                                                    <field name="product_id" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia'),('categ_id','=','CINTAS')]"/>
                                                 </tree>
                                             </field>
                                             <field name="rebobine_ids" widget="one2many" context="{'default_sheet_id': id}">
                                                 <tree string="Components" editable="bottom">
-                                                    <field name="product_id" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia')]"/>
+                                                    <field name="product_id" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia'),('categ_id','=','CINTAS')]"/>
                                                 </tree>
                                             </field>
                                         </group>

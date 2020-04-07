@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-01 19:55+0000\n"
-"PO-Revision-Date: 2020-04-01 19:55+0000\n"
+"POT-Creation-Date: 2020-04-07 14:37+0000\n"
+"PO-Revision-Date: 2020-04-07 14:37+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -83,7 +83,7 @@ msgstr "Estado Actividad"
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__bom_id
 msgid "Actual BOM"
-msgstr ""
+msgstr "Lista de materiales actual"
 
 #. module: suprapak_kronos
 #: model:ir.actions.act_window,name:suprapak_kronos.action_adhesive_type
@@ -140,6 +140,7 @@ msgstr "Fecha de solicitud del vendedor"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields.selection,name:suprapak_kronos.selection__data_sheet__type_sheet__approved
+#: model_terms:ir.ui.view,arch_db:suprapak_kronos.form_data_sheet
 msgid "Approved"
 msgstr "Aprobado"
 
@@ -221,8 +222,12 @@ msgstr "Línea de Lista de Materiales"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__line_ids
-#: model_terms:ir.ui.view,arch_db:suprapak_kronos.form_data_sheet
 msgid "Bills of Materials"
+msgstr "Listas de Materiales"
+
+#. module: suprapak_kronos
+#: model_terms:ir.ui.view,arch_db:suprapak_kronos.form_data_sheet
+msgid "Bills of materials"
 msgstr "Listas de Materiales"
 
 #. module: suprapak_kronos
@@ -307,6 +312,7 @@ msgid "Cold Foil Width"
 msgstr "Ancho Cold Foil"
 
 #. module: suprapak_kronos
+#: model:ir.model.fields,field_description:suprapak_kronos.field_data_movie_color__name
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_movie_type__color_id
 #: model:ir.model.fields,field_description:suprapak_kronos.field_print_color__name
 msgid "Color"
@@ -321,7 +327,7 @@ msgstr "Escala Color"
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__color_movie_id
 msgid "Color movie"
-msgstr "Color Pelicula"
+msgstr "Color Cintilla"
 
 #. module: suprapak_kronos
 #: model:ir.model,name:suprapak_kronos.model_color_scale
@@ -333,6 +339,12 @@ msgstr "Escala Color"
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__color_scale_id
 msgid "Color scale/check mark"
 msgstr "Escala de color/taca de registro"
+
+#. module: suprapak_kronos
+#: model:ir.actions.act_window,name:suprapak_kronos.action_data_movie_color
+#: model:ir.model,name:suprapak_kronos.model_data_movie_color
+msgid "Colors"
+msgstr "Color de la pelicula"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__commentary
@@ -393,6 +405,11 @@ msgstr "Control de Cambios"
 #: model:ir.ui.menu,name:suprapak_kronos.menu_core_diameter
 msgid "Core Diameter"
 msgstr "Diametro de Core"
+
+#. module: suprapak_kronos
+#: model_terms:ir.ui.view,arch_db:suprapak_kronos.form_data_sheet
+msgid "Create Versions"
+msgstr "Crear Versión"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_adhesive_type__create_uid
@@ -531,14 +548,14 @@ msgid "Data Application Position"
 msgstr "Posicion de Aplicacion de Datos"
 
 #. module: suprapak_kronos
-#: model:ir.actions.act_window,name:suprapak_kronos.action_data_material
-msgid "Data Material"
-msgstr "Datos Materiales"
-
-#. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_mrp_production__sheet_id
 msgid "Data Sheet"
 msgstr "Ficha de datos"
+
+#. module: suprapak_kronos
+#: model:ir.actions.act_window,name:suprapak_kronos.action_data_material
+msgid "Data material"
+msgstr "Datos de Material"
 
 #. module: suprapak_kronos
 #: model:ir.actions.act_window,name:suprapak_kronos.action_data_sheet
@@ -597,6 +614,7 @@ msgstr "Caracteristicas de diseño"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields.selection,name:suprapak_kronos.selection__data_sheet__type_sheet__design
+#: model_terms:ir.ui.view,arch_db:suprapak_kronos.form_data_sheet
 msgid "Design approval"
 msgstr "Aprobación de diseño"
 
@@ -1090,6 +1108,7 @@ msgstr "Largo Planeado"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_movie_type__longitudinal
+#: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__longitudinal
 #: model:ir.model.fields,field_description:suprapak_kronos.field_microperforated__logitudinal
 msgid "Longitudinal"
 msgstr ""
@@ -1180,8 +1199,6 @@ msgid "Movie Type"
 msgstr "Tipo de Pelicula"
 
 #. module: suprapak_kronos
-#: model:ir.actions.act_window,name:suprapak_kronos.action_data_movie_color
-#: model:ir.model,name:suprapak_kronos.model_data_movie_color
 #: model:ir.ui.menu,name:suprapak_kronos.menu_data_movie_color
 msgid "Movie color"
 msgstr "Color de la pelicula"
@@ -1202,7 +1219,6 @@ msgstr "Montaje múltiple"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_drawn_type__name
-#: model:ir.model.fields,field_description:suprapak_kronos.field_data_movie_color__name
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_movie_type__name
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_product_type__name
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__name
@@ -1307,6 +1323,7 @@ msgstr "Observaciones"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields.selection,name:suprapak_kronos.selection__data_sheet__type_sheet__obsolete
+#: model_terms:ir.ui.view,arch_db:suprapak_kronos.form_data_sheet
 msgid "Obsolete"
 msgstr "Obsoleto"
 
@@ -1399,7 +1416,7 @@ msgstr "Presentacion"
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__print
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__print_id
 msgid "Print"
-msgstr "Imprimir"
+msgstr "Impreso"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__print_class
@@ -1523,19 +1540,21 @@ msgid "Refile"
 msgstr ""
 
 #. module: suprapak_kronos
-#: model:ir.model.fields.selection,name:suprapak_kronos.selection__data_sheet__type_sheet__rejected
+#: model_terms:ir.ui.view,arch_db:suprapak_kronos.form_data_sheet
 msgid "Rejected"
 msgstr "Rechazado"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields.selection,name:suprapak_kronos.selection__data_sheet__type_sheet__rejected_d
+#: model_terms:ir.ui.view,arch_db:suprapak_kronos.form_data_sheet
 msgid "Rejected Design"
-msgstr "Diseño rechazado"
+msgstr "rechazada Diseño"
 
 #. module: suprapak_kronos
-#: model:ir.model.fields.selection,name:suprapak_kronos.selection__data_sheet__type_sheet__rejected_
-msgid "Rejected Technical "
-msgstr "Rechazo por tecnico"
+#: model:ir.model.fields.selection,name:suprapak_kronos.selection__data_sheet__type_sheet__rejected
+#: model_terms:ir.ui.view,arch_db:suprapak_kronos.form_data_sheet
+msgid "Rejected Technical"
+msgstr "Rechazada Técnico"
 
 #. module: suprapak_kronos
 #: model:ir.actions.act_window,name:suprapak_kronos.action_repeat
@@ -1562,8 +1581,9 @@ msgstr "Usuario responsable"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields.selection,name:suprapak_kronos.selection__data_sheet__type_sheet__review
+#: model_terms:ir.ui.view,arch_db:suprapak_kronos.form_data_sheet
 msgid "Review"
-msgstr "Revisadora"
+msgstr "Revision"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__revision_ids
@@ -1647,7 +1667,7 @@ msgstr "Pedido de Venta"
 #. module: suprapak_kronos
 #: model:ir.model,name:suprapak_kronos.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Lineas de orden de venta"
 "LInea de orden de ventaLínea de orden de ventaPedido de Venta en Linea#-#-#-#-#  es_CO.po (Odoo 9.0)  #-#-#-#-#\n"
 "Línea Orden de Venta\n"
 "#-#-#-#-#  es_CO.po (Odoo 9.0)  #-#-#-#-#\n"
@@ -1851,6 +1871,11 @@ msgid "Tab Length"
 msgstr "Longitud de pestaña (J)"
 
 #. module: suprapak_kronos
+#: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__tag_color_id
+msgid "Tag Color"
+msgstr "Color del Envase"
+
+#. module: suprapak_kronos
 #: model:ir.model,name:suprapak_kronos.model_data_tag_form
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__tag_form_id
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_tag_form__name
@@ -1878,6 +1903,7 @@ msgstr "Cinta"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields.selection,name:suprapak_kronos.selection__data_sheet__type_sheet__technical
+#: model_terms:ir.ui.view,arch_db:suprapak_kronos.form_data_sheet
 msgid "Technical Approval"
 msgstr "Aprobación técnica"
 
@@ -1898,14 +1924,14 @@ msgid "Thermal adhesive"
 msgstr "Adhesivo térmico"
 
 #. module: suprapak_kronos
-#: model_terms:ir.ui.view,arch_db:suprapak_kronos.form_data_sheet
-msgid "Tintas Especiales"
-msgstr ""
+#: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__multiple_mount
+msgid "This data have multiple Mount?"
+msgstr "Esta Ficha tienen montaje múltiple?"
 
 #. module: suprapak_kronos
 #: model_terms:ir.ui.view,arch_db:suprapak_kronos.form_data_sheet
-msgid "To produce"
-msgstr "A producir"
+msgid "Tintas Especiales"
+msgstr ""
 
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_caliber_type__tolerance
@@ -1944,6 +1970,7 @@ msgstr "Lengueta"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_movie_type__transversal
+#: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__transversal
 msgid "Transversal"
 msgstr ""
 
@@ -2111,7 +2138,7 @@ msgstr "Embalaje del cliente"
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__largo2
 msgid "largo2"
-msgstr ""
+msgstr "Largo"
 
 #. module: suprapak_kronos
 #: model_terms:ir.ui.view,arch_db:suprapak_kronos.form_data_sheet
@@ -2132,11 +2159,6 @@ msgstr "Caracteristicas de Empaque"
 #: model_terms:ir.ui.view,arch_db:suprapak_kronos.form_data_sheet
 msgid "packing"
 msgstr "Empaque"
-
-#. module: suprapak_kronos
-#: model:ir.model.fields.selection,name:suprapak_kronos.selection__data_sheet__complexity__poca
-msgid "poca"
-msgstr "Poca"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__required_match_print
