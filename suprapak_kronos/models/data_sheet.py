@@ -77,7 +77,7 @@ class DataSheet(models.Model):
     name = fields.Char('Name')
     # Version
     version = fields.Integer('Version', default=1, required=True)
-    product_id = fields.Many2one('product.template', 'Product')
+    product_id = fields.Many2one('product.product', 'Product')
     priority = fields.Selection([('0', 'Normal'), ('1', 'Low'), ('2', 'High'), ('3', 'Very High')], 'Priority')
     # Info Customer
     partner_id = fields.Many2one('res.partner', 'Customer')
