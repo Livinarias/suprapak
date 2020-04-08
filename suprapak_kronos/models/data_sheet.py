@@ -73,11 +73,15 @@ class DataSheet(models.Model):
                              'state', copy=False, default='draft')
     type_sheet = fields.Selection([('review', 'Review'), ('technical', 'Technical Approval'), ('design', 'Design approval'),
                                    ('approved','Approved'),('rejected','Rejected'),('obsolete','Obsolete'),
+<<<<<<< HEAD
+                                   ('rejected_t','Rejected Technical'),('rejected_d','Rejected Design')], 'Type sheet')
+=======
                                    ('rejected','Rejected Technical'),('rejected_d','Rejected Design')], 'Type sheet')
+>>>>>>> Kronos
     name = fields.Char('Name')
     # Version
     version = fields.Integer('Version', default=1, required=True)
-    product_id = fields.Many2one('product.template', 'Product')
+    product_id = fields.Many2one('product.product', 'Product')
     priority = fields.Selection([('0', 'Normal'), ('1', 'Low'), ('2', 'High'), ('3', 'Very High')], 'Priority')
     # Info Customer
     partner_id = fields.Many2one('res.partner', 'Customer')
@@ -265,6 +269,10 @@ class DataSheet(models.Model):
             'type_sheet': 'obsolete',
         })
 
+    def progressbar_rejected_t(self):
+        self.write({
+            'type_sheet': 'rejected_t',
+
     def progressbar_rejected(self):
         self.write({
             'type_sheet': 'rejected',
@@ -275,12 +283,14 @@ class DataSheet(models.Model):
             'type_sheet': 'rejected_d',
         })
 
-
     @api.depends('movie_type_id')
     def _compute_movie_type_id(self):
-        if self.movie_type_id:
-            self.transversal = self.movie_type_id.transversal
-            self.longitudinal = self.movie_type_id.longitudinal
+            if self.movie_type_id:
+                self.transversal = self.movie_type_id.transversal
+                self.longitudinal = self.movie_type_id.longitudinal
+            else:
+                self.transversal = None
+                self.longitudinal = None
 
     @api.constrains('rod_number')
     def _check_rod_number(self):
@@ -295,7 +305,6 @@ class DataSheet(models.Model):
             self.repeat_id.large_planned = self.specification_long_id.name
 
 
-
     @api.depends('color_scale_id.name','specification_width_id.name','overlap_id.name')
     def _compute_specification_width_planned(self):
         self.specification_width_planned = self.overlap_id.name * 2 + self.specification_width_id.name\
@@ -307,6 +316,10 @@ class DataSheet(models.Model):
             self.tolerance_long = self.specification_long_id.tolerance
             self.large_planned = self.specification_long_id.name
             self.room_large = self.specification_long_id.room_large
+        else:
+            self.tolerance_long = None
+            self.large_planned = None
+            self.room_large = None
 
 
     @api.onchange('width_core')
@@ -367,6 +380,8 @@ class DataSheet(models.Model):
     def _compute_overlap_id(self):
         if self.overlap_id:
             self.tolerance_overlap = self.overlap_id.tolerance
+        else:
+            self.tolerance_overlap = None
 
     def _compute_sale_data(self):
         for lead in self:
@@ -381,6 +396,8 @@ class DataSheet(models.Model):
     def _compute_caliber_id(self):
         if self.caliber_id:
             self.tolerance_caliber = self.caliber_id.tolerance
+        else:
+            self.tolerance_caliber = None
 
     @api.onchange('product_id')
     def _onchange_product_id(self):
@@ -458,7 +475,9 @@ class DataSheet(models.Model):
     def copy(self, default=None):
         default = dict(default or {})
         default['version'] = self.version + 1
-        return super(DataSheet, self).copy(default)
+        res = super(DataSheet, self).copy(default)
+        self.type_sheet = 'obsolete'
+        return res
 
     def action_create_quotation(self):
         so_obj = self.env['sale.order']

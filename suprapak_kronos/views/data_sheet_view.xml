@@ -8,17 +8,17 @@
                 <form string="Data sheet">
                     <header>
                         <button string="New Quotation" name="action_sale_quotations_new" type="object" class="oe_highlight"/>
-                        <button class="oe_highlight" type="object" name="action_bom_line" string="Create Versions"/>
+                        <button class="oe_highlight" type="object" name="action_bom_line" string="Create Versions" attrs="{'invisible':[('type_sheet', '=', 'obsolete')]}"/>
                         <field name="state" widget="statusbar" clickable="True"/>
                     </header>
                     <header>
-                        <button string="Review" class="btn btn-primary" type="object" name="progressbar_review" />
-                            <button string="Technical Approval" class="btn btn-warning" type="object" name="progressbar_technical" />
-                            <button string="Design approval" class="btn btn-secondary" type="object" name="progressbar_design" />
-                            <button string="Approved" class="btn btn-success" type="object" name="progressbar_approved" />
-                            <button string="Rejected" class="btn btn-danger" type="object" name="progressbar_rejected" />
-                            <button string="Obsolete" class="btn btn-info" type="object" name="progressbar_obsolete" />
-                            <button string="Rejected Technical" class="btn btn-light" type="object" name="progressbar_rejected" />
+                        <button string="Review" type="object" name="progressbar_review" />
+                            <button string="Technical Approval" type="object" name="progressbar_technical" />
+                            <button string="Design approval" type="object" name="progressbar_design" />
+                            <button string="Approved" type="object" name="progressbar_approved" />
+                            <button string="Rejected" type="object" name="progressbar_rejected" />
+                            <button string="Obsolete" type="object" name="progressbar_obsolete" />
+                            <button string="Rejected Technical" type="object" name="progressbar_rejected_t" />
                             <button string="Rejected Design" type="object" name="progressbar_rejected_d" />
                     </header>
                     <sheet>
@@ -48,7 +48,7 @@
                             </group>
                             <group>
                                 <field name="priority" widget="priority"/>
-                                <field name="type_sheet"/>
+                                <field name="type_sheet" readonly="True"/>
                             </group>
                         </group>
                         <notebook>
@@ -98,7 +98,8 @@
                                             <field name="longitudinal" />
                                             <field name="movie_type_product_ids" widget="one2many" context="{'default_sheet_id': id}">
                                                 <tree string="Components" editable="bottom">
-                                                    <field name="product_id" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia')]"/>
+                                                    <field name="product_id" options="{'no_create': True, 'no_create_edit':True}"
+                                                           domain="[('tipo_producto','=','materia'),'|',('categ_id','=','PELICULA IMPORTADA'),('categ_id','=','PELICULA NACIONAL')]"/>
                                                 </tree>
                                             </field>
                                         </group>
@@ -282,27 +283,27 @@
                             <page string="packaging characteristics">
                                     <group>
                                         <group string="packing">
-                                            <field name="separator_id" attrs="{'invisible':[('presentation','!=','ROLLO')]}" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia')]"/>
-                                            <field name="core_diameter" attrs="{'invisible':[('presentation','!=','ROLLO')]}" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia')]"/>
-                                            <field name="width_core" attrs="{'invisible':[('presentation','!=','ROLLO')]}" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia')]"/>
-                                            <field name="bag" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia')]"/>
-                                            <field name="box" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia')]"/>
-                                            <field name="superlon" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia')]"/>
+                                            <field name="separator_id" attrs="{'invisible':[('presentation','!=','ROLLO')]}" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia'),('categ_id','=','SEPARADORES')]"/>
+                                            <field name="core_diameter" attrs="{'invisible':[('presentation','!=','ROLLO')]}"/>
+                                            <field name="width_core" attrs="{'invisible':[('presentation','!=','ROLLO')]}"/>
+                                            <field name="bag" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia'),('categ_id','=','BOLSAS')]"/>
+                                            <field name="box" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia'),('categ_id','=','CAJAS')]"/>
+                                            <field name="superlon" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia'),('categ_id','=','AISLANTES TERMICOS')]"/>
                                         </group>
                                         <group string="lashing straps">
                                             <field name="roll_ids" widget="one2many" context="{'default_sheet_id': id}">
                                                 <tree string="Components" editable="bottom">
-                                                    <field name="product_id" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia')]"/>
+                                                    <field name="product_id" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia'),('categ_id','=','CINTAS')]"/>
                                                 </tree>
                                             </field>
                                             <field name="for_bag_ids" widget="one2many" context="{'default_sheet_id': id}">
                                                 <tree string="Components" editable="bottom">
-                                                    <field name="product_id" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia')]"/>
+                                                    <field name="product_id" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia'),('categ_id','=','BOLSAS')]"/>
                                                 </tree>
                                             </field>
                                             <field name="for_superlon_ids" widget="one2many" context="{'default_sheet_id': id}">
                                                 <tree string="Components" editable="bottom">
-                                                    <field name="product_id" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia')]"/>
+                                                    <field name="product_id" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia'),('categ_id','=','AISLANTES TERMICOS')]"/>
                                                 </tree>
                                             </field>
                                             <field name="for_box"/>
@@ -310,27 +311,27 @@
                                         <group string="Cintas de empalme por proceso ">
                                             <field name="refile_ids" widget="one2many" context="{'default_sheet_id': id}">
                                                 <tree string="Components" editable="bottom">
-                                                    <field name="product_id" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia')]"/>
+                                                    <field name="product_id" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia'),('categ_id','=','CINTAS')]"/>
                                                 </tree>
                                             </field>
                                             <field name="revision_ids" widget="one2many" context="{'default_sheet_id': id}">
                                                 <tree string="Components" editable="bottom">
-                                                    <field name="product_id" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia')]"/>
+                                                    <field name="product_id" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia'),('categ_id','=','CINTAS')]"/>
                                                 </tree>
                                             </field>
                                             <field name="gluped_ids" widget="one2many" context="{'default_sheet_id': id}">
                                                 <tree string="Components" editable="bottom">
-                                                    <field name="product_id" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia')]"/>
+                                                    <field name="product_id" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia'),('categ_id','=','CINTAS')]"/>
                                                 </tree>
                                             </field>
                                             <field name="gluped2_ids" widget="one2many" context="{'default_sheet_id': id}">
                                                 <tree string="Components" editable="bottom">
-                                                    <field name="product_id" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia')]"/>
+                                                    <field name="product_id" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia'),('categ_id','=','CINTAS')]"/>
                                                 </tree>
                                             </field>
                                             <field name="rebobine_ids" widget="one2many" context="{'default_sheet_id': id}">
                                                 <tree string="Components" editable="bottom">
-                                                    <field name="product_id" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia')]"/>
+                                                    <field name="product_id" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia'),('categ_id','=','CINTAS')]"/>
                                                 </tree>
                                             </field>
                                         </group>
