@@ -268,6 +268,7 @@ class DataSheet(models.Model):
     def progressbar_rejected_t(self):
         self.write({
             'type_sheet': 'rejected_t',
+        })
 
     def progressbar_rejected(self):
         self.write({
