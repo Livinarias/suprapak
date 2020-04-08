@@ -73,11 +73,7 @@ class DataSheet(models.Model):
                              'state', copy=False, default='draft')
     type_sheet = fields.Selection([('review', 'Review'), ('technical', 'Technical Approval'), ('design', 'Design approval'),
                                    ('approved','Approved'),('rejected','Rejected'),('obsolete','Obsolete'),
-<<<<<<< HEAD
                                    ('rejected_t','Rejected Technical'),('rejected_d','Rejected Design')], 'Type sheet')
-=======
-                                   ('rejected','Rejected Technical'),('rejected_d','Rejected Design')], 'Type sheet')
->>>>>>> Kronos
     name = fields.Char('Name')
     # Version
     version = fields.Integer('Version', default=1, required=True)
