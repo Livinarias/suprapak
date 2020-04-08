@@ -12,7 +12,7 @@ class ProductTemplate(models.Model):
     class_print = fields.Char('Class of Print')
     presentation = fields.Char('Presentation')
     type_selle = fields.Char('Type of Sealed')
-
+    tipo_producto = fields.Selection([('terminado','Producto terminado'),('materia','Materia Prima')],'Tipo de Producto',required=True)
 
 class ProductProduct(models.Model):
     _inherit  = 'product.product'
@@ -23,3 +23,4 @@ class ProductProduct(models.Model):
     class_print = fields.Char('Class of Print')
     presentation = fields.Char('Presentation')
     type_selle = fields.Char('Type of Sealed')
+    tipo_producto = fields.Selection([('terminado','Producto terminado'),('materia','Materia Prima')],'Tipo de Producto',required=True)
