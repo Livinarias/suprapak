@@ -1,28 +1,29 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields, api
-
+from odoo.exceptions import AccessDenied
 
 class CrmLead(models.Model):
     _inherit = 'crm.lead'
 
     sheet_count = fields.Integer('Number of sheets', compute='_compute_sheet_data')
     sheet_ids = fields.One2many('data.sheet', 'opportunity_id', 'Sheets')
-    currency_id = fields.Many2one('res.currency', 'Currency', required=True)
-    product_code = fields.Char('Product code', help='Customer product code', required=True)
-    sector_id = fields.Many2one('res.sector', 'Sector', required=True)
-    sector_code = fields.Char('Sector code')
-    customer_zip = fields.Char('zip')
+    currency_id = fields.Many2one('res.currency', 'Currency')
+    product_code = fields.Char('Product code', help='Customer product code')
+    sector_id = fields.Many2one('res.sector', 'Sector', compute = '_compute_sector')
 
-    @api.onchange('partner_id')
-    def _onchange_partner_id(self):
+    @api.depends('partner_id')
+    def _compute_sector(self):
         if self.partner_id:
-            self.customer_zip = self.partner_id.zip
+            self.sector_id = self.partner_id.sector_id.id
+        else:
+            self.sector_id = None
 
-    @api.onchange('sector_id')
-    def _onchange_sector_id(self):
-        if self.sector_id:
-            self.sector_code = self.sector_id.code
+    def warning(self):
+        if not self.currency_id :
+            raise AccessDenied(("Debe seleccionar la moneda y el codigo del producto"))
+        if not self.product_code :
+            raise AccessDenied(("Debe seleccionar la moneda y el codigo del producto"))
 
     def _compute_sheet_data(self):
         for lead in self:
@@ -31,12 +32,7 @@ class CrmLead(models.Model):
 
     def action_new_data_sheet(self):
         name = ''
-        """if self.type_sheet == 'quotation':
-            name += 'C'
-        if self.type_sheet == 'show':
-            name += 'M'
-        if self.type_sheet == 'sale':
-            name += 'P'"""
+        self.warning()
         if self.sector_id:
             name += self.sector_id.code
         name += ' - ' + self.product_code
@@ -64,9 +60,3 @@ class CrmLead(models.Model):
         action['domain'] = [('opportunity_id', '=', self.id)]
         return action
 
-
-class DataSectorType(models.Model):
-    _name = 'data.sector.type'
-    _description = 'Sector Type'
-
-    name = fields.Char('Sector')

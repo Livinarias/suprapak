@@ -38,7 +38,7 @@
                   sequence="25"/>
 
         <menuitem id="menu_data_movie_color"
-                  name="Movie color"
+                  name="Colors"
                   action="action_data_movie_color"
                   parent="menu_data_sheet_conf"
                   sequence="30"/>
@@ -246,5 +246,11 @@
                   action="action_adhesive_type"
                   parent="menu_data_sheet_conf"
                   sequence="205"/>
+
+        <menuitem id="menu_drawn_pass"
+                  name="Drawn Pass"
+                  action="action_drawn_pass"
+                  parent="menu_data_sheet_conf"
+                  sequence="210"/>
     </data>
 </odoo>
