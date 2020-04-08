@@ -105,6 +105,7 @@ class DataSheet(models.Model):
     uom_id = fields.Many2one('uom.uom', 'Unit of measure')
     product_type_id = fields.Many2one('data.product.type', 'Product line')
     drawn_type_id = fields.Many2one('data.drawn.type', 'Draw type')
+    drawn_pass_id = fields.Many2one('drawn.pass', 'Draw Pass')
     movie_type_id = fields.Many2one('data.movie.type', 'Movie type')
     movie_type_products_ids = fields.Many2many('product.product','sheet_product_rel','sheet_id','product_id','Product for Movie Type')
     color_movie_id = fields.Many2one('data.movie.color', 'Color movie')
@@ -922,3 +923,11 @@ class MathPrint(models.Model):
     def _onchange_name(self):
         if self.name:
             self.name1 = self.name
+
+class DrawnPass(models.Model):
+
+    _name = 'drawn.pass'
+    _description = 'Drawn Pass'
+
+    name = fields.Char('Drawn Pass')
+    code = fields.Char('Code')

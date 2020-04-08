@@ -187,6 +187,7 @@
                                         <field name="drawn" widget="checkbox"/>
                                         <field name="drawn_type_id" options="{'no_create': True, 'no_create_edit':True}" attrs="{'invisible':[('drawn', '!=', True)]}"/>
                                         <field name="drawn_presentation_id" options="{'no_create': True, 'no_create_edit':True}" attrs="{'invisible':[('drawn', '!=', True)]}"/>
+                                        <field name="drawn_pass_id" options="{'no_create': True, 'no_create_edit':True}" attrs="{'invisible':[('drawn', '!=', True)]}"/>
                                         <field name="tongue" attrs="{'invisible':[('drawn', '!=', True)]}"/>
                                     </group>
                                     <group>
@@ -621,6 +622,11 @@
         <record model="ir.actions.act_window" id="action_adhesive_type">
             <field name="name">Adhesive Type</field>
             <field name="res_model">adhesive.type</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record model="ir.actions.act_window" id="action_drawn_pass">
+            <field name="name">Drawn Pass</field>
+            <field name="res_model">drawn.pass</field>
             <field name="view_mode">tree,form</field>
         </record>
         <record model="ir.module.category" id="module_category_data_sheet">
