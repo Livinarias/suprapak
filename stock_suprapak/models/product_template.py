@@ -14,6 +14,7 @@ class ProductTemplate(models.Model):
     type_selle = fields.Char('Type of Sealed')
     tipo_producto = fields.Selection([('terminado','Producto terminado'),('materia','Materia Prima')],'Tipo de Producto',required=True)
 
+
 class ProductProduct(models.Model):
     _inherit  = 'product.product'
 

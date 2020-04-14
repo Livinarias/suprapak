@@ -32,4 +32,3 @@ class MrpProduction(models.Model):
                         }
                         account_move = am_obj.sudo().create(move)
                         account_move.post()
-        return True
