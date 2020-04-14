@@ -7,10 +7,10 @@
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='company_id']" position="after">
                     <field name="customer_reference"/>
-       		 		<field name="x_currency_id"/>
-        		 	<field name="date_version"/>
-        		 	<field name="tipo_producto"/>
-        		</xpath>
+       		 		      <field name="x_currency_id"/>
+        		 	      <field name="date_version"/>
+                    <field name="tipo_producto"/>
+        		    </xpath>   
             </field>
         </record>
 
@@ -20,10 +20,10 @@
             <field name="inherit_id" ref="product.product_template_only_form_view"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='barcode']" position="after">
-            		<field name="class_print"/>
-            		<field name="presentation"/>
-            		<field name="type_selle"/>
-        		</xpath> 
+            		    <field name="class_print"/>
+            		    <field name="presentation"/>
+            		    <field name="type_selle"/>
+        		    </xpath> 
             </field>
         </record>
     </data>
