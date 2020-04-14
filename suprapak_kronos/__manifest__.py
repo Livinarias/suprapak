@@ -17,18 +17,18 @@
     'version': '13.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['sale_crm', 'mrp'],
+    'depends': ['sale_crm', 'mrp','stock_suprapak'],
 
     # always loaded
     'data': [
-        'views/views.xml',
+        'views/res_partner_view.xml',
         'views/templates.xml',
         'views/data_sheet_view.xml',
         'views/data_sheet_menu.xml',
         'views/crm_lead_view.xml',
         'views/sale_order_view.xml',
         'security/ir.model.access.csv',
-        #'views/sale_template.xml'
+        'views/sale_template.xml'
 
     ],
     # only loaded in demonstration mode
