@@ -6,18 +6,20 @@ from odoo import models, fields, api
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
-    def _default_partners_ids(self):
-        domain = [('module', '=', 'dev_customer_credit_limit'), ('name',
-                                                                 '=', 'credit_limit_config'), ('model', '=', 'res.groups')]
-        imd = self.env['ir.model.data'].search(domain, limit=1)
-        if imd:
-            rg = self.env['res.groups'].browse(imd.res_id)
-            return rg.users.partner_id
+    def _default_users_ids(self):
+        group_id = self.env.ref('dev_customer_credit_limit.credit_limit_config')
+        if group_id:
+            return group_id.users
         else:
             return False
 
-    patrners_ids = fields.Many2many('res.partner', 'order_partner_rel',
-                                    'order_id', 'partner_id', 'Partners', default=_default_partners_ids)
+    users_ids = fields.Many2many('res.users', 'order_users_rel', 'order_id', 'users_id', 'Users', default=_default_users_ids)
+    patrners_ids = fields.Many2many('res.partner', 'order_partner_rel', 'order_id', 'partner_id', 'Partners', compute='_compute_partners_ids')
+
+    @api.depends('users_ids')
+    def _compute_partners_ids(self):
+        for record in self:
+            record.patrners_ids = record.users_ids.partner_id if record.users_ids else False
 
     def compute_patrners_ids(self):
         partners = ''
