@@ -127,6 +127,11 @@ msgid "Partners"
 msgstr "Terceros"
 
 #. module: credit_suprapak
+#: model:ir.model.fields,field_description:credit_suprapak.field_sale_order__users_ids
+msgid "Users"
+msgstr "Usuarios"
+
+#. module: credit_suprapak
 #: model:ir.model,name:credit_suprapak.model_sale_order
 msgid "Sales Order"
 msgstr "Orden de Venta"
@@ -134,4 +139,4 @@ msgstr "Orden de Venta"
 #. module: credit_suprapak
 #: model_terms:ir.ui.view,arch_db:credit_suprapak.customer_limit_wizard_form
 msgid "Send mail"
-msgstr "Enviar correo"
+msgstr "Enviar notificacion"

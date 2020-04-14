@@ -8,8 +8,26 @@ class customer_limit_wizard(models.TransientModel):
     
     def button_send_mail(self):
         self.set_credit_limit_state()
-        self.action_send_mail()
+        # self.action_send_mail()
+        self.action_create_activity()
         return True
+    
+    def action_create_activity(self):
+        order_id = self.env['sale.order'].browse(self._context.get('active_id'))
+        model_id = self.env.ref('sale.model_sale_order')
+        type_id = self.env.ref('mail.mail_activity_data_todo')
+        summary = 'El pedido ha sido bloqueado por limite de credito, por favor revisar'
+        date_deadline = order_id.validity_date if order_id.validity_date else fields.Date.today()
+        for user in order_id.users_ids:
+            activity_data = {
+                'res_id': order_id.id,
+                'res_model_id': model_id.id,
+                'activity_type_id': type_id.id,
+                'date_deadline': date_deadline,
+                'summary': summary,
+                'user_id': user.id,
+            }
+            self.env['mail.activity'].create(activity_data)
     
     def action_send_mail(self):
         template_id = self.env.ref('credit_suprapak.mail_template_credit_suprapak').id

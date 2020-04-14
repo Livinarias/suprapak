@@ -8,7 +8,8 @@
                 <xpath expr="//page[@name='other_information']" position="inside">
                     <group groups="dev_customer_credit_limit.credit_limit_config">
                         <group name="credit_limit" string="Credit limit">
-                            <field name="patrners_ids" widget="many2many_tags"/>
+                            <field name="users_ids" widget="many2many_tags"/>
+                            <!--<field name="patrners_ids" widget="many2many_tags"/>-->
                         </group>
                         <group>
                         </group>
