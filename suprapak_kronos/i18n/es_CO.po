@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-08 16:32+0000\n"
-"PO-Revision-Date: 2020-04-08 16:32+0000\n"
+"POT-Creation-Date: 2020-04-13 22:22+0000\n"
+"PO-Revision-Date: 2020-04-13 22:22+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -1483,17 +1483,17 @@ msgstr "Codigo Producto"
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__movie_type_products_ids
 msgid "Product for Movie Type"
-msgstr "Tipo de pelicula del producto"
+msgstr "Codigo de Compuesto"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__product_type_id
 msgid "Product line"
-msgstr "Tipo de Producto"
+msgstr "Linea de Producto"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields,field_description:suprapak_kronos.field_data_sheet__movie_type_product_ids
 msgid "Product of Movie Type"
-msgstr "Tipo de pelicula del producto"
+msgstr "Codigo de Compuesto"
 
 #. module: suprapak_kronos
 #: model:ir.actions.act_window,name:suprapak_kronos.action_data_product_type
@@ -1566,7 +1566,7 @@ msgstr "Rechazado"
 #: model:ir.model.fields.selection,name:suprapak_kronos.selection__data_sheet__type_sheet__rejected_d
 #: model_terms:ir.ui.view,arch_db:suprapak_kronos.form_data_sheet
 msgid "Rejected Design"
-msgstr "rechazada Diseño"
+msgstr "Diseño rechazado"
 
 #. module: suprapak_kronos
 #: model:ir.model.fields.selection,name:suprapak_kronos.selection__data_sheet__type_sheet__rejected_t
@@ -1686,7 +1686,11 @@ msgstr "Pedido de Venta"
 #: model:ir.model,name:suprapak_kronos.model_sale_order_line
 msgid "Sales Order Line"
 msgstr ""
+<<<<<<< HEAD
+"LInea de orden de ventaLínea de orden de ventaPedido de Venta en Linea#-#-#-#-#  es_CO.po (Odoo 9.0)  #-#-#-#-#\n"
+=======
 "Lineas de orden de ventaLInea de orden de ventaLínea de orden de ventaPedido de Venta en Linea#-#-#-#-#  es_CO.po (Odoo 9.0)  #-#-#-#-#\n"
+>>>>>>> Kronos
 "Línea Orden de Venta\n"
 "#-#-#-#-#  es_CO.po (Odoo 9.0)  #-#-#-#-#\n"
 "Línea de Pedido de Venta"

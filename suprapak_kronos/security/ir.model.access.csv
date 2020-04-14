@@ -33,11 +33,9 @@ user_cold_foil,user_cold_foil,suprapak_kronos.model_cold_foil,suprapak_kronos.gr
 user_adhesive_type,user_adhesive_type,suprapak_kronos.model_adhesive_type,suprapak_kronos.group_data_sheet_user,1,1,1,1
 user_inks,user_inks,suprapak_kronos.model_inks,suprapak_kronos.group_data_sheet_user,1,1,1,1
 user_designer,user_designer,suprapak_kronos.model_designer,suprapak_kronos.group_data_sheet_user,1,1,1,1
-user_data_sector_type,user_data_sector_type,suprapak_kronos.model_data_sector_type,suprapak_kronos.group_data_sheet_user,1,1,1,1
 user_color_scale,user_color_scale,suprapak_kronos.model_color_scale,suprapak_kronos.group_data_sheet_user,1,1,1,1
 user_control_change,user_control_change,suprapak_kronos.model_control_change,suprapak_kronos.group_data_sheet_user,1,1,1,1
 user_tape,user_tape,suprapak_kronos.model_tape,suprapak_kronos.group_data_sheet_user,1,1,1,1
-user_print_color,user_print_color,suprapak_kronos.model_print_color,suprapak_kronos.group_data_sheet_user,1,1,1,1
 user_rewind,user_rewind,suprapak_kronos.model_rewind,suprapak_kronos.group_data_sheet_user,1,1,1,1
 user_for_superlon,user_for_superlon,suprapak_kronos.model_for_superlon,suprapak_kronos.group_data_sheet_user,1,1,1,1
 user_repeat,user_repeat,suprapak_kronos.model_repeat,suprapak_kronos.group_data_sheet_user,1,1,1,1
