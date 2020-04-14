@@ -27,7 +27,7 @@ class DataSheetLine(models.Model):
     product_qty = fields.Float('Quantity', digits='Product Unit of Measure', default=1.00)
     uom_id = fields.Many2one('uom.uom', 'Unit of measure', digits='Product Price')
     standard_price = fields.Float('Unit Price', digits='Product Price')
-    total = fields.Float('Total', digits='Product Price', compute = '_compute_total')
+    total = fields.Float('Total', digits='Product Price')
     uom_categ_id = fields.Many2one('uom.category', 'Uom category')
     field_char = fields.Char('Field', default='None')
     field_product = fields.Char()
@@ -60,16 +60,12 @@ class DataSheetLine(models.Model):
             self.uom_id = self.product_id.uom_id
             self.uom_categ_id = self.product_id.uom_id.category_id
             self.standard_price = self.product_id.standard_price
+            self.total = self.standard_price * self.product_qty
 
-    @api.depends('product_qty','standard_price')
-    def _compute_total(self):
-        for lines in self:
-            if self.product_qty and self.standard_price:
-                self.total = self.product_qty * self.standard_price
-            else:
-                self.total = None
-                self.product_qty = None
-                self.standard_price = None
+    @api.onchange('product_qty')
+    def _onchange_product_qty(self):
+        if self.product_qty:
+            self.total = self.standard_price * self.product_qty
 
     @api.onchange('field_product')
     def _onchange_field_product(self):
