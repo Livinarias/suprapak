@@ -31,8 +31,18 @@ class DataSheetLine(models.Model):
     uom_categ_id = fields.Many2one('uom.category', 'Uom category')
     field_char = fields.Char('Field', default='None')
     field_product = fields.Char()
+    #print.color
+    press = fields.Selection(
+        [('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5'), ('6', '6'), ('7', '7'), ('8', '8')], 'U.Press')
+    percentage = fields.Selection(
+        [('5', '5'), ('10', '10'), ('20', '20'), ('30', '30'), ('40', '40'), ('50', '50'), ('80', '80'),
+         ('100', '100')], 'Percentage')
+    line = fields.Selection([('bs', 'BS'), ('ba', 'BA'), ('uv', 'UV')], 'Line')
+    lineatura = fields.Char('Lineatura')
+    bcm = fields.Char('BCM')
     # One2many
     sheet_id = fields.Many2one('data.sheet', 'Sheet')
+    print_color_id = fields.Many2one('data.sheet', 'Sheet')
     roll_id = fields.Many2one('data.sheet', 'Sheet')
     for_bag_id = fields.Many2one('data.sheet', 'Sheet')
     for_superlon_id = fields.Many2one('data.sheet', 'Sheet')
@@ -81,6 +91,7 @@ class DataSheet(models.Model):
     # Version
     version = fields.Integer('Version', default=1, required=True)
     product_id = fields.Many2one('product.product', 'Product')
+    reference = fields.Char('Reference', related='product_id.default_code')
     priority = fields.Selection([('0', 'Normal'), ('1', 'Low'), ('2', 'High'), ('3', 'Very High')], 'Priority')
     # Info Customer
     partner_id = fields.Many2one('res.partner', 'Customer')
@@ -93,6 +104,7 @@ class DataSheet(models.Model):
     # sheet line
     line_ids = fields.One2many('data.sheet.line', 'sheet_id', 'Bills of Materials')
     # One2many
+    print_color_ids = fields.One2many('data.sheet.line','print_color_id','Color')
     roll_ids = fields.One2many('data.sheet.line', 'roll_id', 'Rolls')
     for_bag_ids = fields.One2many('data.sheet.line','for_bag_id','Bag')
     for_superlon_ids = fields.One2many('data.sheet.line','for_superlon_id','Superlon')
@@ -211,8 +223,6 @@ class DataSheet(models.Model):
     box = fields.Many2one('product.product','Box')
     superlon = fields.Many2one('product.product','Superlon')
     tape_id = fields.Many2one('tape','Tape')#depende rollo....
-    print_id = fields.Many2one('print.color')
-    prints_ids = fields.Many2many('print.color','sheet_print_rel','sheet_id','print_id','Print Colors')
     plane_art = fields.Binary('Plane Art')
     funtional_test = fields.Binary('Funtional Test')
     repeat_id = fields.Many2one('repeat','Roller')
@@ -450,7 +460,7 @@ class DataSheet(models.Model):
         if values:
             self.write({'line_ids': values})
 
-    @api.onchange('roll_ids', 'for_bag_ids', 'for_superlon_ids', 'refile_ids', 'revision_ids', 'gluped_ids', 'gluped2_ids', 'movie_type_product_ids','rebobine_ids','print_ids')
+    @api.onchange('roll_ids', 'for_bag_ids', 'for_superlon_ids', 'refile_ids', 'revision_ids', 'gluped_ids', 'gluped2_ids', 'movie_type_product_ids','rebobine_ids','print_ids','print_color_ids')
     def _onchange_one2many(self):
         for line in self.roll_ids:
             line.sheet_id = self
@@ -471,6 +481,8 @@ class DataSheet(models.Model):
         for line in self.rebobine_ids:
             line.sheet_id = self
         for line in self.print_ids:
+            line.sheet_id = self
+        for line in self.print_color_ids:
             line.sheet_id = self
 
     """def write(self, values):
@@ -885,7 +897,7 @@ class Rewind(models.Model):
     name = fields.Char('Rewind')
 
 
-class PrintColor(models.Model):
+"""class PrintColor(models.Model):
     _name = 'print.color'
     _description = 'Print Color'
 
@@ -894,7 +906,7 @@ class PrintColor(models.Model):
     percentage = fields.Selection([('5', '5'), ('10', '10'), ('20', '20'), ('30', '30'), ('40', '40'), ('50', '50'),('80', '80'),('100', '100')], 'Percentage')
     line = fields.Selection([('bs','BS'),('ba', 'BA'),('uv','UV')],'Line')
     lineatura = fields.Char('Lineatura')
-    bcm = fields.Char('BCM')
+    bcm = fields.Char('BCM')"""
 
 
 class Repeat(models.Model):
@@ -926,12 +938,7 @@ class MathPrint(models.Model):
     vendor_date = fields.Date('Application date vendor')
     date_recieved_approved = fields.Date('Date Recieved Approved')
     observations = fields.Char('Observations')
-    name1 = fields.Char('Name')
 
-    @api.onchange('name')
-    def _onchange_name(self):
-        if self.name:
-            self.name1 = self.name
 
 class DrawnPass(models.Model):
 
