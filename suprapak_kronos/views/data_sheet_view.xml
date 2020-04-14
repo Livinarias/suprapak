@@ -257,6 +257,7 @@
                                             <tree>
                                                 <field name="name" options="{'no_create': True, 'no_create_edit':True}"/>
                                                 <field name="press"/>
+                                                <field name="percentage"/>
                                                 <field name="line"/>
                                                 <field name="lineatura"/>
                                                 <field name="bcm"/>
@@ -315,6 +316,11 @@
                                                     <field name="product_id" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia'),('categ_id','=','CINTAS')]"/>
                                                 </tree>
                                             </field>
+                                            <field name="print_ids" widget="one2many" context="{'default_sheet_id': id}">
+                                                <tree string="Components" editable="bottom">
+                                                    <field name="product_id" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia'),('categ_id','=','CINTAS')]"/>
+                                                </tree>
+                                            </field>
                                             <field name="revision_ids" widget="one2many" context="{'default_sheet_id': id}">
                                                 <tree string="Components" editable="bottom">
                                                     <field name="product_id" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia'),('categ_id','=','CINTAS')]"/>
@@ -346,6 +352,8 @@
                                             <field name="product_qty"/>
                                             <field name="uom_categ_id" invisible="True"/>
                                             <field name="uom_id"/>
+                                            <field name="standard_price"/>
+                                            <field name="total"/>
                                         </tree>
                                     </field>
                                 </group>
