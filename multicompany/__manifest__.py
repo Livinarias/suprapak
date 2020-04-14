@@ -21,7 +21,7 @@
     # always loaded
     'data': [
         'views/invoice_template.xml',
-        #'views/report_invoice_document_supra.xml',
+        'views/report_invoice_document_supra.xml',
     ],
     # only loaded in demonstration mode
     'images': [],

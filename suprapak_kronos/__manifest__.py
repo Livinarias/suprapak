@@ -27,7 +27,7 @@
         'views/data_sheet_menu.xml',
         'views/crm_lead_view.xml',
         'views/sale_order_view.xml',
-        'security/ir.model.access.csv',
+        #'security/ir.model.access.csv',
         'views/sale_template.xml'
 
     ],
