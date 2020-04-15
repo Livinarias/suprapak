@@ -257,6 +257,10 @@
                                         <field name="print_color_ids" widget="one2many" context="{'default_sheet_id': id}">
                                             <tree string="Components" editable="bottom">
                                                 <field name="product_id" options="{'no_create': True, 'no_create_edit':True}"/>
+                                                <field name="uom_id" invisible="True"/>
+                                                <field name="product_qty" invisible="True"/>
+                                                <field name="standard_price" invisible="True"/>
+                                                <field name="total" invisible="True"/>
                                                 <field name="press"/>
                                                 <field name="percentage"/>
                                                 <field name="line"/>
