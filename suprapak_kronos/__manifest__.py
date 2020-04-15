@@ -17,7 +17,7 @@
     'version': '13.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['sale_crm', 'mrp'],
+    'depends': ['sale_crm', 'mrp','stock_suprapak'],
 
     # always loaded
     'data': [
@@ -33,8 +33,5 @@
     ],
     # only loaded in demonstration mode
     'images': ['static/description/icon.png'],
-    'demo': [
-        'demo/demo.xml',
-    ],
     'application': True,
 }

@@ -38,7 +38,7 @@
                   sequence="25"/>
 
         <menuitem id="menu_data_movie_color"
-                  name="Movie color"
+                  name="Colors"
                   action="action_data_movie_color"
                   parent="menu_data_sheet_conf"
                   sequence="30"/>
@@ -73,23 +73,17 @@
                   parent="menu_data_sheet_conf"
                   sequence="55"/>
 
-        <menuitem id="menu_data_package_contents"
-                  name="Package Contents"
-                  action="action_data_application_contents"
-                  parent="menu_data_sheet_conf"
-                  sequence="60"/>
-
         <menuitem id="menu_data_form"
                   name="Form"
                   action="action_data_form"
                   parent="menu_data_sheet_conf"
-                  sequence="65"/>
+                  sequence="60"/>
 
         <menuitem id="menu_specification_width"
                   name="Specification Width"
                   action="action_specification_width"
                   parent="menu_data_sheet_conf"
-                  sequence="70"/>
+                  sequence="65"/>
 
         <menuitem id="menu_specification_long"
                   name="Specification Long"
@@ -217,40 +211,46 @@
                   parent="menu_data_sheet_conf"
                   sequence="175"/>
 
-        <menuitem id="menu_print_color"
-                  name="Print Color"
-                  action="action_print_color"
-                  parent="menu_data_sheet_conf"
-                  sequence="180"/>
-
         <menuitem id="menu_for_superlon"
                   name="For Superlon"
                   action="action_for_superlon"
                   parent="menu_data_sheet_conf"
-                  sequence="185"/>
+                  sequence="180"/>
 
         <menuitem id="menu_repeat"
                   name="Repeat"
                   action="action_repeat"
                   parent="menu_data_sheet_conf"
-                  sequence="190"/>
+                  sequence="185"/>
 
         <menuitem id="menu_print_type"
                   name="Print Type"
                   action="action_print_type"
                   parent="menu_data_sheet_conf"
-                  sequence="195"/>
+                  sequence="190"/>
 
         <menuitem id="menu_chemical_composition"
                   name="Chemical Composition"
                   action="action_chemical_composition"
                   parent="menu_data_sheet_conf"
-                  sequence="200"/>
+                  sequence="195"/>
 
         <menuitem id="menu_adhesive_type"
                   name="Adhesive Type"
                   action="action_adhesive_type"
                   parent="menu_data_sheet_conf"
+                  sequence="200"/>
+
+        <menuitem id="menu_drawn_pass"
+                  name="Drawn Pass"
+                  action="action_drawn_pass"
+                  parent="menu_data_sheet_conf"
                   sequence="205"/>
+
+        <menuitem id="menu_drawn_pass"
+                  name="Drawn Pass"
+                  action="action_drawn_pass"
+                  parent="menu_data_sheet_conf"
+                  sequence="210"/>
     </data>
 </odoo>
