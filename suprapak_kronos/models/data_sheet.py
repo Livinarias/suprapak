@@ -435,7 +435,7 @@ class DataSheet(models.Model):
                 'product_qty': 1,
                 'uom_id': self.bag.uom_id.id,
                 'standard_price': self.bag.standard_price,
-                'total': self.bag.standard_price
+                'total': self.bag.standard_price,
             }
             values.append((0, 0, dic))
         if self.separator_id:
@@ -446,6 +446,8 @@ class DataSheet(models.Model):
                 'product_qty': 1,
                 'uom_id': self.separator_id.uom_id.id,
                 'standard_price': self.separator_id.standard_price,
+                'total': self.separator_id.standard_price,
+
             }
             values.append((0, 0, dic))
         if self.box:
@@ -454,7 +456,9 @@ class DataSheet(models.Model):
                 'field_char': 'box',
                 'product_id': self.box.id,
                 'product_qty': 1,
-                'uom_id': self.box.uom_id.id
+                'uom_id': self.box.uom_id.id,
+                'standard_price': self.box.standard_price,
+                'total': self.box.standard_price,
             }
             values.append((0, 0, dic))
         if self.superlon:
@@ -463,7 +467,9 @@ class DataSheet(models.Model):
                 'field_char': 'superlon',
                 'product_id': self.superlon.id,
                 'product_qty': 1,
-                'uom_id': self.superlon.uom_id.id
+                'uom_id': self.superlon.uom_id.id,
+                'standard_price': self.superlon.standard_price,
+                'total': self.superlon.standard_price,
             }
             values.append((0, 0, dic))
         if values:

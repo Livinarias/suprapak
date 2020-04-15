@@ -101,6 +101,10 @@
                                                 <tree string="Components" editable="bottom">
                                                     <field name="product_id" options="{'no_create': True, 'no_create_edit':True}"
                                                            domain="[('tipo_producto','=','materia'),'|',('categ_id','=','PELICULA IMPORTADA'),('categ_id','=','PELICULA NACIONAL')]"/>
+                                                    <field name="uom_id" invisible="True"/>
+                                                    <field name="product_qty" invisible="True"/>
+                                                    <field name="standard_price" invisible="True"/>
+                                                    <field name="total" invisible="True"/>
                                                 </tree>
                                             </field>
                                         </group>
@@ -301,16 +305,28 @@
                                             <field name="roll_ids" widget="one2many" context="{'default_sheet_id': id}">
                                                 <tree string="Components" editable="bottom">
                                                     <field name="product_id" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia'),('categ_id','=','CINTAS')]"/>
+                                                    <field name="uom_id" invisible="True"/>
+                                                    <field name="product_qty" invisible="True"/>
+                                                    <field name="standard_price" invisible="True"/>
+                                                    <field name="total" invisible="True"/>
                                                 </tree>
                                             </field>
                                             <field name="for_bag_ids" widget="one2many" context="{'default_sheet_id': id}">
                                                 <tree string="Components" editable="bottom">
                                                     <field name="product_id" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia'),('categ_id','=','BOLSAS')]"/>
+                                                    <field name="uom_id" invisible="True"/>
+                                                    <field name="product_qty" invisible="True"/>
+                                                    <field name="standard_price" invisible="True"/>
+                                                    <field name="total" invisible="True"/>
                                                 </tree>
                                             </field>
                                             <field name="for_superlon_ids" widget="one2many" context="{'default_sheet_id': id}">
                                                 <tree string="Components" editable="bottom">
                                                     <field name="product_id" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia'),('categ_id','=','AISLANTES TERMICOS')]"/>
+                                                    <field name="uom_id" invisible="True"/>
+                                                    <field name="product_qty" invisible="True"/>
+                                                    <field name="standard_price" invisible="True"/>
+                                                    <field name="total" invisible="True"/>
                                                 </tree>
                                             </field>
                                             <field name="for_box"/>
@@ -319,31 +335,55 @@
                                             <field name="refile_ids" widget="one2many" context="{'default_sheet_id': id}">
                                                 <tree string="Components" editable="bottom">
                                                     <field name="product_id" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia'),('categ_id','=','CINTAS')]"/>
+                                                    <field name="uom_id" invisible="True"/>
+                                                    <field name="product_qty" invisible="True"/>
+                                                    <field name="standard_price" invisible="True"/>
+                                                    <field name="total" invisible="True"/>
                                                 </tree>
                                             </field>
                                             <field name="print_ids" widget="one2many" context="{'default_sheet_id': id}">
                                                 <tree string="Components" editable="bottom">
                                                     <field name="product_id" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia'),('categ_id','=','CINTAS')]"/>
+                                                    <field name="uom_id" invisible="True"/>
+                                                    <field name="product_qty" invisible="True"/>
+                                                    <field name="standard_price" invisible="True"/>
+                                                    <field name="total" invisible="True"/>
                                                 </tree>
                                             </field>
                                             <field name="revision_ids" widget="one2many" context="{'default_sheet_id': id}">
                                                 <tree string="Components" editable="bottom">
                                                     <field name="product_id" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia'),('categ_id','=','CINTAS')]"/>
+                                                    <field name="uom_id" invisible="True"/>
+                                                    <field name="product_qty" invisible="True"/>
+                                                    <field name="standard_price" invisible="True"/>
+                                                    <field name="total" invisible="True"/>
                                                 </tree>
                                             </field>
                                             <field name="gluped_ids" widget="one2many" context="{'default_sheet_id': id}">
                                                 <tree string="Components" editable="bottom">
                                                     <field name="product_id" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia'),('categ_id','=','CINTAS')]"/>
+                                                    <field name="uom_id" invisible="True"/>
+                                                    <field name="product_qty" invisible="True"/>
+                                                    <field name="standard_price" invisible="True"/>
+                                                    <field name="total" invisible="True"/>
                                                 </tree>
                                             </field>
                                             <field name="gluped2_ids" widget="one2many" context="{'default_sheet_id': id}">
                                                 <tree string="Components" editable="bottom">
                                                     <field name="product_id" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia'),('categ_id','=','CINTAS')]"/>
+                                                    <field name="uom_id" invisible="True"/>
+                                                    <field name="product_qty" invisible="True"/>
+                                                    <field name="standard_price" invisible="True"/>
+                                                    <field name="total" invisible="True"/>
                                                 </tree>
                                             </field>
                                             <field name="rebobine_ids" widget="one2many" context="{'default_sheet_id': id}">
                                                 <tree string="Components" editable="bottom">
                                                     <field name="product_id" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia'),('categ_id','=','CINTAS')]"/>
+                                                    <field name="uom_id" invisible="True"/>
+                                                    <field name="product_qty" invisible="True"/>
+                                                    <field name="standard_price" invisible="True"/>
+                                                    <field name="total" invisible="True"/>
                                                 </tree>
                                             </field>
                                         </group>
