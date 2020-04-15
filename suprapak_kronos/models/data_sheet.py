@@ -24,7 +24,7 @@ class DataSheetLine(models.Model):
 
     company_id = fields.Many2one('res.company', 'Company', default=lambda self: self.env.company.id)
     product_id = fields.Many2one('product.product', 'Product', required=True)
-    product_qty = fields.Float('Quantity', digits='Product Unit of Measure', default=1.00)
+    product_qty = fields.Float('Quantity', digits='Kronos', default=1.00)
     uom_id = fields.Many2one('uom.uom', 'Unit of measure', digits='Product Price')
     standard_price = fields.Float('Unit Price', digits='Product Price')
     total = fields.Float('Total', digits='Product Price')
@@ -97,7 +97,7 @@ class DataSheet(models.Model):
     # Version
     version = fields.Integer('Version', default=1, required=True)
     product_id = fields.Many2one('product.product', 'Product')
-    reference = fields.Char('Reference', related='product_id.default_code')
+    reference = fields.Char('Reference', related='product_id.customer_reference')
     priority = fields.Selection([('0', 'Normal'), ('1', 'Low'), ('2', 'High'), ('3', 'Very High')], 'Priority')
     # Info Customer
     partner_id = fields.Many2one('res.partner', 'Customer')
@@ -424,8 +424,8 @@ class DataSheet(models.Model):
         if self.product_id:
             self.uom_id = self.product_id.uom_id.id
 
-    @api.onchange('bag', 'separator_id', 'box', 'superlon')
-    def _onchange_many2one(self):
+    @api.onchange('bag')
+    def _onchange_bag(self):
         values = []
         if self.bag:
             self.line_ids.search([('field_char', '=', 'bag')]).unlink()
@@ -435,9 +435,15 @@ class DataSheet(models.Model):
                 'product_qty': 1,
                 'uom_id': self.bag.uom_id.id,
                 'standard_price': self.bag.standard_price,
-                'total': self.bag.standard_price
+                'total': self.bag.standard_price,
             }
             values.append((0, 0, dic))
+        if values:
+            self.write({'line_ids': values})
+
+    @api.onchange('separator_id')
+    def _onchange_separator_id(self):
+        values = []
         if self.separator_id:
             self.line_ids.search([('field_char', '=', 'separator_id')]).unlink()
             dic = {
@@ -446,24 +452,42 @@ class DataSheet(models.Model):
                 'product_qty': 1,
                 'uom_id': self.separator_id.uom_id.id,
                 'standard_price': self.separator_id.standard_price,
+                'total': self.separator_id.standard_price,
+
             }
             values.append((0, 0, dic))
+        if values:
+            self.write({'line_ids': values})
+
+    @api.onchange('box')
+    def _onchange_box(self):
+        values = []
         if self.box:
             self.line_ids.search([('field_char', '=', 'box')]).unlink()
             dic = {
                 'field_char': 'box',
                 'product_id': self.box.id,
                 'product_qty': 1,
-                'uom_id': self.box.uom_id.id
+                'uom_id': self.box.uom_id.id,
+                'standard_price': self.box.standard_price,
+                'total': self.box.standard_price,
             }
             values.append((0, 0, dic))
+        if values:
+            self.write({'line_ids': values})
+
+    @api.onchange('superlon')
+    def _onchange_superlon(self):
+        values = []
         if self.superlon:
             self.line_ids.search([('field_char', '=', 'superlon')]).unlink()
             dic = {
                 'field_char': 'superlon',
                 'product_id': self.superlon.id,
                 'product_qty': 1,
-                'uom_id': self.superlon.uom_id.id
+                'uom_id': self.superlon.uom_id.id,
+                'standard_price': self.superlon.standard_price,
+                'total': self.superlon.standard_price,
             }
             values.append((0, 0, dic))
         if values:
@@ -591,7 +615,7 @@ class DataSheet(models.Model):
                 }
                 valores.append((0, 0, dic))
             valor = {
-                'product_tmpl_id': record.product_id.id,
+                'product_tmpl_id': record.product_id.product_tmpl_id.id,
                 'bom_line_ids': valores,
                 'routing_id': record.routing_id.id,
                 'sheet_id': record.id,
