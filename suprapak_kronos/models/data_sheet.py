@@ -24,19 +24,31 @@ class DataSheetLine(models.Model):
 
     company_id = fields.Many2one('res.company', 'Company', default=lambda self: self.env.company.id)
     product_id = fields.Many2one('product.product', 'Product', required=True)
-    product_qty = fields.Float('Quantity', digits='Product Unit of Measure', default=1.00)
-    uom_id = fields.Many2one('uom.uom', 'Unit of measure')
+    product_qty = fields.Float('Quantity', digits='Kronos', default=1.00)
+    uom_id = fields.Many2one('uom.uom', 'Unit of measure', digits='Product Price')
+    standard_price = fields.Float('Unit Price', digits='Product Price')
+    total = fields.Float('Total', digits='Product Price')
     uom_categ_id = fields.Many2one('uom.category', 'Uom category')
     field_char = fields.Char('Field', default='None')
     field_product = fields.Char()
-    # cost = fields.Float('Cost', digits='Account')
+    #print.color
+    press = fields.Selection(
+        [('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5'), ('6', '6'), ('7', '7'), ('8', '8')], 'U.Press')
+    percentage = fields.Selection(
+        [('5', '5'), ('10', '10'), ('20', '20'), ('30', '30'), ('40', '40'), ('50', '50'), ('80', '80'),
+         ('100', '100')], 'Percentage')
+    line = fields.Selection([('bs', 'BS'), ('ba', 'BA'), ('uv', 'UV')], 'Line')
+    lineatura = fields.Char('Lineatura')
+    bcm = fields.Char('BCM')
     # One2many
     sheet_id = fields.Many2one('data.sheet', 'Sheet')
+    print_color_id = fields.Many2one('data.sheet', 'Sheet')
     roll_id = fields.Many2one('data.sheet', 'Sheet')
     for_bag_id = fields.Many2one('data.sheet', 'Sheet')
     for_superlon_id = fields.Many2one('data.sheet', 'Sheet')
     refile_id = fields.Many2one('data.sheet','Sheet')
     revision_id = fields.Many2one('data.sheet','Sheet')
+    print_id = fields.Many2one('data.sheet','Sheet')
     gluped_id = fields.Many2one('data.sheet','Sheet')
     gluped2_id = fields.Many2one('data.sheet','Sheet')
     movie_type_product_id = fields.Many2one('data.sheet','Sheet')
@@ -47,6 +59,13 @@ class DataSheetLine(models.Model):
         if self.product_id:
             self.uom_id = self.product_id.uom_id
             self.uom_categ_id = self.product_id.uom_id.category_id
+            self.standard_price = self.product_id.standard_price
+            self.total = self.standard_price * self.product_qty
+
+    @api.onchange('product_qty')
+    def _onchange_product_qty(self):
+        if self.product_qty:
+            self.total = self.standard_price * self.product_qty
 
     @api.onchange('field_product')
     def _onchange_field_product(self):
@@ -78,6 +97,7 @@ class DataSheet(models.Model):
     # Version
     version = fields.Integer('Version', default=1, required=True)
     product_id = fields.Many2one('product.product', 'Product')
+    reference = fields.Char('Reference', related='product_id.customer_reference')
     priority = fields.Selection([('0', 'Normal'), ('1', 'Low'), ('2', 'High'), ('3', 'Very High')], 'Priority')
     # Info Customer
     partner_id = fields.Many2one('res.partner', 'Customer')
@@ -90,11 +110,13 @@ class DataSheet(models.Model):
     # sheet line
     line_ids = fields.One2many('data.sheet.line', 'sheet_id', 'Bills of Materials')
     # One2many
+    print_color_ids = fields.One2many('data.sheet.line','print_color_id','Color')
     roll_ids = fields.One2many('data.sheet.line', 'roll_id', 'Rolls')
     for_bag_ids = fields.One2many('data.sheet.line','for_bag_id','Bag')
     for_superlon_ids = fields.One2many('data.sheet.line','for_superlon_id','Superlon')
     refile_ids = fields.One2many('data.sheet.line','refile_id','Refile')
     revision_ids = fields.One2many('data.sheet.line','revision_id','Revision')
+    print_ids = fields.One2many('data.sheet.line','print_id','Print')
     gluped_ids = fields.One2many('data.sheet.line','gluped_id','Gluped 1 to 2')
     gluped2_ids = fields.One2many('data.sheet.line','gluped2_id','Gluped 2 to 3')
     movie_type_product_ids = fields.One2many('data.sheet.line','movie_type_product_id','Product of Movie Type')
@@ -116,7 +138,7 @@ class DataSheet(models.Model):
     specification_width_planned = fields.Selection([('1','1'),('2','2'),('3','3'),('4','4')],'Width Planned')
     specification_long_id = fields.Many2one('specification.long','Specification long')
     caliber_id = fields.Many2one('data.caliber.type', 'Specification caliber')
-    tolerance_width = fields.Float('Tolerance width')
+    tolerance_width = fields.Float('Tolerance width', compute ='_compute_specification_width_id')
     tolerance_long = fields.Float('Tolerance long', compute = '_compute_specification_long_id')
     tolerance_caliber = fields.Float('Tolerance caliber', compute = '_compute_caliber_id')
     # Bool
@@ -207,8 +229,6 @@ class DataSheet(models.Model):
     box = fields.Many2one('product.product','Box')
     superlon = fields.Many2one('product.product','Superlon')
     tape_id = fields.Many2one('tape','Tape')#depende rollo....
-    print_id = fields.Many2one('print.color')
-    prints_ids = fields.Many2many('print.color','sheet_print_rel','sheet_id','print_id','Print Colors')
     plane_art = fields.Binary('Plane Art')
     funtional_test = fields.Binary('Funtional Test')
     repeat_id = fields.Many2one('repeat','Roller')
@@ -350,10 +370,12 @@ class DataSheet(models.Model):
         if self.seal_type_id:
             self.seal = self.seal_type_id.name
 
-    @api.onchange('specification_width_id')
-    def _onchange_specification_width_id(self):
+    @api.depends('specification_width_id')
+    def _compute_specification_width_id(self):
         if self.specification_width_id:
             self.tolerance_width = self.specification_width_id.tolerance
+        else:
+            self.tolerance_width = None
 
     @api.onchange('adhesive_type_id')
     def _oncahnge_adhesive_type_id(self):
@@ -402,8 +424,8 @@ class DataSheet(models.Model):
         if self.product_id:
             self.uom_id = self.product_id.uom_id.id
 
-    @api.onchange('bag', 'separator_id', 'box', 'superlon')
-    def _onchange_many2one(self):
+    @api.onchange('bag')
+    def _onchange_bag(self):
         values = []
         if self.bag:
             self.line_ids.search([('field_char', '=', 'bag')]).unlink()
@@ -411,40 +433,67 @@ class DataSheet(models.Model):
                 'field_char': 'bag',
                 'product_id': self.bag.id,
                 'product_qty': 1,
-                #'uom_id': self.bag.uom_id.id
+                'uom_id': self.bag.uom_id.id,
+                'standard_price': self.bag.standard_price,
+                'total': self.bag.standard_price,
             }
             values.append((0, 0, dic))
+        if values:
+            self.write({'line_ids': values})
+
+    @api.onchange('separator_id')
+    def _onchange_separator_id(self):
+        values = []
         if self.separator_id:
             self.line_ids.search([('field_char', '=', 'separator_id')]).unlink()
             dic = {
                 'field_char': 'separator_id',
                 'product_id': self.separator_id.id,
                 'product_qty': 1,
-                #'uom_id': self.separator_id.uom_id.id
+                'uom_id': self.separator_id.uom_id.id,
+                'standard_price': self.separator_id.standard_price,
+                'total': self.separator_id.standard_price,
+
             }
             values.append((0, 0, dic))
+        if values:
+            self.write({'line_ids': values})
+
+    @api.onchange('box')
+    def _onchange_box(self):
+        values = []
         if self.box:
             self.line_ids.search([('field_char', '=', 'box')]).unlink()
             dic = {
                 'field_char': 'box',
                 'product_id': self.box.id,
                 'product_qty': 1,
-                'uom_id': self.box.uom_id.id
+                'uom_id': self.box.uom_id.id,
+                'standard_price': self.box.standard_price,
+                'total': self.box.standard_price,
             }
             values.append((0, 0, dic))
+        if values:
+            self.write({'line_ids': values})
+
+    @api.onchange('superlon')
+    def _onchange_superlon(self):
+        values = []
         if self.superlon:
             self.line_ids.search([('field_char', '=', 'superlon')]).unlink()
             dic = {
                 'field_char': 'superlon',
                 'product_id': self.superlon.id,
                 'product_qty': 1,
-                #'uom_id': self.superlon.uom_id.id
+                'uom_id': self.superlon.uom_id.id,
+                'standard_price': self.superlon.standard_price,
+                'total': self.superlon.standard_price,
             }
             values.append((0, 0, dic))
         if values:
             self.write({'line_ids': values})
 
-    @api.onchange('roll_ids', 'for_bag_ids', 'for_superlon_ids', 'refile_ids', 'revision_ids', 'gluped_ids', 'gluped2_ids', 'movie_type_product_ids','rebobine_ids')
+    @api.onchange('roll_ids', 'for_bag_ids', 'for_superlon_ids', 'refile_ids', 'revision_ids', 'gluped_ids', 'gluped2_ids', 'movie_type_product_ids','rebobine_ids','print_ids','print_color_ids')
     def _onchange_one2many(self):
         for line in self.roll_ids:
             line.sheet_id = self
@@ -463,6 +512,10 @@ class DataSheet(models.Model):
         for line in self.movie_type_product_ids:
             line.sheet_id = self
         for line in self.rebobine_ids:
+            line.sheet_id = self
+        for line in self.print_ids:
+            line.sheet_id = self
+        for line in self.print_color_ids:
             line.sheet_id = self
 
     """def write(self, values):
@@ -558,11 +611,11 @@ class DataSheet(models.Model):
                 dic = {
                     'product_id': line.product_id.id,
                     'product_qty': line.product_qty,
-                    #'product_uom_id': line.uom_id.id
+                    #'standard_price': line.uom_id.id
                 }
                 valores.append((0, 0, dic))
             valor = {
-                'product_tmpl_id': record.product_id.id,
+                'product_tmpl_id': record.product_id.product_tmpl_id.id,
                 'bom_line_ids': valores,
                 'routing_id': record.routing_id.id,
                 'sheet_id': record.id,
@@ -601,7 +654,7 @@ class DataMovieType(models.Model):
     _description = 'Movie type'
 
     name = fields.Char('Name')
-    density = fields.Float('Density')
+    density = fields.Float('Density' , digits='Product Unit of Measure')
     code = fields.Char('Code')
     color_id = fields.Many2one('data.movie.color', 'Color')
     transversal = fields.Char('Transversal')
@@ -877,15 +930,16 @@ class Rewind(models.Model):
     name = fields.Char('Rewind')
 
 
-class PrintColor(models.Model):
+"""class PrintColor(models.Model):
     _name = 'print.color'
     _description = 'Print Color'
 
     name = fields.Many2one('product.product','Color')
     press = fields.Selection([('1','1'),('2','2'),('3','3'),('4','4'),('5','5'),('6','6'),('7','7'),('8','8')],'U.Press')
+    percentage = fields.Selection([('5', '5'), ('10', '10'), ('20', '20'), ('30', '30'), ('40', '40'), ('50', '50'),('80', '80'),('100', '100')], 'Percentage')
     line = fields.Selection([('bs','BS'),('ba', 'BA'),('uv','UV')],'Line')
     lineatura = fields.Char('Lineatura')
-    bcm = fields.Char('BCM')
+    bcm = fields.Char('BCM')"""
 
 
 class Repeat(models.Model):
@@ -917,12 +971,6 @@ class MathPrint(models.Model):
     vendor_date = fields.Date('Application date vendor')
     date_recieved_approved = fields.Date('Date Recieved Approved')
     observations = fields.Char('Observations')
-    name1 = fields.Char('Name')
-
-    @api.onchange('name')
-    def _onchange_name(self):
-        if self.name:
-            self.name1 = self.name
 
 class DrawnPass(models.Model):
 

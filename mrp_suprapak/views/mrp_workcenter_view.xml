@@ -10,6 +10,18 @@
                     <field name="costs_hour_cif"/>
                     <field name="costs_hour_maq"/>
                 </xpath>
+                <xpath expr="//notebook/page/group" position="inside">
+                    <group>
+                        <field name="mod_account_id" domain="[('internal_type','=','other'),('deprecated', '=', False)]" 
+                        attrs="{'required': [('costs_hour_mod','!=',0.00)]}"/>
+                        <field name="cif_account_id" domain="[('internal_type','=','other'),('deprecated', '=', False)]" 
+                        attrs="{'required': [('costs_hour_cif','!=',0.00)]}"/>
+                        <field name="maq_account_id" domain="[('internal_type','=','other'),('deprecated', '=', False)]" 
+                        attrs="{'required': [('costs_hour_maq','!=',0.00)]}"/>
+                        <field name="process_account_id" domain="[('internal_type','=','other'),('deprecated', '=', False)]" 
+                        attrs="{'required': ['|','|',('costs_hour_mod','!=',0.00),('costs_hour_cif','!=',0.00),('costs_hour_maq','!=',0.00)]}"/>
+                    </group>
+                </xpath>
             </field>
         </record>
     </data>
