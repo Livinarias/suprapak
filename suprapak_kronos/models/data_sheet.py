@@ -433,7 +433,9 @@ class DataSheet(models.Model):
                 'field_char': 'bag',
                 'product_id': self.bag.id,
                 'product_qty': 1,
-                #'uom_id': self.bag.uom_id.id
+                'uom_id': self.bag.uom_id.id,
+                'standard_price': self.bag.standard_price,
+                'total': self.bag.standard_price
             }
             values.append((0, 0, dic))
         if self.separator_id:
@@ -442,7 +444,8 @@ class DataSheet(models.Model):
                 'field_char': 'separator_id',
                 'product_id': self.separator_id.id,
                 'product_qty': 1,
-                #'uom_id': self.separator_id.uom_id.id
+                'uom_id': self.separator_id.uom_id.id,
+                'standard_price': self.separator_id.standard_price,
             }
             values.append((0, 0, dic))
         if self.box:
@@ -460,7 +463,7 @@ class DataSheet(models.Model):
                 'field_char': 'superlon',
                 'product_id': self.superlon.id,
                 'product_qty': 1,
-                #'uom_id': self.superlon.uom_id.id
+                'uom_id': self.superlon.uom_id.id
             }
             values.append((0, 0, dic))
         if values:
@@ -944,7 +947,6 @@ class MathPrint(models.Model):
     vendor_date = fields.Date('Application date vendor')
     date_recieved_approved = fields.Date('Date Recieved Approved')
     observations = fields.Char('Observations')
-
 
 class DrawnPass(models.Model):
 

@@ -1686,7 +1686,7 @@ msgstr "Pedido de Venta"
 #: model:ir.model,name:suprapak_kronos.model_sale_order_line
 msgid "Sales Order Line"
 msgstr ""
-"LInea de orden de ventaLínea de orden de ventaPedido de Venta en Linea#-#-#-#-#  es_CO.po (Odoo 9.0)  #-#-#-#-#\n"
+"Lineas de orden de ventaLInea de orden de ventaLínea de orden de ventaPedido de Venta en Linea#-#-#-#-#  es_CO.po (Odoo 9.0)  #-#-#-#-#\n"
 "Línea Orden de Venta\n"
 "#-#-#-#-#  es_CO.po (Odoo 9.0)  #-#-#-#-#\n"
 "Línea de Pedido de Venta"

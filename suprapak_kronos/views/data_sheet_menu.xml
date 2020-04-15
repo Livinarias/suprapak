@@ -246,5 +246,11 @@
                   action="action_drawn_pass"
                   parent="menu_data_sheet_conf"
                   sequence="205"/>
+
+        <menuitem id="menu_drawn_pass"
+                  name="Drawn Pass"
+                  action="action_drawn_pass"
+                  parent="menu_data_sheet_conf"
+                  sequence="210"/>
     </data>
 </odoo>
