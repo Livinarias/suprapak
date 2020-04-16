@@ -79,6 +79,7 @@
                                 </td>
                                 <td>
                                     <span class="o_mrp_reports_web_action" t-att-res-id="row['product'].id" res-model="product.product" view-type="form" t-esc="row['product'].name"/>
+
                                 </td>
                                 <td>
                                     <span t-esc="row['initial_qty']" t-options='{"widget": "float", "decimal_precision": "Product Unit of Measure"}'/> <span t-esc="row['product'].uom_id.name"/>
@@ -88,6 +89,7 @@
                                 </td>
                                 <td class="text-right">
                                     <span t-esc="row['total'] * row['initial_qty']" t-options='{"widget": "monetary", "display_currency": currency}'/>
+
                                 </td>
                             </tr>
                             <tr>
