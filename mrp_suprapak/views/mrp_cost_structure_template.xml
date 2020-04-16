@@ -65,6 +65,7 @@
                     <table class="table table-sm o_mrp_report_table">
                         <thead>
                             <tr class="o_mrp_report_header">
+<<<<<<< HEAD
                                 <th class="o_mrp_report_line_header"><span>Code</span></th>
                                 <th class="o_mrp_report_line_header"><span>Product</span></th>
                                 <th class="o_mrp_report_line_header"><span>Initial Quantity</span></th>
@@ -78,8 +79,8 @@
                                     <span t-esc="row['product'].default_code"/>
                                 </td>
                                 <td>
+<<<<<<< HEAD
                                     <span class="o_mrp_reports_web_action" t-att-res-id="row['product'].id" res-model="product.product" view-type="form" t-esc="row['product'].name"/>
-
                                 </td>
                                 <td>
                                     <span t-esc="row['initial_qty']" t-options='{"widget": "float", "decimal_precision": "Product Unit of Measure"}'/> <span t-esc="row['product'].uom_id.name"/>
@@ -88,8 +89,8 @@
                                     <span t-esc="row['total']" t-options='{"widget": "monetary", "display_currency": currency}'/>
                                 </td>
                                 <td class="text-right">
+<<<<<<< HEAD
                                     <span t-esc="row['total'] * row['initial_qty']" t-options='{"widget": "monetary", "display_currency": currency}'/>
-
                                 </td>
                             </tr>
                             <tr>

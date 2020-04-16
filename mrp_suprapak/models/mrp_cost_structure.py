@@ -30,11 +30,11 @@ class MrpCostStructure(models.AbstractModel):
                 self.env.cr.execute(query_str, (tuple(Workorders.ids), ))
                 for op_id, op_name, user, duration, cost_hour, cost_hour_mod, costs_hour_cif, costs_hour_maq in self.env.cr.fetchall():
                     operations_line.append([user, op_id, op_name, duration / 60.0, cost_hour, cost_hour_mod, costs_hour_cif, costs_hour_maq])
-            res[count]['operations_line'] = operations_line 
+            res[count]['operations_line'] = operations_line
             #get the cost of raw material effectively used
             raw_material_moves_line = []
             query_str = """SELECT sm.product_id, sm.bom_line_id, abs(SUM(sml.qty_done)), abs(SUM(sm.price_unit))
-                             FROM stock_move AS sm 
+                             FROM stock_move AS sm
                              INNER JOIN stock_move_line AS sml ON sml.move_id = sm.id
                             WHERE sm.raw_material_production_id in %s AND sm.state != 'cancel' AND sm.product_qty != 0 AND scrapped != 't'
                          GROUP BY sm.bom_line_id, sm.product_id"""
