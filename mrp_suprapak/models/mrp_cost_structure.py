@@ -46,6 +46,31 @@ class MrpCostStructure(models.AbstractModel):
                     'product_id': ProductProduct.browse(product_id),
                     'bom_line_id': bom_line_id
                 })
-            res[count]['raw_material_moves_line'] = raw_material_moves_line 
+            res[count]['raw_material_moves_line'] = raw_material_moves_line
+            # Costs before
+            cost_planned = []
+            mrp_productions = self.env['mrp.production'].browse(mos.ids)
+            for mrp in mrp_productions:
+                for i, line in enumerate(mrp.finished_move_line_ids):
+                    bom_total = 0
+                    cost_planned.append({
+                        'product': line.product_id,
+                        'initial_qty': line.product_uom_qty,
+                        'cost': line.product_id.standard_price,
+                        'components': None,
+                        'total': bom_total,
+                    })
+                    components = []
+                    for bom_line in mrp.bom_id.bom_line_ids:
+                        components.append({
+                            'product': bom_line.product_id,
+                            'qty': bom_line.product_qty * cost_planned[i]['initial_qty'],
+                            'cost': bom_line.product_id.standard_price * cost_planned[i]['initial_qty'],
+                            'BoM_cost': bom_line.product_id.standard_price,
+                        })
+                        bom_total += bom_line.product_id.standard_price
+                    cost_planned[i]['components'] = components
+                    cost_planned[i]['total'] += bom_total
+            res[count]['cost_planned'] = cost_planned
             count += 1
         return res
