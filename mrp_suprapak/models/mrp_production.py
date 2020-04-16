@@ -21,13 +21,13 @@ class MrpProduction(models.Model):
                 raise ValidationError("EL producto [%s] %s no tiene un diario asignado en su categoria" % (product_id.default_code, product_id.name))
             if record.routing_id:
                 for operation in record.routing_id.operation_ids:
-                    line_ids = operation.workcenter_id._prepare_move_line()
+                    line_ids = operation.workcenter_id._prepare_move_line(record.name)
                     if line_ids:
                         move = {
                             'journal_id': journal_id.id,
                             'line_ids': line_ids,
                             'date': fields.Date.today(),
-                            'ref': operation.name,
+                            'ref': record.name + ' - ' + operation.name,
                             'type': 'entry'
                         }
                         account_move = am_obj.sudo().create(move)
