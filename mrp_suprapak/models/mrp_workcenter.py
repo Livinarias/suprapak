@@ -10,9 +10,12 @@ class MrpWorkcenter(models.Model):
     costs_hour_cif = fields.Float('CIF per hour', help='Indirect manufacturing costs', default=0.0)
     costs_hour_maq = fields.Float('Machine per hour', help='Machinery cost', default=0.0)
     mod_account_id = fields.Many2one('account.account', 'MOD account')
+    account_mod_id = fields.Many2one('account.account', 'Counterpart MOD')
     cif_account_id = fields.Many2one('account.account', 'CIF account')
+    account_cif_id = fields.Many2one('account.account', 'Counterpart CIF')
     maq_account_id = fields.Many2one('account.account', 'MAQ account')
-    process_account_id = fields.Many2one('account.account', 'Process Product')
+    account_maq_id = fields.Many2one('account.account', 'Counterpart MAQ')
+    # process_account_id = fields.Many2one('account.account', 'Process Product')
     
     @api.onchange('costs_hour_mod', 'costs_hour_cif', 'costs_hour_maq')
     def _onchange_costs(self):
@@ -22,7 +25,7 @@ class MrpWorkcenter(models.Model):
         line_ids = []
         # credit = 0.00
         partner_id = self.company_id.partner_id.id
-        if self.costs_hour_mod and self.mod_account_id:
+        if self.costs_hour_mod and self.mod_account_id and self.account_mod_id:
             time = self._query_workcenter_time(ids)
             line = {
                 'name': name + ' - ' + 'Mano de obra',
@@ -33,15 +36,15 @@ class MrpWorkcenter(models.Model):
             }
             line_ids.append((0,0,line))
             line = {
-                'name': name + ' - ' + 'Producto en proceso (MOD)',
+                'name': name + ' - ' + 'Contrapartida MOD',
                 'partner_id': partner_id,
                 'debit': 0.00,
                 'credit': time * self.costs_hour_mod,
-                'account_id': self.process_account_id.id
+                'account_id': self.account_mod_id.id
             }
             line_ids.append((0,0,line))
             # credit += self.costs_hour_mod
-        if self.costs_hour_cif and self.cif_account_id:
+        if self.costs_hour_cif and self.cif_account_id and self.account_cif_id:
             line = {
                 'name': name + ' - ' + 'Costo indirecto de fabricacion',
                 'partner_id': partner_id,
@@ -51,15 +54,15 @@ class MrpWorkcenter(models.Model):
             }
             line_ids.append((0,0,line))
             line = {
-                'name': name + ' - ' + 'Producto en proceso (CIF)',
+                'name': name + ' - ' + 'Contrapartida CIF',
                 'partner_id': partner_id,
                 'debit': 0.00,
                 'credit': time * self.costs_hour_cif,
-                'account_id': self.process_account_id.id
+                'account_id': self.account_cif_id.id
             }
             line_ids.append((0,0,line))
             # credit += self.costs_hour_cif
-        if self.costs_hour_maq and self.maq_account_id:
+        if self.costs_hour_maq and self.maq_account_id and self.account_maq_id:
             line = {
                 'name': name + ' - ' + 'Maquinaria',
                 'partner_id': partner_id,
@@ -69,11 +72,11 @@ class MrpWorkcenter(models.Model):
             }
             line_ids.append((0,0,line))
             line = {
-                'name': name + ' - ' + 'Producto en proceso (MAQ)',
+                'name': name + ' - ' + 'Contrapartida MAQ',
                 'partner_id': partner_id,
                 'debit': 0.00,
                 'credit': time * self.costs_hour_maq,
-                'account_id': self.process_account_id.id
+                'account_id': self.account_maq_id.id
             }
             line_ids.append((0,0,line))
             # credit += self.costs_hour_maq
