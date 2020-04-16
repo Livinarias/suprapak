@@ -58,6 +58,49 @@
                     </table>
                 </t>
             </xpath>
+            <xpath expr="//t/div/t[3]/t[6]" position="after">
+                <!-- Cost planned -->
+                <t t-if="line['cost_planned']">
+                    <h3 class="o_mrp_header o_mrp_table_header">Cost Planned</h3>
+                    <table class="table table-sm o_mrp_report_table">
+                        <thead>
+                            <tr class="o_mrp_report_header">
+                                <th class="o_mrp_report_line_header"><span>Product</span></th>
+                                <th class="o_mrp_report_line_header"><span>Quantity</span></th>
+                                <th class="text-right o_mrp_report_line_header"><span>BoM Unit Cost</span></th>
+                                <th class="text-right o_mrp_report_line_header"><span>Planned Total Cost</span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="line['cost_planned']" t-as="row" class="o_mrp_data">
+                                <td>
+                                    <span t-esc="row['product'].default_code"/>
+                                </td>
+                                <td>
+                                    <span class="o_mrp_reports_web_action" t-att-res-id="row['product'].id" res-model="product.product" view-type="form" t-esc="row['product_id'].name"/>
+                                </td>
+                                <td>
+                                    <span t-esc="row['initial_qty']" t-options='{"widget": "float", "decimal_precision": "Product Unit of Measure"}'/> <span t-esc="row['product'].uom_id.name"/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-esc="row['total']" t-options='{"widget": "monetary", "display_currency": currency}'/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-esc="row['total'] * row['qty']" t-options='{"widget": "monetary", "display_currency": currency}'/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="7" class="text-right">
+                                    <strong>Total Cost of Operations</strong>
+                                </td>
+                                <!-- <td class="text-right">
+                                    <span t-esc="opcost" t-options='{"widget": "monetary", "display_currency": currency}'/>
+                                </td> -->
+                            </tr>
+                        </tbody>
+                    </table>
+                </t>
+            </xpath>
         </template>
 
         <template id="mrp_cost_structure_two" inherit_id="mrp_account_enterprise.mrp_cost_structure">
