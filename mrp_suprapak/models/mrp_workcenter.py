@@ -18,15 +18,16 @@ class MrpWorkcenter(models.Model):
     def _onchange_costs(self):
         self.costs_hour = self.costs_hour_mod + self.costs_hour_cif + self.costs_hour_maq
 
-    def _prepare_move_line(self, name):
+    def _prepare_move_line(self, ids, name):
         line_ids = []
         # credit = 0.00
         partner_id = self.company_id.partner_id.id
         if self.costs_hour_mod and self.mod_account_id:
+            time = self._query_workcenter_time(ids)
             line = {
                 'name': name + ' - ' + 'Mano de obra',
                 'partner_id': partner_id,
-                'debit': self.costs_hour_mod,
+                'debit': time * self.costs_hour_mod,
                 'credit': 0.00,
                 'account_id': self.mod_account_id.id
             }
@@ -35,7 +36,7 @@ class MrpWorkcenter(models.Model):
                 'name': name + ' - ' + 'Producto en proceso (MOD)',
                 'partner_id': partner_id,
                 'debit': 0.00,
-                'credit': self.costs_hour_mod,
+                'credit': time * self.costs_hour_mod,
                 'account_id': self.process_account_id.id
             }
             line_ids.append((0,0,line))
@@ -44,7 +45,7 @@ class MrpWorkcenter(models.Model):
             line = {
                 'name': name + ' - ' + 'Costo indirecto de fabricacion',
                 'partner_id': partner_id,
-                'debit': self.costs_hour_cif,
+                'debit': time * self.costs_hour_cif,
                 'credit': 0.00,
                 'account_id': self.cif_account_id.id
             }
@@ -53,7 +54,7 @@ class MrpWorkcenter(models.Model):
                 'name': name + ' - ' + 'Producto en proceso (CIF)',
                 'partner_id': partner_id,
                 'debit': 0.00,
-                'credit': self.costs_hour_cif,
+                'credit': time * self.costs_hour_cif,
                 'account_id': self.process_account_id.id
             }
             line_ids.append((0,0,line))
@@ -62,7 +63,7 @@ class MrpWorkcenter(models.Model):
             line = {
                 'name': name + ' - ' + 'Maquinaria',
                 'partner_id': partner_id,
-                'debit': self.costs_hour_maq,
+                'debit': time * self.costs_hour_maq,
                 'credit': 0.00,
                 'account_id': self.maq_account_id.id
             }
@@ -71,7 +72,7 @@ class MrpWorkcenter(models.Model):
                 'name': name + ' - ' + 'Producto en proceso (MAQ)',
                 'partner_id': partner_id,
                 'debit': 0.00,
-                'credit': self.costs_hour_maq,
+                'credit': time * self.costs_hour_maq,
                 'account_id': self.process_account_id.id
             }
             line_ids.append((0,0,line))
@@ -86,3 +87,16 @@ class MrpWorkcenter(models.Model):
             }
             line_ids.append((0,0,line))'''
         return line_ids
+
+    def _query_workcenter_time(self, ids):
+        query_str = """SELECT sum(t.duration), wc.costs_hour
+                    FROM mrp_workcenter_productivity t
+                    LEFT JOIN mrp_workorder w ON (w.id = t.workorder_id)
+                    LEFT JOIN mrp_workcenter wc ON (wc.id = t.workcenter_id )
+                    WHERE t.workorder_id IS NOT NULL AND w.production_id = %s
+                    GROUP BY wc.costs_hour"""
+        self.env.cr.execute(query_str, (ids,))
+        time = 0.00
+        for duration, costs_hour in self.env.cr.fetchall():
+            time = duration / 60.0
+        return time
