@@ -7,7 +7,7 @@
     'description': "Suprapak mrp",
 
     'author': "Todoo SAS",
-    'contributors': "Pablo Arcos pa@todoo,co",
+    'contributors': "Pablo Arcos pa@todoo.co, Oscar Bolaños ob@todoo.co",
     'website': "http://www.todoo.co",
 
     # Categories can be used to filter modules in modules listing
