@@ -96,9 +96,9 @@ class MrpWorkcenter(models.Model):
                     FROM mrp_workcenter_productivity t
                     LEFT JOIN mrp_workorder w ON (w.id = t.workorder_id)
                     LEFT JOIN mrp_workcenter wc ON (wc.id = t.workcenter_id )
-                    WHERE t.workorder_id IS NOT NULL AND w.production_id = %s
+                    WHERE t.workorder_id IS NOT NULL AND w.production_id = %s AND wc.id = %s
                     GROUP BY wc.costs_hour"""
-        self.env.cr.execute(query_str, (ids,))
+        self.env.cr.execute(query_str, (ids, self.id))
         time = 0.00
         for duration, costs_hour in self.env.cr.fetchall():
             time = duration / 60.0
