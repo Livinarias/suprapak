@@ -493,28 +493,58 @@ class DataSheet(models.Model):
         if values:
             self.write({'line_ids': values})
 
-    @api.onchange('roll_ids', 'for_bag_ids', 'for_superlon_ids', 'refile_ids', 'revision_ids', 'gluped_ids', 'gluped2_ids', 'movie_type_product_ids','rebobine_ids','print_ids','print_color_ids')
-    def _onchange_one2many(self):
+    @api.onchange('roll_ids')
+    def _roll_ids(self):
         for line in self.roll_ids:
             line.sheet_id = self
+
+    @api.onchange('for_bag_ids')
+    def _for_bag_ids(self):
         for line in self.for_bag_ids:
             line.sheet_id = self
+
+    @api.onchange('for_superlon_ids')
+    def _for_superlon_ids(self):
         for line in self.for_superlon_ids:
             line.sheet_id = self
+
+    @api.onchange('refile_ids')
+    def _refile_ids(self):
         for line in self.refile_ids:
             line.sheet_id = self
+
+    @api.onchange('revision_ids')
+    def _revision_ids(self):
         for line in self.revision_ids:
             line.sheet_id = self
+
+    @api.onchange('gluped_ids')
+    def _gluped_ids(self):
         for line in self.gluped_ids:
             line.sheet_id = self
+
+    @api.onchange('gluped2_ids')
+    def _gluped2_ids(self):
         for line in self.gluped2_ids:
             line.sheet_id = self
+
+    @api.onchange('movie_type_product_ids')
+    def _movie_type_product_ids(self):
         for line in self.movie_type_product_ids:
             line.sheet_id = self
+
+    @api.onchange('rebobine_ids')
+    def _rebobine_ids(self):
         for line in self.rebobine_ids:
             line.sheet_id = self
+
+    @api.onchange('print_ids')
+    def _print_ids(self):
         for line in self.print_ids:
             line.sheet_id = self
+
+    @api.onchange('print_color_ids')
+    def _print_color_ids(self):
         for line in self.print_color_ids:
             line.sheet_id = self
 
