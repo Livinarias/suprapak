@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Helpdesk ticket in Contacts",
+    'name': "Helpdesk ticket in Crm",
 
     'summary': "",
 
