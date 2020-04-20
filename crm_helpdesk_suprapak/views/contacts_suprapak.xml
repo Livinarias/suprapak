@@ -1,0 +1,17 @@
+<odoo>
+    <data>
+        <record id="crm_case_form_view_oppor" model="ir.ui.view">
+            <field name="name">crm.lead.oppor.inherited.crm</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="sale_crm.crm_case_form_view_oppor"/>
+            <field name="arch" type="xml">
+                <button name="action_view_sale_quotation" position="after">
+                    <button class="oe_stat_button" type="object"
+                        name="action_view_data_sheet" icon="fa-pencil-square-o" attrs="{'invisible': [('type', '=', 'lead')]}">
+                        <field name="sheet_count" widget="statinfo" string="sheets"/>
+                    </button>
+                </button>
+            </field>
+        </record>
+    </data>
+</odoo>
