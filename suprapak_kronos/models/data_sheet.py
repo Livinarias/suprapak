@@ -24,10 +24,10 @@ class DataSheetLine(models.Model):
 
     company_id = fields.Many2one('res.company', 'Company', default=lambda self: self.env.company.id)
     product_id = fields.Many2one('product.product', 'Product', required=True)
-    product_qty = fields.Float('Quantity', digits='Kronos', default=1.00)
+    product_qty = fields.Float('Quantity', digits='Product Unit of Measure', default=1.00)
     uom_id = fields.Many2one('uom.uom', 'Unit of measure', digits='Product Price')
     standard_price = fields.Float('Unit Price', digits='Product Price')
-    total = fields.Float('Total', digits='Product Price')
+    total = fields.Float('Total', digits='Product Price', readonly=True)
     uom_categ_id = fields.Many2one('uom.category', 'Uom category')
     field_char = fields.Char('Field', default='None')
     field_product = fields.Char()
@@ -89,10 +89,10 @@ class DataSheet(models.Model):
     opportunity_id = fields.Many2one('crm.lead', 'Opportunity')
     state = fields.Selection([('draft', 'Quote sheet'), ('sample', 'Sample Tab'),
                               ('order', 'Order Tab')],
-                             'state', copy=False, default='draft')
+                             'state', copy=False, tracking=True)
     type_sheet = fields.Selection([('review', 'Review'), ('technical', 'Technical Approval'), ('design', 'Design approval'),
                                    ('approved','Approved'),('rejected','Rejected'),('obsolete','Obsolete'),
-                                   ('rejected_t','Rejected Technical'),('rejected_d','Rejected Design')], 'Type sheet')
+                                   ('rejected_t','Rejected Technical'),('rejected_d','Rejected Design')], 'Type sheet', tracking=True)
     name = fields.Char('Name')
     # Version
     version = fields.Integer('Version', default=1, required=True)
