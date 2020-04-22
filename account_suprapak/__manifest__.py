@@ -22,7 +22,7 @@
     'data': [
         # 'views/invoice_template.xml',
         # 'views/report_invoice_document_supra.xml',
-         'views/res_partner.xml'
+         'views/mrp_kronos.xml'
     ],
     # only loaded in demonstration mode
     'images': [],
