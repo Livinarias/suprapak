@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Helpdesk ticket in Crm",
+    'name': "OTIF Suprapak",
 
     'summary': "",
 
@@ -16,12 +16,12 @@
     'version': '13.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['contacts','helpdesk'],
+    'depends': ['sale_management'],
 
     # always loaded
     'data': [
         # 'views/invoice_template.xml',
-         'views/sale_suprapak.xml'
+         'views/sale_order_view.xml'
     ],
     # only loaded in demonstration mode
     'images': [],

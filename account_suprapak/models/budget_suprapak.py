@@ -1,4 +1,5 @@
 from odoo import models,api,fields
+from odoo.exceptions import AccessDenied
 
 class AccountMove(models.Model):
     _inherit = 'account.move'
@@ -30,7 +31,8 @@ class AccountMove(models.Model):
 
     def action_post(self):
         if not self.validation_budget():
-            res = self.action_create_activity()
+            # res = self.action_create_activity()
+            res = self.action_wizard_budget()
         else:
             res = super(AccountMove, self).action_post()
         return res
@@ -66,6 +68,17 @@ class AccountMove(models.Model):
                     'user_id': user,
                 }
                 self.env['mail.activity'].create(activity_data)
-        return True
+        return {
+                'warning': {
+                    'title': "Superó el presupuesto",
+                    'message': "Con esta compra supera el presupuesto,por favor comuniquese con la persona encargada del presupuesto",
+                    },
+                }
+
+    """{
+        'men': 'adadasd'
+        'users_ids': [(4,ids,0)]
+    }"""
+
 
 
