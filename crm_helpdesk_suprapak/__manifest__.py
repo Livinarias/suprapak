@@ -21,7 +21,7 @@
     # always loaded
     'data': [
         # 'views/invoice_template.xml',
-         'views/contacts_suprapak.xml'
+         'views/sale_suprapak.xml'
     ],
     # only loaded in demonstration mode
     'images': [],

@@ -24,7 +24,7 @@ class DataSheetLine(models.Model):
 
     company_id = fields.Many2one('res.company', 'Company', default=lambda self: self.env.company.id)
     product_id = fields.Many2one('product.product', 'Product', required=True)
-    product_qty = fields.Float('Quantity', digits='Product Unit of Measure', default=1.00)
+    product_qty = fields.Float('Quantity', digits='Product Unit of Measure' , default=1.00)
     uom_id = fields.Many2one('uom.uom', 'Unit of measure', digits='Product Price')
     standard_price = fields.Float('Unit Price', digits='Product Price')
     total = fields.Float('Total', digits='Product Price', readonly=True)
