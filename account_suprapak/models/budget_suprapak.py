@@ -49,31 +49,32 @@ class AccountMove(models.Model):
                 flag = False
         return flag
 
-    def action_create_activity(self):
+    def action_wizard_budget(self):
+        imd = self.env['ir.model.data']
         for record in self:
-            order_id = record
-            model_id = self.env.ref('account.model_account_move')
-            type_id = self.env.ref('mail.mail_activity_data_todo')
-            summary = 'El pedido ha sido bloqueado por superar el presupuesto, por favor revisar'
-            date_deadline = record.date if record.date else fields.Date.today()
             partners = record.message_follower_ids.partner_id.ids
-            users = self.env['res.users'].search([('partner_id.id', 'in', partners)]).ids
+            users = self.env['res.users'].search([('partner_id.id', 'in', partners)])
+            ids = []
             for user in users:
-                activity_data = {
-                    'res_id': order_id.id,
-                    'res_model_id': model_id.id,
-                    'activity_type_id': type_id.id,
-                    'date_deadline': date_deadline,
-                    'summary': summary,
-                    'user_id': user,
-                }
-                self.env['mail.activity'].create(activity_data)
-        return {
-                'warning': {
-                    'title': "Superó el presupuesto",
-                    'message': "Con esta compra supera el presupuesto,por favor comuniquese con la persona encargada del presupuesto",
-                    },
-                }
+                ids.append((4,user.id))
+            vals_wiz = {
+                'message' : 'Superó el presupuesto estimado, por favor notifique con el area encargada' ,
+                'users_ids': ids,
+            }
+            wiz_id = self.env['budget.wizard'].create(vals_wiz)
+            action = imd.xmlid_to_object('account_suprapak.action_budget_wizard')
+            form_view_id = imd.xmlid_to_res_id('account_suprapak.view_budget_wizard_form')
+            return {
+                'name': action.name,
+                'help': action.help,
+                'type': action.type,
+                'views': [(form_view_id, 'form')],
+                'view_id': form_view_id,
+                'target': action.target,
+                'context': action.context,
+                'res_model': action.res_model,
+                'res_id': wiz_id.id,
+            }
 
     """{
         'men': 'adadasd'

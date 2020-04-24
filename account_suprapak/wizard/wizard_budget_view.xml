@@ -1,0 +1,29 @@
+<odoo>
+        <record id="view_budget_wizard_form" model="ir.ui.view">
+            <field name="name">budget.wizard.form</field>
+            <field name="model">budget.wizard</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+            <form string="Budget Wizard limit">
+                <span> Budget Limit Exceeded</span>
+                <group>
+                    <group>
+                        <field name="message" readonly="1"/>
+                        <field name="users_ids" widget="many2many_tags" options="{'no_create': True, 'no_create_edit':True}"/>
+                    </group>
+                </group>
+                <footer>
+		    	<button string="Notify" name="action_create_activity" type="object" class="oe_highlight"/>
+                </footer>
+            </form>
+            </field>
+        </record>
+        <record id="action_budget_wizard" model="ir.actions.act_window">
+            <field name="name">Budget Wizard</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">budget.wizard</field>
+            <field name="binding_view_types">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+</odoo>

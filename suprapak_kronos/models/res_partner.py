@@ -15,4 +15,4 @@ class ResPartner(models.Model):
     _inherit = 'res.partner'
 
     sector_id = fields.Many2one('res.sector','Sector')
-    sectors_ids = fields.Many2many('res.sector','parner_sector_rel','res_sector_id','sector_id','Sectors')
+    sectors_ids = fields.Many2many('res.sector','partner_sector_rel','res_sector_id','sector_id','Sectors')
