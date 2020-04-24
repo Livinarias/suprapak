@@ -1,6 +1,7 @@
 from odoo import models,api,fields
 from odoo.exceptions import AccessDenied
 
+
 class AccountMove(models.Model):
     _inherit = 'account.move'
 
@@ -20,14 +21,6 @@ class AccountMove(models.Model):
                     dic['total'] = total
                     flag = self.validate_budget_lines(dic)
         return flag
-        '''for lines in self:
-            if lines.invoice_line_ids.product_id.categ_id.property_account_expense_categ_id in \
-                    lines.crossovered_budget_line.general_budget_id.account_ids:
-                if lines.crossovered_budget_line.practical_amount > \
-                    lines.crossovered_budget_line.planned_amount:
-                    wiz_id = lines.env['notification.budget']
-                else:
-                    lines.action_post()'''
 
     def action_post(self):
         if not self.validation_budget():
@@ -75,11 +68,3 @@ class AccountMove(models.Model):
                 'res_model': action.res_model,
                 'res_id': wiz_id.id,
             }
-
-    """{
-        'men': 'adadasd'
-        'users_ids': [(4,ids,0)]
-    }"""
-
-
-

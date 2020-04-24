@@ -1,4 +1,5 @@
 <odoo>
+    <data>
         <record id="view_budget_wizard_form" model="ir.ui.view">
             <field name="name">budget.wizard.form</field>
             <field name="model">budget.wizard</field>
@@ -26,4 +27,5 @@
             <field name="view_mode">form</field>
             <field name="target">new</field>
         </record>
+    </data>
 </odoo>
