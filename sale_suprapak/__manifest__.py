@@ -21,7 +21,8 @@
     # always loaded
     'data': [
         # 'views/invoice_template.xml',
-         'views/sale_order_view.xml'
+        'views/sale_order_view.xml',
+        'views/account_move_template.xml',
     ],
     # only loaded in demonstration mode
     'images': [],
