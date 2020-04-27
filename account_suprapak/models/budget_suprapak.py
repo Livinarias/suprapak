@@ -8,12 +8,12 @@ class AccountMove(models.Model):
         flag = True
         for record in self:
             if record.type == 'in_invoice':
-                accounts = record.invoice_line_ids.product_id.categ_id.property_account_expense_categ_id.ids
+                accounts = record.invoice_line_ids.account_id.ids
                 for account in accounts:
                     dic = {}
                     dic['date'] = record.date
                     dic['account'] = account
-                    domain = [('product_id.categ_id.property_account_expense_categ_id.id','=',account),('move_id.id','=',record.id)]
+                    domain = [('account_id.id','=',account),('move_id.id','=',record.id)]
                     total = 0
                     for line in record.invoice_line_ids.search(domain):
                         total += line.price_subtotal
