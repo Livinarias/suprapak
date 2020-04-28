@@ -297,7 +297,7 @@
                                             <field name="separator_id" attrs="{'invisible':[('presentation','!=','ROLLO')]}" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia'),('categ_id','=','SEPARADORES')]"/>
                                             <field name="core_diameter" attrs="{'invisible':[('presentation','!=','ROLLO')]}"/>
                                             <field name="width_core" attrs="{'invisible':[('presentation','!=','ROLLO')]}"/>
-                                            <field name="bag" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia'),('categ_id','=','BOLSAS')]"/>
+                                            <!--<field name="bag" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia'),('categ_id','=','BOLSAS')]"/>
                                             <field name="box" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia'),('categ_id','=','CAJAS')]"/>
                                             <field name="superlon" options="{'no_create': True, 'no_create_edit':True}" domain="[('tipo_producto','=','materia'),('categ_id','=','AISLANTES TERMICOS')]"/>
                                         </group>
@@ -385,7 +385,7 @@
                                                     <field name="standard_price" invisible="True"/>
                                                     <field name="total" invisible="True"/>
                                                 </tree>
-                                            </field>
+                                            </field>-->
                                         </group>
                                     </group>
                             </page>
