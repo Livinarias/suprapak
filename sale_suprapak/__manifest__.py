@@ -22,6 +22,7 @@
     'data': [
          'views/sale_suprapak.xml',
          'views/sale_order_view.xml',
+         'wizard/view_wizard_otif.xml',
     ],
     # only loaded in demonstration mode
     'images': [],

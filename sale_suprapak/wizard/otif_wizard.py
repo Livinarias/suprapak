@@ -5,3 +5,4 @@ class WizardOtif(models.TransientModel):
 
     start_datetime = fields.Datetime('Start Datetime')
     end_datetime = fields.Datetime('End Datetime')
+

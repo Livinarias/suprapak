@@ -17,15 +17,4 @@
             </form>
         </field>
     </record>
-    <record id="create_otif_report" model="ir.actions.act_window">
-        <field name="name">otif.report</field>
-        <field name="res_model">otif.report</field>
-        <field name="view_mode">tree,form</field>
-    </record>
-    <menuitem
-    action="create_otif_report"
-    id="otif_report"
-    parent="sale.menu_sale_report"
-    name="Otif Report"
-    sequence="2"/>
 </odoo>

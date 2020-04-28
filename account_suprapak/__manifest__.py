@@ -16,13 +16,14 @@
     'version': '13.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['account'],
+    'depends': ['account','hr_expense'],
 
     # always loaded
     'data': [
         'views/res_partner.xml',
         'views/account_move_template.xml',
-        'wizard/wizard_budget_view.xml'
+        'wizard/wizard_budget_view.xml',
+        'views/view_expenses.xml'
     ],
     # only loaded in demonstration mode
     'images': [],
