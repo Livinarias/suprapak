@@ -5,10 +5,12 @@ from odoo.exceptions import AccessDenied
 class AccountMove(models.Model):
     _inherit = 'account.move'
 
+    state = fields.Selection(selection_add=[('blocked', 'Blocked')])
+
     def validation_budget(self):
         flag = True
         for record in self:
-            if record.type == 'in_invoice':
+            if record.type == 'in_invoice' and record.state != 'blocked':
                 accounts = record.invoice_line_ids.account_id.ids
                 for account in accounts:
                     dic = {}
