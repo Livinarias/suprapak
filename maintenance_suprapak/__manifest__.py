@@ -1,30 +1,32 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Conection production with kronos",
+    'name': "Maintenance Suprapak",
 
-    'summary': "",
+    'summary': "Maintenance Suprapak",
 
-    'description': "This is a module for Suprapak",
+    'description': "Maintenance Suprapak",
 
-    'author': "Todoo",
+    'author': "Todoo SAS",
+    'contributors': ['Carlos Guio fg@todo.co'],
     'website': "http://www.todoo.co",
-    'contributors': "Livingston Arias la@todoo,co",
+
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/13.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
-    'category': 'production',
+    'category': 'Operations',
     'version': '13.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['mrp'],
+    'depends': ['maintenance'],
 
     # always loaded
     'data': [
-        # 'views/invoice_template.xml',
-        # 'views/report_invoice_document_supra.xml',
-         'views/mrp_kronos.xml'
+        'security/ir.model.access.csv',
+        'views/maintenance_request_view.xml',
+        'views/templates.xml',
     ],
     # only loaded in demonstration mode
-    'images': [],
-    'application': True,
+    'demo': [
+        'demo/demo.xml',
+    ],
 }
