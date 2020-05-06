@@ -45,7 +45,3 @@ class ResCountry(models.Model):
     _sql_constraints = [
         ('name_number_code_uniq', 'unique(country_id,number_code)', 'The code of the state must be unique by country !')
     ]
-
-
-
-

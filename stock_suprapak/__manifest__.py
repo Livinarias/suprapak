@@ -23,7 +23,7 @@
     'data': [
         # 'security/ir.model.access.csv',
         'views/product_template_view.xml',
-        'views/templates.xml',
+        'views/stock_picking_template.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
