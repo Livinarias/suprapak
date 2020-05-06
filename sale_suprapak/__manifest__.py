@@ -16,11 +16,11 @@
     'version': '13.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['sale_management'],
+    'depends': ['sale_management','mrp'],
 
     # always loaded
     'data': [
-         'views/sale_suprapak.xml',
+         # 'views/sale_suprapak.xml',
          'views/sale_order_view.xml',
          'wizard/view_wizard_otif.xml',
     ],
