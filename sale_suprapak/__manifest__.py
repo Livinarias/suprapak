@@ -21,6 +21,7 @@
     # always loaded
     'data': [
          # 'views/sale_suprapak.xml',
+         'views/res_country_state.xml',
          'views/sale_order_view.xml',
          'wizard/view_wizard_otif.xml',
     ],

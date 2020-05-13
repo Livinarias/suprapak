@@ -14,7 +14,7 @@
                     <div states="get">
                         <h2>Report Complete</h2>
                         <p>Here is the report: <field name="data" readonly="True" filename="name"/></p>
-                        <p>Here is the attachement: <field name="attachment_id" readonly="True"/></p>
+                        <!--<p>Here is the attachement: <field name="attachment_id" readonly="True"/></p>-->
                         <p>Here is the datas: <field name="data_attachment" readonly="True" filename="name"/></p>
                     </div>
                     <footer states="choose">
