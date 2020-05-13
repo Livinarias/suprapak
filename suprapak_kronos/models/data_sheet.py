@@ -24,10 +24,10 @@ class DataSheetLine(models.Model):
 
     company_id = fields.Many2one('res.company', 'Company', default=lambda self: self.env.company.id)
     product_id = fields.Many2one('product.product', 'Product', required=True)
-    product_qty = fields.Float('Quantity', digits='Kronos', default=1.00)
+    product_qty = fields.Float('Quantity', digits='Product Unit of Measure' , default=1.00)
     uom_id = fields.Many2one('uom.uom', 'Unit of measure', digits='Product Price')
     standard_price = fields.Float('Unit Price', digits='Product Price')
-    total = fields.Float('Total', digits='Product Price')
+    total = fields.Float('Total', digits='Product Price', readonly=True)
     uom_categ_id = fields.Many2one('uom.category', 'Uom category')
     field_char = fields.Char('Field', default='None')
     field_product = fields.Char()
@@ -89,10 +89,10 @@ class DataSheet(models.Model):
     opportunity_id = fields.Many2one('crm.lead', 'Opportunity')
     state = fields.Selection([('draft', 'Quote sheet'), ('sample', 'Sample Tab'),
                               ('order', 'Order Tab')],
-                             'state', copy=False, default='draft')
+                             'state', copy=False, tracking=True)
     type_sheet = fields.Selection([('review', 'Review'), ('technical', 'Technical Approval'), ('design', 'Design approval'),
                                    ('approved','Approved'),('rejected','Rejected'),('obsolete','Obsolete'),
-                                   ('rejected_t','Rejected Technical'),('rejected_d','Rejected Design')], 'Type sheet')
+                                   ('rejected_t','Rejected Technical'),('rejected_d','Rejected Design')], 'Type sheet', tracking=True)
     name = fields.Char('Name')
     # Version
     version = fields.Integer('Version', default=1, required=True)
@@ -493,28 +493,58 @@ class DataSheet(models.Model):
         if values:
             self.write({'line_ids': values})
 
-    @api.onchange('roll_ids', 'for_bag_ids', 'for_superlon_ids', 'refile_ids', 'revision_ids', 'gluped_ids', 'gluped2_ids', 'movie_type_product_ids','rebobine_ids','print_ids','print_color_ids')
-    def _onchange_one2many(self):
+    @api.onchange('roll_ids')
+    def _roll_ids(self):
         for line in self.roll_ids:
             line.sheet_id = self
+
+    @api.onchange('for_bag_ids')
+    def _for_bag_ids(self):
         for line in self.for_bag_ids:
             line.sheet_id = self
+
+    @api.onchange('for_superlon_ids')
+    def _for_superlon_ids(self):
         for line in self.for_superlon_ids:
             line.sheet_id = self
+
+    @api.onchange('refile_ids')
+    def _refile_ids(self):
         for line in self.refile_ids:
             line.sheet_id = self
+
+    @api.onchange('revision_ids')
+    def _revision_ids(self):
         for line in self.revision_ids:
             line.sheet_id = self
+
+    @api.onchange('gluped_ids')
+    def _gluped_ids(self):
         for line in self.gluped_ids:
             line.sheet_id = self
+
+    @api.onchange('gluped2_ids')
+    def _gluped2_ids(self):
         for line in self.gluped2_ids:
             line.sheet_id = self
+
+    @api.onchange('movie_type_product_ids')
+    def _movie_type_product_ids(self):
         for line in self.movie_type_product_ids:
             line.sheet_id = self
+
+    @api.onchange('rebobine_ids')
+    def _rebobine_ids(self):
         for line in self.rebobine_ids:
             line.sheet_id = self
+
+    @api.onchange('print_ids')
+    def _print_ids(self):
         for line in self.print_ids:
             line.sheet_id = self
+
+    @api.onchange('print_color_ids')
+    def _print_color_ids(self):
         for line in self.print_color_ids:
             line.sheet_id = self
 

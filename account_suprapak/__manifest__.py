@@ -16,13 +16,14 @@
     'version': '13.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['account_accountant','contacts'],
+    'depends': ['account','hr_expense'],
 
     # always loaded
     'data': [
-        # 'views/invoice_template.xml',
-        # 'views/report_invoice_document_supra.xml',
-         'views/res_partner.xml'
+        'views/res_partner.xml',
+        'views/account_move_template.xml',
+        'wizard/wizard_budget_view.xml',
+        'views/view_expenses.xml'
     ],
     # only loaded in demonstration mode
     'images': [],

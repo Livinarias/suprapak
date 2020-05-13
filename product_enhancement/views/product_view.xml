@@ -1,0 +1,14 @@
+<odoo>
+    <record id="product_kanban_view_inherit" model="ir.ui.view">
+        <field name="name">Product Kanban</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_kanban_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//ul" position="after">
+                <ul>
+                    <li><strong>On hand: <field name="qty_available"/> <field name="uom_id"/></strong></li>
+                </ul>
+            </xpath>
+        </field>
+    </record>
+</odoo>

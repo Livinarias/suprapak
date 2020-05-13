@@ -17,13 +17,14 @@
     'version': '13.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['mrp_account_enterprise'],
+    'depends': ['mrp_account_enterprise','mrp'],
 
     # always loaded
     'data': [
         # 'security/ir.model.access.csv',
         'views/mrp_workcenter_view.xml',
         'views/mrp_cost_structure_template.xml',
+        'views/mrp_bom.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
