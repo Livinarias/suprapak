@@ -23,7 +23,7 @@
     'data': [
         # 'security/ir.model.access.csv',
         'views/crm_lead_view.xml',
-        'views/contacts_suprapak.xml'
+        'views/contacts_suprapak.xml',
         'views/templates.xml',
     ],
     # only loaded in demonstration mode
