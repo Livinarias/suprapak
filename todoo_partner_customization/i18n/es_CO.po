@@ -1,0 +1,615 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* todoo_partner_customization
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-09-05 20:21+0000\n"
+"PO-Revision-Date: 2019-09-05 17:30-0300\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: es_CO\n"
+"X-Generator: Poedit 2.2.3\n"
+
+#. module: todoo_partner_customization
+#: model:ir.model,name:todoo_partner_customization.model_address_code
+#: model_terms:ir.ui.view,arch_db:todoo_partner_customization.view_address_code_form
+msgid "Address Code"
+msgstr "Cód. Dirección"
+
+#. module: todoo_partner_customization
+#: model:ir.actions.act_window,name:todoo_partner_customization.action_address_code
+#: model:ir.ui.menu,name:todoo_partner_customization.address_code_menu
+#: model_terms:ir.ui.view,arch_db:todoo_partner_customization.view_address_code_tree
+msgid "Address Codes"
+msgstr "Códigos Dirección"
+
+#. module: todoo_partner_customization
+#: model_terms:ir.ui.view,arch_db:todoo_partner_customization.view_res_partner_form_inherit_address_config
+#: model_terms:ir.ui.view,arch_db:todoo_partner_customization.view_res_partner_wizard
+msgid "Address fields"
+msgstr "Campos Dirección"
+
+#. module: todoo_partner_customization
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner__ciiu
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner_wizard__ciiu
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_users__ciiu
+#: model_terms:ir.ui.view,arch_db:todoo_partner_customization.view_res_partner_form_inherit_address_config
+msgid "CIIU"
+msgstr "CIIU"
+
+#. module: todoo_partner_customization
+#: model:ir.model,name:todoo_partner_customization.model_ciiu_value
+#: model_terms:ir.ui.view,arch_db:todoo_partner_customization.view_ciiu_value_form
+msgid "CIIU Optional Value"
+msgstr "Valor Opcional CIIU"
+
+#. module: todoo_partner_customization
+#: model:ir.actions.act_window,name:todoo_partner_customization.action_ciiu_value
+#: model:ir.ui.menu,name:todoo_partner_customization.ciiu_value_menu
+#: model_terms:ir.ui.view,arch_db:todoo_partner_customization.view_ciiu_value_tree
+msgid "CIIU Optional Values"
+msgstr "Valores Opcionales CIIU"
+
+#. module: todoo_partner_customization
+#: model_terms:ir.ui.view,arch_db:todoo_partner_customization.view_res_partner_wizard
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: todoo_partner_customization
+#: selection:res.partner.wizard,l10n_co_document_type:0
+msgid "Carné Diplomatico"
+msgstr "Carné Diplomático"
+
+#. module: todoo_partner_customization
+#: model:ir.model.fields,help:todoo_partner_customization.field_res_partner_wizard__is_company
+msgid "Check if the contact is a company, otherwise it is a person"
+msgstr "Seleccione esta casilla si el contacto es una compañía. En caso contrario, es una persona."
+
+#. module: todoo_partner_customization
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner_wizard__city
+#: model_terms:ir.ui.view,arch_db:todoo_partner_customization.view_res_partner_wizard
+msgid "City"
+msgstr "Ciudad"
+
+#. module: todoo_partner_customization
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_address_code__code
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_ciiu_value__code
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_street_code__code
+msgid "Code"
+msgstr "Código"
+
+#. module: todoo_partner_customization
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_address_code__company_id
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_ciiu_value__company_id
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_street_code__company_id
+#: selection:res.partner.wizard,company_type:0
+msgid "Company"
+msgstr "Compañía"
+
+#. module: todoo_partner_customization
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner__company_name
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner_wizard__company_name
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_users__company_name
+msgid "Company Name"
+msgstr "Nombre de la compañía"
+
+#. module: todoo_partner_customization
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner__company_nature
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner_wizard__company_nature
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_users__company_nature
+msgid "Company Nature"
+msgstr "Naturaleza Compañía"
+
+#. module: todoo_partner_customization
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner_wizard__company_type
+msgid "Company Type"
+msgstr "Tipo Compañía"
+
+#. module: todoo_partner_customization
+#: model_terms:ir.ui.view,arch_db:todoo_partner_customization.view_res_partner_form_inherit_address_config
+#: model_terms:ir.ui.view,arch_db:todoo_partner_customization.view_res_partner_wizard
+msgid "Company name"
+msgstr "Nombre Compañía"
+
+#. module: todoo_partner_customization
+#: model_terms:ir.ui.view,arch_db:todoo_partner_customization.view_res_partner_wizard
+msgid "Confirm"
+msgstr "Confirmar"
+
+#. module: todoo_partner_customization
+#: model:ir.model,name:todoo_partner_customization.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: todoo_partner_customization
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner_wizard__country_id
+#: model_terms:ir.ui.view,arch_db:todoo_partner_customization.view_res_partner_wizard
+msgid "Country"
+msgstr "País"
+
+#. module: todoo_partner_customization
+#: model_terms:ir.actions.act_window,help:todoo_partner_customization.action_address_code
+msgid "Create a new Address Code"
+msgstr "Crear un nuevo Cód. Dirección"
+
+#. module: todoo_partner_customization
+#: model_terms:ir.actions.act_window,help:todoo_partner_customization.action_ciiu_value
+msgid "Create a new CIIU Optional Value"
+msgstr "Crear un nuevo Valor Opcional CIIU"
+
+#. module: todoo_partner_customization
+#: model_terms:ir.actions.act_window,help:todoo_partner_customization.action_street_code
+msgid "Create a new Street Code"
+msgstr "Crear un nuevo Cód. Calle"
+
+#. module: todoo_partner_customization
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_address_code__create_uid
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_ciiu_value__create_uid
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner_wizard__create_uid
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_street_code__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: todoo_partner_customization
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_address_code__create_date
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_ciiu_value__create_date
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner_wizard__create_date
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_street_code__create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: todoo_partner_customization
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner_wizard__partner_id
+msgid "Customer"
+msgstr "Cliente"
+
+#. module: todoo_partner_customization
+#: selection:res.partner.wizard,l10n_co_document_type:0
+msgid "Cédula"
+msgstr "Cédula"
+
+#. module: todoo_partner_customization
+#: selection:res.partner.wizard,l10n_co_document_type:0
+msgid "Cédula Extranjera"
+msgstr "Cédula Extranjera"
+
+#. module: todoo_partner_customization
+#: selection:res.partner.wizard,l10n_co_document_type:0
+msgid "Cédula de ciudadanía"
+msgstr "Cédula de ciudadanía"
+
+#. module: todoo_partner_customization
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner__dv
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner_wizard__dv
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_users__dv
+#: model_terms:ir.ui.view,arch_db:todoo_partner_customization.view_res_partner_form_inherit_address_config
+#: model_terms:ir.ui.view,arch_db:todoo_partner_customization.view_res_partner_wizard
+msgid "DV"
+msgstr "DV"
+
+#. module: todoo_partner_customization
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_address_code__name
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_ciiu_value__name
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_street_code__name
+msgid "Description"
+msgstr "Descripción"
+
+#. module: todoo_partner_customization
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_address_code__display_name
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_ciiu_value__display_name
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner_wizard__display_name
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_street_code__display_name
+msgid "Display Name"
+msgstr "Nombre Público"
+
+#. module: todoo_partner_customization
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner_wizard__l10n_co_document_type
+msgid "Document Type"
+msgstr "Tipo Documento"
+
+#. module: todoo_partner_customization
+#: selection:res.partner,company_nature:0
+#: selection:res.partner.wizard,company_nature:0
+msgid "EMPRESA UNIPERSONAL"
+msgstr "EMPRESA UNIPERSONAL"
+
+#. module: todoo_partner_customization
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner_wizard__email
+msgid "Email"
+msgstr "Correo electrónico"
+
+#. module: todoo_partner_customization
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner__field_1
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner_wizard__field_1
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_users__field_1
+msgid "Field 1"
+msgstr "Campo 1"
+
+#. module: todoo_partner_customization
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner__field_10
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner_wizard__field_10
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_users__field_10
+msgid "Field 10"
+msgstr "Campo 10"
+
+#. module: todoo_partner_customization
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner__field_11
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner_wizard__field_11
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_users__field_11
+msgid "Field 11"
+msgstr "Campo 11"
+
+#. module: todoo_partner_customization
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner__field_12
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner_wizard__field_12
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_users__field_12
+msgid "Field 12"
+msgstr "Campo 12"
+
+#. module: todoo_partner_customization
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner__field_2
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner_wizard__field_2
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_users__field_2
+msgid "Field 2"
+msgstr "Campo 2"
+
+#. module: todoo_partner_customization
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner__field_3
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner_wizard__field_3
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_users__field_3
+msgid "Field 3"
+msgstr "Campo 3"
+
+#. module: todoo_partner_customization
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner__field_4
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner_wizard__field_4
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_users__field_4
+msgid "Field 4"
+msgstr "Campo 4"
+
+#. module: todoo_partner_customization
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner__field_5
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner_wizard__field_5
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_users__field_5
+msgid "Field 5"
+msgstr "Campo 5"
+
+#. module: todoo_partner_customization
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner__field_6
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner_wizard__field_6
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_users__field_6
+msgid "Field 6"
+msgstr "Campo 6"
+
+#. module: todoo_partner_customization
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner__field_7
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner_wizard__field_7
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_users__field_7
+msgid "Field 7"
+msgstr "Campo 7"
+
+#. module: todoo_partner_customization
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner__field_8
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner_wizard__field_8
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_users__field_8
+msgid "Field 8"
+msgstr "Campo 8"
+
+#. module: todoo_partner_customization
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner__field_9
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner_wizard__field_9
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_users__field_9
+msgid "Field 9"
+msgstr "Campo 9"
+
+#. module: todoo_partner_customization
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner__first_name
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner_wizard__first_name
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_users__first_name
+msgid "First Name"
+msgstr "Primer Nombre"
+
+#. module: todoo_partner_customization
+#: model_terms:ir.ui.view,arch_db:todoo_partner_customization.view_res_partner_form_inherit_address_config
+#: model_terms:ir.ui.view,arch_db:todoo_partner_customization.view_res_partner_wizard
+msgid "First name"
+msgstr "Primer Nombre"
+
+#. module: todoo_partner_customization
+#: model_terms:ir.ui.view,arch_db:todoo_partner_customization.view_res_partner_form_inherit_address_config
+msgid "Full name"
+msgstr "Nombre Completo"
+
+#. module: todoo_partner_customization
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner_wizard__l10n_co_edi_large_taxpayer
+msgid "Gran Contribuyente"
+msgstr "Gran Contribuyente"
+
+#. module: todoo_partner_customization
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_address_code__id
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_ciiu_value__id
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner_wizard__id
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_street_code__id
+msgid "ID"
+msgstr "ID"
+
+#. module: todoo_partner_customization
+#: selection:res.partner.wizard,l10n_co_document_type:0
+msgid "ID del Exterior"
+msgstr "ID del Exterior"
+
+#. module: todoo_partner_customization
+#: model:ir.model.fields,help:todoo_partner_customization.field_res_partner_wizard__l10n_co_document_type
+msgid "Indicates to what document the information in here belongs to."
+msgstr "Indica a que documento pertenece la información."
+
+#. module: todoo_partner_customization
+#: selection:res.partner.wizard,company_type:0
+msgid "Individual"
+msgstr "Individuo"
+
+#. module: todoo_partner_customization
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner_wizard__is_company
+msgid "Is a Company"
+msgstr "Es una compañia"
+
+#. module: todoo_partner_customization
+#: selection:res.partner,company_nature:0
+#: selection:res.partner.wizard,company_nature:0
+msgid "LTDA"
+msgstr "LTDA"
+
+#. module: todoo_partner_customization
+#: code:addons/todoo_partner_customization/wizard/res_partner_wizard.py:145
+#, python-format
+msgid "Large taxpayer or Simplified Regimen must be selected"
+msgstr "Una de las opciones, Gran Contribuyente o Régimen Simplificado, debe ser seleccionada"
+
+#. module: todoo_partner_customization
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_address_code____last_update
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_ciiu_value____last_update
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner_wizard____last_update
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_street_code____last_update
+msgid "Last Modified on"
+msgstr "Última Modificación el"
+
+#. module: todoo_partner_customization
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner__last_name
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner_wizard__last_name
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_users__last_name
+msgid "Last Name"
+msgstr "Apellido"
+
+#. module: todoo_partner_customization
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_address_code__write_uid
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_ciiu_value__write_uid
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner_wizard__write_uid
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_street_code__write_uid
+msgid "Last Updated by"
+msgstr "Actualizado por"
+
+#. module: todoo_partner_customization
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_address_code__write_date
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_ciiu_value__write_date
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner_wizard__write_date
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_street_code__write_date
+msgid "Last Updated on"
+msgstr "Actualizado"
+
+#. module: todoo_partner_customization
+#: model_terms:ir.ui.view,arch_db:todoo_partner_customization.view_res_partner_form_inherit_address_config
+#: model_terms:ir.ui.view,arch_db:todoo_partner_customization.view_res_partner_wizard
+msgid "Last name"
+msgstr "Apellido"
+
+#. module: todoo_partner_customization
+#: model:ir.ui.menu,name:todoo_partner_customization.root_localization_menu
+msgid "Localization"
+msgstr "Localización"
+
+#. module: todoo_partner_customization
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner__middle_name
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner_wizard__middle_name
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_users__middle_name
+msgid "Middle Name"
+msgstr "2do Nombre"
+
+#. module: todoo_partner_customization
+#: model_terms:ir.ui.view,arch_db:todoo_partner_customization.view_res_partner_form_inherit_address_config
+#: model_terms:ir.ui.view,arch_db:todoo_partner_customization.view_res_partner_wizard
+msgid "Middle name"
+msgstr "2do Nombre"
+
+#. module: todoo_partner_customization
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner_wizard__mobile
+msgid "Mobile"
+msgstr "Móvil"
+
+#. module: todoo_partner_customization
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner__nit
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner_wizard__nit
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_users__nit
+#: model_terms:ir.ui.view,arch_db:todoo_partner_customization.view_res_partner_form_inherit_address_config
+#: model_terms:ir.ui.view,arch_db:todoo_partner_customization.view_res_partner_wizard
+msgid "NIT"
+msgstr "NIT"
+
+#. module: todoo_partner_customization
+#: sql_constraint:res.partner:0
+msgid "NIT must be unique!"
+msgstr "El valor NIT debe ser único!"
+
+#. module: todoo_partner_customization
+#: code:addons/todoo_partner_customization/models/partner.py:87
+#: code:addons/todoo_partner_customization/wizard/res_partner_wizard.py:130
+#, python-format
+msgid "NIT value must be a numerical."
+msgstr "El valor NIT debe ser numérico"
+
+#. module: todoo_partner_customization
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner__name
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner_wizard__name
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_users__name
+#: model_terms:ir.ui.view,arch_db:todoo_partner_customization.view_res_partner_wizard
+msgid "Name"
+msgstr "Nombre"
+
+#. module: todoo_partner_customization
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner_wizard__l10n_co_edi_obligation_type_ids
+msgid "Obligaciones y Responsabilidades"
+msgstr "Obligaciones y Responsabilidades"
+
+#. module: todoo_partner_customization
+#: code:addons/todoo_partner_customization/models/sale_order.py:27
+#, python-format
+msgid "Open: Customer"
+msgstr "Abrir: Cliente"
+
+#. module: todoo_partner_customization
+#: code:addons/todoo_partner_customization/models/purchase_order.py:27
+#, python-format
+msgid "Open: Vendor"
+msgstr "Abrir: Proveedor"
+
+#. module: todoo_partner_customization
+#: selection:res.partner,company_nature:0
+#: selection:res.partner.wizard,company_nature:0
+msgid "PERSONA NATURAL"
+msgstr "PERSONA NATURAL"
+
+#. module: todoo_partner_customization
+#: selection:res.partner.wizard,l10n_co_document_type:0
+msgid "Pasaporte"
+msgstr "Pasaporte"
+
+#. module: todoo_partner_customization
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner_wizard__phone
+msgid "Phone"
+msgstr "Teléfono"
+
+#. module: todoo_partner_customization
+#: model:ir.model,name:todoo_partner_customization.model_purchase_order
+msgid "Purchase Order"
+msgstr "Orden de Compra"
+
+#. module: todoo_partner_customization
+#: selection:res.partner.wizard,l10n_co_document_type:0
+msgid "RUT"
+msgstr "RUT"
+
+#. module: todoo_partner_customization
+#: selection:res.partner.wizard,l10n_co_document_type:0
+msgid "Registro Civil"
+msgstr "Registro Civil"
+
+#. module: todoo_partner_customization
+#: selection:res.partner,company_nature:0
+#: selection:res.partner.wizard,company_nature:0
+msgid "S. EN C."
+msgstr "S. EN C."
+
+#. module: todoo_partner_customization
+#: selection:res.partner,company_nature:0
+#: selection:res.partner.wizard,company_nature:0
+msgid "S.A"
+msgstr "S.A"
+
+#. module: todoo_partner_customization
+#: selection:res.partner,company_nature:0
+#: selection:res.partner.wizard,company_nature:0
+msgid "S.A.S"
+msgstr "S.A.S"
+
+#. module: todoo_partner_customization
+#: selection:res.partner,company_nature:0
+#: selection:res.partner.wizard,company_nature:0
+msgid "S.C.A"
+msgstr "S.C.A"
+
+#. module: todoo_partner_customization
+#: selection:res.partner,company_nature:0
+#: selection:res.partner.wizard,company_nature:0
+msgid "SOCIEDAD COLECTIVA"
+msgstr "SOCIEDAD COLECTIVA"
+
+#. module: todoo_partner_customization
+#: model:ir.model,name:todoo_partner_customization.model_sale_order
+msgid "Sale Order"
+msgstr "Orden de Venta"
+
+#. module: todoo_partner_customization
+#: selection:res.partner.wizard,l10n_co_document_type:0
+msgid "Salvoconducto de Permanencia"
+msgstr "Salvoconducto de Permanencia"
+
+#. module: todoo_partner_customization
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner__second_last_name
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner_wizard__second_last_name
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_users__second_last_name
+msgid "Second Last Name"
+msgstr "2do Apellido"
+
+#. module: todoo_partner_customization
+#: model_terms:ir.ui.view,arch_db:todoo_partner_customization.view_res_partner_form_inherit_address_config
+#: model_terms:ir.ui.view,arch_db:todoo_partner_customization.view_res_partner_wizard
+msgid "Second last name"
+msgstr "2do Apellido"
+
+#. module: todoo_partner_customization
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner_wizard__l10n_co_edi_simplified_regimen
+msgid "Simplified Regimen"
+msgstr "Régimen Simplificado"
+
+#. module: todoo_partner_customization
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner_wizard__state_id
+#: model_terms:ir.ui.view,arch_db:todoo_partner_customization.view_res_partner_wizard
+msgid "State"
+msgstr "Estado"
+
+#. module: todoo_partner_customization
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner__street
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner_wizard__street
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_users__street
+msgid "Street"
+msgstr "Calle"
+
+#. module: todoo_partner_customization
+#: model:ir.model,name:todoo_partner_customization.model_street_code
+#: model_terms:ir.ui.view,arch_db:todoo_partner_customization.view_street_code_form
+msgid "Street Code"
+msgstr "Código Calle"
+
+#. module: todoo_partner_customization
+#: model:ir.actions.act_window,name:todoo_partner_customization.action_street_code
+#: model:ir.ui.menu,name:todoo_partner_customization.street_code_menu
+#: model_terms:ir.ui.view,arch_db:todoo_partner_customization.view_street_code_tree
+msgid "Street Codes"
+msgstr "Códigos Calles"
+
+#. module: todoo_partner_customization
+#: model_terms:ir.ui.view,arch_db:todoo_partner_customization.view_res_partner_wizard
+msgid "Street..."
+msgstr "Calle..."
+
+#. module: todoo_partner_customization
+#: selection:res.partner.wizard,l10n_co_document_type:0
+msgid "Tarjeta de Identidad"
+msgstr "Tarjeta de Identidad"
+
+#. module: todoo_partner_customization
+#: model:ir.model,name:todoo_partner_customization.model_res_partner_wizard
+msgid "Wizard for Res Partner"
+msgstr "Asistente para Contacto"
+
+#. module: todoo_partner_customization
+#: model:ir.model.fields,field_description:todoo_partner_customization.field_res_partner_wizard__zip
+#: model_terms:ir.ui.view,arch_db:todoo_partner_customization.view_res_partner_wizard
+msgid "ZIP"
+msgstr "C.P."

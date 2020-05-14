@@ -46,3 +46,4 @@ class StockPicking(models.Model):
             gross = sum([x.weight_gross for x in move_line.product_id])
             # gross = sum(move_line.product_id.weight_gross)
         return {'net': net, 'gross': gross}
+

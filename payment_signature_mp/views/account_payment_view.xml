@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_account_payment_form_sign_report" model="ir.ui.view">
+        <field name="name">cmms.account.payment.sign.form</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header/button[@name='post']" position="after">
+                <button name="action_email_contract" type="object" string="Send For  Signature"/>
+            </xpath>
+            <xpath expr="//sheet/group[last()]" position="after">
+                <notebook>
+                    <page name="payment_sign_report" string="Payment Sign Report">
+                        <group>
+                            <field name="contract_document" filename="contract_document_filename" widget="pdf_viewer"
+                                   placeholder="Choose a file to import..."/>
+                            <field name="contract_document_filename" invisible="1"/>
+                            <field name="signature_request_id" invisible="1"/>
+                            <field name="signature_state" invisible="1"/>
+                        </group>
+                        <group name="payment_signature_link">
+                            <field name="signature_request_link" widget="url"
+                                   attrs="{'invisible': [('signature_request_id', '=', False)]}" readonly="1"/>
+                        </group>
+                    </page>
+                </notebook>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_account_payment_tree_sign_report" model="ir.ui.view">
+        <field name="name">cmms.account.payment.sign.tree.signature.</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='state']" position="after">
+                <field name="signature_state" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
