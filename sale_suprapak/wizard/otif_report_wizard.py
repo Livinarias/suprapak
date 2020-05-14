@@ -152,13 +152,13 @@ class OtifReportWizard(models.TransientModel):
             worksheet.write(i + 5, 17, lead, general)
             worksheet.write(i + 5, 18, production.date_planned_finished if production else '',general_datetime)
 
-            picking = self.env['stock.picking'].search([('origin','=','order.name')], limit=1)
+            picking = self.env['stock.picking'].search([('origin','=',order.name)], limit=1)
             worksheet.write(i + 5, 19, picking.scheduled_date if picking else '', general_datetime)
             #worksheet.write(i + 5, 20, obj.scheduled_date or '',general_datetime)eta
             worksheet.write(i + 5, 23, picking.date_done if picking else '',general_datetime)
             done = 0
             if picking:
-                for move in picking.move_lines:
+                for move in picking.move_line_ids_without_package:
                     done += move.qty_done
             worksheet.write(i + 5, 24, done, general)
             worksheet.write(i + 5, 21, production.date_planned_start if production else '', general_datetime)
@@ -170,7 +170,10 @@ class OtifReportWizard(models.TransientModel):
             compliance = 0
             if order and picking:
                 for sale in order.order_line:
-                    compliance += (sale.product_oum_qty/done)
+                        if done == 0:
+                            compliance = 0
+                        else:
+                            compliance += (sale.product_uom_qty/done)
             worksheet.write(i + 5, 26,  compliance, general)
             #worksheet.write(i + 5, 27, production.date_planned_finished if production else '', general_datetime)Dias en proceso PDN
             invoice = self.env['account.move'].search([('invoice_origin', '=', 'order.name')], limit=1)
