@@ -3,6 +3,8 @@ from odoo import models, fields, api
 class Helpdesk(models.Model):
     _inherit = 'helpdesk.ticket'
 
+
+    filter = fields.Char(compute ='_compute_filter')
     complaint = fields.Selection([('product','Complaint By Product'),('service','Complaint By Service')],'Coplaint Type')
     service_id = fields.Many2one('service','PQRS by Service')
     pqrs = fields.Selection([('print','Print'),('paste','Paste'),('technic','Technic'),('cut','Cut'),('rewind','Rewind')],'PQRS by Product')
@@ -11,6 +13,15 @@ class Helpdesk(models.Model):
     technic_id = fields.Many2one('technic','Technic')
     cut_id = fields.Many2one('cut','Cut')
     rewind_id = fields.Many2one('rewind','Rewind')
+
+
+
+    def _compute_filter(self):
+        if self.team_id:
+            self.filter = self.team_id.name
+        else:
+            self.filter = None
+
 
 
 class Print(models.Model):
@@ -52,9 +63,16 @@ class Cut(models.Model):
     name = fields.Char('Caused by Cut')
     code = fields.Char('code')
 
+
 class Service(models.Model):
     _name = 'service'
     _description = 'Complaint By Service'
 
     name = fields.Char('Complaint By Service')
     code = fields.Char('code')
+
+
+class HelpdeskTicketType(models.Model):
+    _inherit = 'helpdesk.ticket.type'
+
+    team_id = fields.Many2one('helpdesk.team', 'Helpdesk Team')
