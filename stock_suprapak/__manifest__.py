@@ -17,13 +17,13 @@
     'version': '13.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['stock'],
+    'depends': ['stock','sale_management','hr'],
 
     # always loaded
     'data': [
         # 'security/ir.model.access.csv',
         'views/product_template_view.xml',
-        'views/templates.xml',
+        'views/stock_picking_template.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

@@ -11,6 +11,7 @@ class customer_limit_wizard(models.TransientModel):
     def action_create_activity(self):
         for record in self:
             invoice_id = self.env['account.move'].browse(self._context.get('active_id'))
+            invoice_id.state = 'blocked'
             model_id = self.env.ref('account.model_account_move')
             type_id = self.env.ref('mail.mail_activity_data_todo')
             summary = 'El pedido ha sido bloqueado por superar el presupuesto, por favor revisar'

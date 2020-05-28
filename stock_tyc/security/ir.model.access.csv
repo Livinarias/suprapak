@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_stock_tyc_stock_tyc,stock_tyc.stock_tyc,model_stock_tyc_stock_tyc,base.group_user,1,1,1,1
