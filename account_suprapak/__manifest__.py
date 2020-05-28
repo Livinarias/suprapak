@@ -16,7 +16,7 @@
     'version': '13.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['account','hr_expense'],
+    'depends': ['account','hr_expense','sale_management'],
 
     # always loaded
     'data': [
