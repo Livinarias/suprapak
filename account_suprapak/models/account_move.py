@@ -1,4 +1,4 @@
-from odoo import models,api,fields
+from odoo import models, api, fields
 from odoo.exceptions import AccessDenied
 
 
@@ -16,7 +16,7 @@ class AccountMove(models.Model):
                     dic = {}
                     dic['date'] = record.date
                     dic['account'] = account
-                    domain = [('account_id.id','=',account),('move_id.id','=',record.id)]
+                    domain = [('account_id.id', '=', account), ('move_id.id', '=', record.id)]
                     total = 0
                     for line in record.invoice_line_ids.search(domain):
                         total += line.price_subtotal
@@ -35,12 +35,13 @@ class AccountMove(models.Model):
     def validate_budget_lines(self, dic):
         # dic = {'date', 'account', 'total'}
         flag = True
-        domain = [('crossovered_budget_id.state','=','done'),('date_from','<=',dic['date']),('date_to','>=',dic['date']),
-                  ('general_budget_id.account_ids','in',dic['account'])]
+        domain = [('crossovered_budget_id.state', '=', 'done'), ('date_from', '<=', dic['date']),
+                  ('date_to', '>=', dic['date']),
+                  ('general_budget_id.account_ids', 'in', dic['account'])]
         lines = self.env['crossovered.budget.lines'].search(domain)
         for line in lines:
             # if dic['account'] in line.general_budget_id.account_ids.ids:
-            if line.theoritical_amount + dic['total'] > line.planned_amount:
+            if dic['total'] > line.planned_amount + line.practical_amount:
                 flag = False
         return flag
 
@@ -51,9 +52,9 @@ class AccountMove(models.Model):
             users = self.env['res.users'].search([('partner_id.id', 'in', partners)])
             ids = []
             for user in users:
-                ids.append((4,user.id))
+                ids.append((4, user.id))
             vals_wiz = {
-                'message' : 'Superó el presupuesto estimado, por favor notifique con el area encargada' ,
+                'message': 'Superó el presupuesto estimado, por favor notifique con el area encargada',
                 'users_ids': ids,
             }
             wiz_id = self.env['budget.wizard'].create(vals_wiz)
