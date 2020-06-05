@@ -17,7 +17,7 @@
     "summary": "This module allows to evaluate a tax at invoice level, using parameters such as total base and others.", 
     "depends": [
         "account_tax_group_menu",
-        "account_fiscal_year",
+        #"account_fiscal_year",
         "account_invoice_fiscal_position_update",
     ],
     "data": [
